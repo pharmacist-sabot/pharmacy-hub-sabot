@@ -1,0 +1,39 @@
+name: CI Quality
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Quality Gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76 # v2.0.2
+
+      - name: Install Dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Linting & Formatting
+        run: bun run lint
+
+      - name: Type Checking
+        run: bun run type-check
+
+      - name: Unit Tests
+        run: bun run test:unit --run
+
+      - name: Build Production
+        run: bun run build

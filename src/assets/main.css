@@ -1,0 +1,28 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Font Family: Prompt */
+  --font-family-sans: 'Prompt', ui-sans-serif, system-ui, sans-serif;
+
+  /* Color Palette: Ported from original style.css */
+  --color-sabot-darkest: #4a6b29; /* very-dark-green */
+  --color-sabot-dark: #5d8736; /* dark-green */
+  --color-sabot-medium: #809d3c; /* medium-green */
+  --color-sabot-light: #a9c46c; /* light-green */
+  --color-sabot-bg: #eeefe0; /* pale-green */
+}
+
+/* Global Styles */
+:root {
+  font-family: var(--font-family-sans);
+}
+
+body {
+  background-color: var(--color-sabot-bg);
+  color: #333333;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
