@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
+import { useUIStore } from '@/stores/ui';
 import HomeView from '@/views/HomeView.vue';
 import NotFoundView from '@/views/NotFoundView.vue';
-import ReportView from '@/views/ReportView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,12 +12,22 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
       meta: { layout: 'default' },
+      beforeEnter: (_to, _from, next) => {
+        const store = useUIStore();
+        store.setTab('all');
+        next();
+      },
     },
     {
       path: '/reports',
       name: 'reports',
-      component: ReportView,
+      component: HomeView,
       meta: { layout: 'default' },
+      beforeEnter: (_to, _from, next) => {
+        const store = useUIStore();
+        store.setTab('report');
+        next();
+      },
     },
     {
       path: '/:pathMatch(.*)*',
@@ -26,15 +36,9 @@ const router = createRouter({
       meta: { layout: 'blank' },
     },
   ],
-  scrollBehavior(to, from, savedPosition) {
-    if (to.hash) {
-      return {
-        el: to.hash,
-        behavior: 'smooth',
-        top: 80, // Offset for sticky header
-      };
-    }
-    return savedPosition || { top: 0 };
+
+  scrollBehavior(_to, _from, _savedPosition) {
+    return { top: 0 };
   },
 });
 
