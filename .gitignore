@@ -31,3 +31,6 @@ coverage/
 
 # Typescript
 *.tsbuildinfo
+
+# Firebase
+.firebase
