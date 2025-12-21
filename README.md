@@ -1,6 +1,6 @@
 # Pharmacy Hub Sabot
 
-> A centralized platform providing pharmacy tools and resources for Sa Bot Hospital's Pharmacy Department.
+> A centralized platform providing pharmacy tools and resources for Sabot Hospital's Pharmacy Department.
 
 [![CI Quality](https://github.com/suradetpratomsak/pharmacy-hub-sabot/actions/workflows/ci.yml/badge.svg)](https://github.com/suradetpratomsak/pharmacy-hub-sabot/actions/workflows/ci.yml)
 ![Vue.js](https://img.shields.io/badge/Vue.js-3.5-4FC08D?logo=vue.js&logoColor=white)
@@ -10,32 +10,32 @@
 
 ## Overview
 
-Pharmacy Hub Sabot is a modern web application serving as a unified portal for pharmacy staff at Sa Bot Hospital. It provides quick access to various medical tools, calculators, and reporting dashboards to streamline daily pharmacy operations.
+Pharmacy Hub Sabot is a modern web application serving as a unified portal for pharmacy staff at Sabot Hospital. It provides quick access to various medical tools, calculators, and reporting dashboards to streamline daily pharmacy operations.
 
 ## Features
 
 ### Tools
 
-| Tool | Description | Status |
-|------|-------------|--------|
-| **MedSafety Net** | Medication error recording system | ✅ Active |
-| **Med Support Record** | Record support medication values (TB drugs, vaccines) | ✅ Active |
-| **Warfarin Calculator** | Dosage calculation tool for Warfarin | ✅ Active |
-| **Pediatric Dose Calculator** | Liquid medication dosing for pediatric patients | ✅ Active |
-| **Document Download** | Download pharmacy department documents | ✅ Active |
-| **High-Alert Drugs List** | Reference list of high-alert medications (HAD) | ✅ Active |
-| **DrugTracker** | Drug ordering and tracking system | ✅ Active |
-| **Hospital Drug List** | Hospital formulary lookup | 🚧 Coming Soon |
+| Tool                          | Description                                           | Status         |
+| ----------------------------- | ----------------------------------------------------- | -------------- |
+| **MedSafety Net**             | Medication error recording system                     | ✅ Active      |
+| **Med Support Record**        | Record support medication values (TB drugs, vaccines) | ✅ Active      |
+| **Warfarin Calculator**       | Dosage calculation tool for Warfarin                  | ✅ Active      |
+| **Pediatric Dose Calculator** | Liquid medication dosing for pediatric patients       | ✅ Active      |
+| **Document Download**         | Download pharmacy department documents                | ✅ Active      |
+| **High-Alert Drugs List**     | Reference list of high-alert medications (HAD)        | ✅ Active      |
+| **DrugTracker**               | Drug ordering and tracking system                     | ✅ Active      |
+| **Hospital Drug List**        | Hospital formulary lookup                             | 🚧 Coming Soon |
 
 ### Reports
 
-| Report | Description | Status |
-|--------|-------------|--------|
-| **MedSafety Net Dashboard** | Medication error analytics and management | ✅ Active |
-| **Med Support Dashboard** | Support medication value dashboard | ✅ Active |
-| **Monthly Summary Report** | Monthly operational summary | 🚧 Coming Soon |
-| **Stock Value Report** | Drug inventory value tracking | 🚧 Coming Soon |
-| **OPD Drug Usage Report** | Outpatient drug usage statistics | 🚧 Coming Soon |
+| Report                      | Description                               | Status         |
+| --------------------------- | ----------------------------------------- | -------------- |
+| **MedSafety Net Dashboard** | Medication error analytics and management | ✅ Active      |
+| **Med Support Dashboard**   | Support medication value dashboard        | ✅ Active      |
+| **Monthly Summary Report**  | Monthly operational summary               | 🚧 Coming Soon |
+| **Stock Value Report**      | Drug inventory value tracking             | 🚧 Coming Soon |
+| **OPD Drug Usage Report**   | Outpatient drug usage statistics          | 🚧 Coming Soon |
 
 ## Tech Stack
 
@@ -102,16 +102,16 @@ pharmacy-hub-sabot/
 
 ## Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `bun run dev` | Start development server |
-| `bun run build` | Build for production |
-| `bun run preview` | Preview production build locally |
-| `bun run type-check` | Run TypeScript type checking |
-| `bun run lint` | Run ESLint for code linting |
-| `bun run lint:fix` | Fix linting issues automatically |
-| `bun run test:unit` | Run unit tests with Vitest |
-| `bun run test:coverage` | Run tests with coverage report |
+| Command                 | Description                      |
+| ----------------------- | -------------------------------- |
+| `bun run dev`           | Start development server         |
+| `bun run build`         | Build for production             |
+| `bun run preview`       | Preview production build locally |
+| `bun run type-check`    | Run TypeScript type checking     |
+| `bun run lint`          | Run ESLint for code linting      |
+| `bun run lint:fix`      | Fix linting issues automatically |
+| `bun run test:unit`     | Run unit tests with Vitest       |
+| `bun run test:coverage` | Run tests with coverage report   |
 
 ## Code Quality
 
