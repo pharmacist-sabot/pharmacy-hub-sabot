@@ -2,7 +2,7 @@
 
 > A centralized platform providing pharmacy tools and resources for Sabot Hospital's Pharmacy Department.
 
-[![CI Quality](https://github.com/suradetpratomsak/pharmacy-hub-sabot/actions/workflows/ci.yml/badge.svg)](https://github.com/suradetpratomsak/pharmacy-hub-sabot/actions/workflows/ci.yml)
+[![CI Quality](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/actions/workflows/ci.yml)
 ![Vue.js](https://img.shields.io/badge/Vue.js-3.5-4FC08D?logo=vue.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1-38B2AC?logo=tailwindcss&logoColor=white)
@@ -82,7 +82,7 @@ pharmacy-hub-sabot/
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/suradetpratomsak/pharmacy-hub-sabot.git
+   git clone https://github.com/pharmacist-sabot/pharmacy-hub-sabot.git
    cd pharmacy-hub-sabot
    ```
 
