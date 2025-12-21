@@ -29,10 +29,8 @@ async function toggleMobileSearch() {
     await nextTick();
     searchInput.value?.focus();
   }
-  else {
-    if (!searchQuery.value) {
-      searchQuery.value = '';
-    }
+  else if (!searchQuery.value) {
+    searchQuery.value = '';
   }
 }
 </script>
