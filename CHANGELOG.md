@@ -1,3 +1,13 @@
+## [1.0.2](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.0.1...v1.0.2) (2025-12-21)
+
+### 📝 Documentation
+
+* update README repository URLs and CI badge ([61140c3](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/61140c396ca75414fcc7a8aff06a34a917cc2594))
+
+### 📦 Dependency Updates
+
+* add license file and update README file ([ef61d85](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/ef61d85de1979c05e5618d9935d46579934f553b))
+
 ## [1.0.1](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.0.0...v1.0.1) (2025-12-20)
 
 ### 📝 Documentation
