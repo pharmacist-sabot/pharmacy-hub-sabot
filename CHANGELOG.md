@@ -1,3 +1,13 @@
+## [1.2.0](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.1.0...v1.2.0) (2025-12-21)
+
+### 🚀 New Features
+
+* **tools:** add hospital drugs tool ([b85b4e8](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/b85b4e8ca0d811891505e6cb978087d1af3b200b))
+
+### 📦 Dependency Updates
+
+* ignore Firebase local cache files ([b491d69](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/b491d69ad1be34a5ded4029a2f438b5bd85d0b86))
+
 ## [1.1.0](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.0.2...v1.1.0) (2025-12-21)
 
 ### 🚀 New Features
