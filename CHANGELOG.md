@@ -1,3 +1,9 @@
+## [1.1.0](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.0.2...v1.1.0) (2025-12-21)
+
+### 🚀 New Features
+
+* implement new dashboard design and layout ([#1](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/issues/1)) ([f89c18b](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/f89c18bcf5ae757b6cbb18c1f9bd62751ecd1d95))
+
 ## [1.0.2](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.0.1...v1.0.2) (2025-12-21)
 
 ### 📝 Documentation
