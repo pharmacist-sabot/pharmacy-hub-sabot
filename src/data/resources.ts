@@ -52,8 +52,8 @@ export const pharmacyResources: ResourceItem[] = [
     title: 'บัญชียาโรงพยาบาล',
     description: 'ตรวจสอบรายการยาที่มีใช้ในโรงพยาบาลสระโบสถ์',
     iconName: 'Pill',
-    url: '#',
-    isActive: false, // Coming Soon
+    url: 'https://sabot-drug-lists.rxdevman.com',
+    isActive: true,
     type: 'tool',
   },
   {
