@@ -29,9 +29,6 @@ async function toggleMobileSearch() {
     await nextTick();
     searchInput.value?.focus();
   }
-  else if (!searchQuery.value) {
-    searchQuery.value = '';
-  }
 }
 </script>
 
@@ -39,6 +36,7 @@ async function toggleMobileSearch() {
   <header class="h-16 lg:h-20 px-4 lg:px-10 flex items-center justify-between bg-white/90 backdrop-blur-md sticky top-0 z-30 border-b border-sabot-200 shadow-sm transition-all duration-300">
     <div v-show="!isMobileSearchOpen" class="flex items-center gap-3 lg:gap-4 flex-1">
       <button
+        aria-label="เปิดเมนู"
         class="lg:hidden p-2 -ml-2 text-sabot-700 hover:bg-sabot-50 rounded-lg transition-colors"
         @click="toggleMobileMenu"
       >
@@ -67,11 +65,12 @@ async function toggleMobileSearch() {
 
     <div
       class="flex-1 max-w-md mx-4 transition-all duration-300"
-      :class="isMobileSearchOpen ? 'block w-full absolute inset-x-0 top-0 h-full bg-white z-40 px-4 flex items-center' : 'hidden lg:block'"
+      :class="isMobileSearchOpen ? 'w-full absolute inset-x-0 top-0 h-full bg-white z-40 px-4 flex items-center' : 'hidden lg:flex'"
     >
       <div class="relative group w-full flex items-center gap-2">
         <button
           v-if="isMobileSearchOpen"
+          aria-label="ปิดการค้นหา"
           class="lg:hidden p-2 text-sabot-500"
           @click="toggleMobileSearch"
         >
@@ -89,6 +88,7 @@ async function toggleMobileSearch() {
           >
           <button
             v-if="searchQuery"
+            aria-label="ล้างการค้นหา"
             class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
             @click="searchQuery = ''"
           >
@@ -100,13 +100,14 @@ async function toggleMobileSearch() {
 
     <div v-show="!isMobileSearchOpen" class="flex items-center gap-1 lg:gap-2">
       <button
+        aria-label="ค้นหา"
         class="lg:hidden p-2 text-sabot-500 hover:text-sabot-700 hover:bg-sabot-50 rounded-lg transition-colors"
         @click="toggleMobileSearch"
       >
         <Search class="w-5 h-5" />
       </button>
 
-      <button class="p-2 text-sabot-400 hover:text-sabot-600 hover:bg-sabot-50 rounded-lg transition-colors relative">
+      <button aria-label="การแจ้งเตือน" class="p-2 text-sabot-400 hover:text-sabot-600 hover:bg-sabot-50 rounded-lg transition-colors relative">
         <Bell class="w-5 h-5" />
         <span class="absolute top-2.5 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white" />
       </button>

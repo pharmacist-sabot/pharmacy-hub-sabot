@@ -19,6 +19,17 @@ const router = createRouter({
       },
     },
     {
+      path: '/tools',
+      name: 'tools',
+      component: HomeView,
+      meta: { layout: 'default' },
+      beforeEnter: (_to, _from, next) => {
+        const store = useUIStore();
+        store.setTab('tool');
+        next();
+      },
+    },
+    {
       path: '/reports',
       name: 'reports',
       component: HomeView,
@@ -37,7 +48,10 @@ const router = createRouter({
     },
   ],
 
-  scrollBehavior(_to, _from, _savedPosition) {
+  scrollBehavior(_to, _from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    }
     return { top: 0 };
   },
 });

@@ -20,6 +20,7 @@
   --color-sabot-bg: var(--color-sabot-100);
   --color-sabot-primary: var(--color-sabot-600);
   --color-sabot-secondary: var(--color-sabot-500);
+  --color-sabot-text: #1e293b; /* Slate 800 */
 
   /* Shadows */
   --shadow-soft: 0 4px 20px -2px rgba(74, 107, 41, 0.1);
@@ -33,7 +34,7 @@
 
 body {
   background-color: var(--color-sabot-100);
-  color: #1e293b; /* Slate 800 */
+  color: var(--color-sabot-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

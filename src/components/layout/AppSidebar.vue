@@ -6,12 +6,19 @@ import {
   Stethoscope,
 } from 'lucide-vue-next';
 import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
 
 import { useUIStore } from '@/stores/ui';
 
+const router = useRouter();
 const store = useUIStore();
 const { currentTab, isMobileMenuOpen } = storeToRefs(store);
-const { setTab, toggleMobileMenu } = store;
+const { toggleMobileMenu } = store;
+
+function navigateToTab(tab: 'all' | 'tool' | 'report') {
+  const routes = { all: '/', tool: '/tools', report: '/reports' };
+  router.push(routes[tab]);
+}
 </script>
 
 <template>
@@ -50,7 +57,7 @@ const { setTab, toggleMobileMenu } = store;
         <button
           class="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl transition-all outline-none"
           :class="currentTab === 'all' ? 'bg-sabot-600 text-white shadow-lg shadow-sabot-900/20' : 'text-sabot-100 hover:bg-sabot-600/50 hover:text-white'"
-          @click="setTab('all')"
+          @click="navigateToTab('all')"
         >
           <LayoutGrid class="w-5 h-5" />
           ภาพรวมทั้งหมด
@@ -59,7 +66,7 @@ const { setTab, toggleMobileMenu } = store;
         <button
           class="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl transition-all outline-none"
           :class="currentTab === 'tool' ? 'bg-sabot-600 text-white shadow-lg shadow-sabot-900/20' : 'text-sabot-100 hover:bg-sabot-600/50 hover:text-white'"
-          @click="setTab('tool')"
+          @click="navigateToTab('tool')"
         >
           <Stethoscope class="w-5 h-5" />
           เครื่องมือปฏิบัติงาน
@@ -68,7 +75,7 @@ const { setTab, toggleMobileMenu } = store;
         <button
           class="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl transition-all outline-none"
           :class="currentTab === 'report' ? 'bg-sabot-600 text-white shadow-lg shadow-sabot-900/20' : 'text-sabot-100 hover:bg-sabot-600/50 hover:text-white'"
-          @click="setTab('report')"
+          @click="navigateToTab('report')"
         >
           <BarChart3 class="w-5 h-5" />
           รายงานและสถิติ

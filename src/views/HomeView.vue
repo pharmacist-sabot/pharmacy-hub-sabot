@@ -32,28 +32,23 @@ const filteredResources = computed(() => {
   return items;
 });
 
+// Tab configuration for cleaner mapping
+const tabConfig = {
+  all: { title: 'เครื่องมือและรายงานทั้งหมด', icon: LayoutGrid },
+  tool: { title: 'เครื่องมือปฏิบัติงาน (Tools)', icon: Stethoscope },
+  report: { title: 'รายงานและสถิติ (Reports)', icon: BarChart3 },
+};
+
 const sectionTitle = computed(() => {
   if (searchQuery.value)
     return 'ผลการค้นหา';
-  if (currentTab.value === 'all')
-    return 'เครื่องมือและรายงานทั้งหมด';
-  if (currentTab.value === 'tool')
-    return 'เครื่องมือปฏิบัติงาน (Tools)';
-  if (currentTab.value === 'report')
-    return 'รายงานและสถิติ (Reports)';
-  return '';
+  return tabConfig[currentTab.value]?.title ?? '';
 });
 
 const sectionIcon = computed(() => {
   if (searchQuery.value)
     return Search;
-  if (currentTab.value === 'all')
-    return LayoutGrid;
-  if (currentTab.value === 'tool')
-    return Stethoscope;
-  if (currentTab.value === 'report')
-    return BarChart3;
-  return LayoutGrid;
+  return tabConfig[currentTab.value]?.icon ?? LayoutGrid;
 });
 
 function clearSearch() {
@@ -101,7 +96,7 @@ function clearSearch() {
   </div>
 </template>
 
-<style>
+<style scoped>
 @keyframes fadeInUp {
   from {
     opacity: 0;
