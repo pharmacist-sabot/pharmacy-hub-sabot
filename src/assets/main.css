@@ -4,12 +4,27 @@
   /* Font Family: Prompt */
   --font-family-sans: 'Prompt', ui-sans-serif, system-ui, sans-serif;
 
-  /* Color Palette: Ported from original style.css */
-  --color-sabot-darkest: #4a6b29; /* very-dark-green */
-  --color-sabot-dark: #5d8736; /* dark-green */
-  --color-sabot-medium: #809d3c; /* medium-green */
-  --color-sabot-light: #a9c46c; /* light-green */
-  --color-sabot-bg: #eeefe0; /* pale-green */
+  --color-sabot-50: #f7f9f2;
+  --color-sabot-100: #eeefe0;
+  --color-sabot-200: #d4e3b5;
+  --color-sabot-300: #a9c46c;
+  --color-sabot-400: #95b054;
+  --color-sabot-500: #809d3c;
+  --color-sabot-600: #5d8736;
+  --color-sabot-700: #4a6b29;
+  --color-sabot-800: #3b5621;
+  --color-sabot-900: #2d4119;
+  --color-sabot-950: #1a260f;
+
+  /* Semantic Mappings */
+  --color-sabot-bg: var(--color-sabot-100);
+  --color-sabot-primary: var(--color-sabot-600);
+  --color-sabot-secondary: var(--color-sabot-500);
+  --color-sabot-text: #1e293b; /* Slate 800 */
+
+  /* Shadows */
+  --shadow-soft: 0 4px 20px -2px rgba(74, 107, 41, 0.1);
+  --shadow-glow: 0 0 15px rgba(128, 157, 60, 0.4);
 }
 
 /* Global Styles */
@@ -18,11 +33,38 @@
 }
 
 body {
-  background-color: var(--color-sabot-bg);
-  color: #333333;
+  background-color: var(--color-sabot-100);
+  color: var(--color-sabot-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Smooth Scrolling */
-html {
-  scroll-behavior: smooth;
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-sabot-100);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-sabot-300);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-sabot-500);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.tool-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.tool-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px -5px rgba(74, 107, 41, 0.15);
+  border-color: var(--color-sabot-500);
 }

@@ -1,24 +1,34 @@
+import type { NavigationGuardNext, RouteLocationNormalized, RouteRecordRaw } from 'vue-router';
+
 import { createRouter, createWebHistory } from 'vue-router';
 
+import type { TabType } from '@/stores/ui';
+
+import { useUIStore } from '@/stores/ui';
 import HomeView from '@/views/HomeView.vue';
 import NotFoundView from '@/views/NotFoundView.vue';
-import ReportView from '@/views/ReportView.vue';
+
+// Helper to create tab routes with consistent configuration
+function createTabRoute(path: string, name: string, tab: TabType): RouteRecordRaw {
+  return {
+    path,
+    name,
+    component: HomeView,
+    meta: { layout: 'default', tab },
+  };
+}
+
+// Tab routes configuration
+const tabRoutes: RouteRecordRaw[] = [
+  createTabRoute('/', 'home', 'all'),
+  createTabRoute('/tools', 'tools', 'tool'),
+  createTabRoute('/reports', 'reports', 'report'),
+];
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView,
-      meta: { layout: 'default' },
-    },
-    {
-      path: '/reports',
-      name: 'reports',
-      component: ReportView,
-      meta: { layout: 'default' },
-    },
+    ...tabRoutes,
     {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
@@ -26,16 +36,23 @@ const router = createRouter({
       meta: { layout: 'blank' },
     },
   ],
-  scrollBehavior(to, from, savedPosition) {
-    if (to.hash) {
-      return {
-        el: to.hash,
-        behavior: 'smooth',
-        top: 80, // Offset for sticky header
-      };
+
+  scrollBehavior(_to, _from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
     }
-    return savedPosition || { top: 0 };
+    return { top: 0 };
   },
+});
+
+// Global navigation guard to handle tab changes
+router.beforeEach((to: RouteLocationNormalized, _from: RouteLocationNormalized, next: NavigationGuardNext) => {
+  const tab = to.meta.tab as TabType | undefined;
+  if (tab) {
+    const store = useUIStore();
+    store.setTab(tab);
+  }
+  next();
 });
 
 export default router;
