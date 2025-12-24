@@ -1,3 +1,9 @@
+## [1.2.2](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.2.1...v1.2.2) (2025-12-24)
+
+### 📝 Documentation
+
+* **readme:** mark hospital drug list tool as active ([baf148d](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/baf148ddbac777502ff071f2e4825f16565dfdb3))
+
 ## [1.2.1](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.2.0...v1.2.1) (2025-12-24)
 
 ### 🐛 Bug Fixes
