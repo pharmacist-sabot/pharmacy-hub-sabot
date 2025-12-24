@@ -90,7 +90,7 @@ export const pharmacyResources: ResourceItem[] = [
     title: 'รายงานมูลค่ายาสนับสนุน',
     description: 'รายงานมูลค่ายาสนับสนุนในรูปแบบ Dashboard',
     iconName: 'PieChart',
-    url: 'https://med-support-dashboard.web.app/',
+    url: 'https://medsup-dash.netlify.app/',
     isActive: true,
     type: 'report',
   },
