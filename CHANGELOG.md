@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.2.0...v1.2.1) (2025-12-24)
+
+### 🐛 Bug Fixes
+
+* **report:** update dashboard support URL ([a0cf1b1](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/a0cf1b15623087d7d5a8f43c9bd34968f80a008c))
+* **report:** update dashboard support URL ([1cbe467](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/1cbe46758241eba1c23d21a5a309ce0aafe99bce))
+
 ## [1.2.0](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.1.0...v1.2.0) (2025-12-21)
 
 ### 🚀 New Features
