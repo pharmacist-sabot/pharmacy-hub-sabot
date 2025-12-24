@@ -16,16 +16,16 @@ Pharmacy Hub Sabot is a modern web application serving as a unified portal for p
 
 ### Tools
 
-| Tool                          | Description                                           | Status         |
-| ----------------------------- | ----------------------------------------------------- | -------------- |
-| **MedSafety Net**             | Medication error recording system                     | ✅ Active      |
-| **Med Support Record**        | Record support medication values (TB drugs, vaccines) | ✅ Active      |
-| **Warfarin Calculator**       | Dosage calculation tool for Warfarin                  | ✅ Active      |
-| **Pediatric Dose Calculator** | Liquid medication dosing for pediatric patients       | ✅ Active      |
-| **Document Download**         | Download pharmacy department documents                | ✅ Active      |
-| **High-Alert Drugs List**     | Reference list of high-alert medications (HAD)        | ✅ Active      |
-| **DrugTracker**               | Drug ordering and tracking system                     | ✅ Active      |
-| **Hospital Drug List**        | Hospital formulary lookup                             | 🚧 Coming Soon |
+| Tool                          | Description                                           | Status    |
+| ----------------------------- | ----------------------------------------------------- | --------- |
+| **MedSafety Net**             | Medication error recording system                     | ✅ Active |
+| **Med Support Record**        | Record support medication values (TB drugs, vaccines) | ✅ Active |
+| **Warfarin Calculator**       | Dosage calculation tool for Warfarin                  | ✅ Active |
+| **Pediatric Dose Calculator** | Liquid medication dosing for pediatric patients       | ✅ Active |
+| **Document Download**         | Download pharmacy department documents                | ✅ Active |
+| **High-Alert Drugs List**     | Reference list of high-alert medications (HAD)        | ✅ Active |
+| **DrugTracker**               | Drug ordering and tracking system                     | ✅ Active |
+| **Hospital Drug List**        | Hospital formulary lookup                             | ✅ Active |
 
 ### Reports
 
