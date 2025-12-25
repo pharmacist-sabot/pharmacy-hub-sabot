@@ -1,3 +1,9 @@
+## [1.3.0](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.2.2...v1.3.0) (2025-12-25)
+
+### 🚀 New Features
+
+* add external systems tab ([268c1c2](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/268c1c2f2a9521dca72b9805eb937426e8900c3f))
+
 ## [1.2.2](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.2.1...v1.2.2) (2025-12-24)
 
 ### 📝 Documentation
