@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { BarChart3, LayoutGrid, Search, SearchX, Stethoscope } from 'lucide-vue-next';
+import { BarChart3, LayoutGrid, Link, Search, SearchX, Stethoscope } from 'lucide-vue-next';
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
 
@@ -37,6 +37,7 @@ const tabConfig = {
   all: { title: 'เครื่องมือและรายงานทั้งหมด', icon: LayoutGrid },
   tool: { title: 'เครื่องมือปฏิบัติงาน (Tools)', icon: Stethoscope },
   report: { title: 'รายงานและสถิติ (Reports)', icon: BarChart3 },
+  external: { title: 'ระบบงานภายนอก (External Systems)', icon: Link },
 };
 
 const sectionTitle = computed(() => {

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
-export type TabType = 'all' | 'tool' | 'report';
+export type TabType = 'all' | 'tool' | 'report' | 'external';
 
 export const useUIStore = defineStore('ui', () => {
   const isMobileMenuOpen = ref(false);

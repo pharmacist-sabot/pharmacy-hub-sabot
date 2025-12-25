@@ -2,6 +2,7 @@
 import {
   BarChart3,
   LayoutGrid,
+  Link,
   Pill,
   Stethoscope,
 } from 'lucide-vue-next';
@@ -15,8 +16,8 @@ const store = useUIStore();
 const { currentTab, isMobileMenuOpen } = storeToRefs(store);
 const { toggleMobileMenu } = store;
 
-function navigateToTab(tab: 'all' | 'tool' | 'report') {
-  const routes = { all: '/', tool: '/tools', report: '/reports' };
+function navigateToTab(tab: 'all' | 'tool' | 'report' | 'external') {
+  const routes = { all: '/', tool: '/tools', report: '/reports', external: '/external' };
   router.push(routes[tab]);
 }
 </script>
@@ -79,6 +80,15 @@ function navigateToTab(tab: 'all' | 'tool' | 'report') {
         >
           <BarChart3 class="w-5 h-5" />
           รายงานและสถิติ
+        </button>
+
+        <button
+          class="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl transition-all outline-none"
+          :class="currentTab === 'external' ? 'bg-sabot-600 text-white shadow-lg shadow-sabot-900/20' : 'text-sabot-100 hover:bg-sabot-600/50 hover:text-white'"
+          @click="navigateToTab('external')"
+        >
+          <Link class="w-5 h-5" />
+          ระบบงานภายนอก
         </button>
       </div>
 

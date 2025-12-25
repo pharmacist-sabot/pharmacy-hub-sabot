@@ -23,6 +23,7 @@ const tabRoutes: RouteRecordRaw[] = [
   createTabRoute('/', 'home', 'all'),
   createTabRoute('/tools', 'tools', 'tool'),
   createTabRoute('/reports', 'reports', 'report'),
+  createTabRoute('/external', 'external', 'external'),
 ];
 
 const router = createRouter({

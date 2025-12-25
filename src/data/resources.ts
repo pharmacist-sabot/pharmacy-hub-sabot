@@ -74,6 +74,15 @@ export const pharmacyResources: ResourceItem[] = [
     isActive: true,
     type: 'tool',
   },
+  {
+    id: 'thai-acc-warfarin',
+    title: 'Warfarin and NOACs Registry Network',
+    description: 'ระบบลงทะเบียนผู้ป่วย Warfarin และ NOACs แห่งประเทศไทย',
+    iconName: 'Link',
+    url: 'http://thaiacc.org/warfarin/',
+    isActive: true,
+    type: 'external',
+  },
 
   // --- Reports ---
   {

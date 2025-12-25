@@ -5,5 +5,5 @@ export type ResourceItem = {
   iconName: string;
   url: string;
   isActive: boolean;
-  type: 'tool' | 'report';
+  type: 'tool' | 'report' | 'external';
 };
