@@ -75,6 +75,15 @@ export const pharmacyResources: ResourceItem[] = [
     type: 'tool',
   },
   {
+    id: 'e-lactancia',
+    title: 'e-Lactancia',
+    description: 'ฐานข้อมูลการใช้ยาในหญิงให้นมบุตร (ตรวจสอบความปลอดภัยของยา)',
+    iconName: 'Link',
+    url: 'https://www.e-lactancia.org/',
+    isActive: true,
+    type: 'tool',
+  },
+  {
     id: 'thai-acc-warfarin',
     title: 'Warfarin and NOACs Registry Network',
     description: 'ระบบลงทะเบียนผู้ป่วย Warfarin และ NOACs แห่งประเทศไทย',
