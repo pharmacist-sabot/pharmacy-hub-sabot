@@ -1,3 +1,14 @@
+## [1.4.0](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.3.0...v1.4.0) (2025-12-26)
+
+### 🚀 New Features
+
+* add e-Lactancia database for breastfeeding drug safety ([#3](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/issues/3)) ([c295453](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/c295453bb15def4467cec859b1fbc55d5ec72a09))
+
+### 📦 Dependency Updates
+
+* document http limitation for external warfarin system ([8f0d3f8](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/8f0d3f8059a67c68b6b414c50b3fb1719dadbea1))
+* document http limitation for external warfarin system ([ad164e0](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/ad164e00ce17c74a5e8c5c41ee5fa3e0a2b18a1b))
+
 ## [1.3.0](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.2.2...v1.3.0) (2025-12-25)
 
 ### 🚀 New Features
