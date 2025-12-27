@@ -1,3 +1,9 @@
+## [1.4.2](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.4.1...v1.4.2) (2025-12-27)
+
+### ♻️ Refactoring
+
+* split resources by type to reduce duplication ([2e49ce7](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/2e49ce7c73409e4df5c63b7ad7a4e8de70aadc70))
+
 ## [1.4.1](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.4.0...v1.4.1) (2025-12-27)
 
 ### ♻️ Refactoring
