@@ -1,3 +1,9 @@
+## [1.4.1](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.4.0...v1.4.1) (2025-12-27)
+
+### ♻️ Refactoring
+
+* reduce duplication using resource factories ([f041b24](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/f041b24dcf436c8225516cd1e52ed15981b0f052))
+
 ## [1.4.0](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.3.0...v1.4.0) (2025-12-26)
 
 ### 🚀 New Features
