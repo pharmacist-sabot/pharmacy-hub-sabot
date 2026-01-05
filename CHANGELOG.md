@@ -1,3 +1,9 @@
+## [1.4.3](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.4.2...v1.4.3) (2026-01-05)
+
+### 📝 Documentation
+
+* revise README for improved clarity and detail ([8122561](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/812256171e3dedd1fdf34a9dd3fd62f82a99d4c4))
+
 ## [1.4.2](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.4.1...v1.4.2) (2025-12-27)
 
 ### ♻️ Refactoring
