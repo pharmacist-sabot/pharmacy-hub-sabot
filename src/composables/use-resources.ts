@@ -34,7 +34,7 @@ export function useResources() {
   }
 
   onMounted(() => {
-    fetchResources();
+    void fetchResources();
   });
 
   return {

@@ -221,7 +221,3 @@ This project is **proprietary software**.
 Copyright (c) 2025 Sabot Hospital Pharmacy Department. All Rights Reserved.
 
 This software is licensed for internal use by authorized employees of Sabot Hospital only. Redistribution, modification, or commercial use outside of the organization is strictly prohibited. See the [LICENSE](LICENSE) file for full details.
-
-```
-
-```
