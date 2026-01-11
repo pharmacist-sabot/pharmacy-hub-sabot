@@ -4,16 +4,21 @@ import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
 
 import ResourceCard from '@/components/common/ResourceCard.vue';
-import { pharmacyResources } from '@/data/resources';
+import { useResources } from '@/composables/use-resources';
 import { useUIStore } from '@/stores/ui';
 
 const store = useUIStore();
 const { currentTab, searchQuery } = storeToRefs(store);
 const { setSearch } = store;
 
+const { resources, loading, error } = useResources();
+
 // Filter Logic
 const filteredResources = computed(() => {
-  let items = pharmacyResources;
+  if (loading.value || error.value)
+    return [];
+
+  let items = resources.value;
 
   // Filter by Tab
   if (currentTab.value !== 'all') {
@@ -43,13 +48,13 @@ const tabConfig = {
 const sectionTitle = computed(() => {
   if (searchQuery.value)
     return 'ผลการค้นหา';
-  return tabConfig[currentTab.value]?.title ?? '';
+  return tabConfig[currentTab.value as keyof typeof tabConfig]?.title ?? '';
 });
 
 const sectionIcon = computed(() => {
   if (searchQuery.value)
     return Search;
-  return tabConfig[currentTab.value]?.icon ?? LayoutGrid;
+  return tabConfig[currentTab.value as keyof typeof tabConfig]?.icon ?? LayoutGrid;
 });
 
 function clearSearch() {
@@ -70,8 +75,19 @@ function clearSearch() {
       </h2>
     </div>
 
+    <!-- Error State -->
+    <div v-if="error" class="p-4 bg-red-100 text-red-700 rounded-xl border border-red-200">
+      Error loading resources: {{ error }}
+    </div>
+
+    <!-- Loading State -->
+    <div v-else-if="loading" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <!-- Skeleton Loader Placeholder -->
+      <div v-for="n in 6" :key="n" class="bg-white h-48 rounded-2xl border border-sabot-200 animate-pulse" />
+    </div>
+
     <!-- Empty State -->
-    <div v-if="filteredResources.length === 0" class="flex flex-col items-center justify-center py-20 bg-white/50 rounded-3xl border-2 border-dashed border-sabot-200">
+    <div v-else-if="filteredResources.length === 0" class="flex flex-col items-center justify-center py-20 bg-white/50 rounded-3xl border-2 border-dashed border-sabot-200">
       <div class="bg-white p-4 rounded-full mb-4 shadow-sm">
         <SearchX class="w-8 h-8 text-sabot-300" />
       </div>
