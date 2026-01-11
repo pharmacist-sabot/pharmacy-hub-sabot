@@ -1,3 +1,9 @@
+## [1.4.4](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.4.3...v1.4.4) (2026-01-11)
+
+### ♻️ Refactoring
+
+* **data:** decouple resources into external JSON with typed fetch ([#4](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/issues/4)) ([1df8906](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/1df8906dfa70e17c526f96320098c80121f402d4))
+
 ## [1.4.3](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.4.2...v1.4.3) (2026-01-05)
 
 ### 📝 Documentation
