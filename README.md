@@ -29,30 +29,33 @@
 The application provides categorized access to internal tools, reporting dashboards, and external registries.
 
 ### 🛠️ Operational Tools
-| Tool | Description | Status |
-| :--- | :--- | :--- |
-| **MedSafety Net** | Medication error recording and tracking system. | ✅ Active |
-| **Med Support Record** | Registry for support medication values (e.g., TB drugs, vaccines). | ✅ Active |
-| **Warfarin Calculator** | Clinical decision support tool for Warfarin dosage calculation. | ✅ Active |
-| **Pediatric Dose Calculator** | Liquid medication dosing calculator for pediatric patients. | ✅ Active |
-| **Document Download** | Centralized repository for departmental documents and forms. | ✅ Active |
-| **Hospital Drug List** | Real-time formulary lookup for Sabot Hospital. | ✅ Active |
-| **High-Alert Drugs List** | Reference database for High-Alert Medications (HAD). | ✅ Active |
-| **DrugTracker** | Inventory system for ordering and tracking drug procurement. | ✅ Active |
-| **e-Lactancia** | External integration for breastfeeding drug safety data. | ✅ Active |
+
+| Tool                          | Description                                                        | Status    |
+| :---------------------------- | :----------------------------------------------------------------- | :-------- |
+| **MedSafety Net**             | Medication error recording and tracking system.                    | ✅ Active |
+| **Med Support Record**        | Registry for support medication values (e.g., TB drugs, vaccines). | ✅ Active |
+| **Warfarin Calculator**       | Clinical decision support tool for Warfarin dosage calculation.    | ✅ Active |
+| **Pediatric Dose Calculator** | Liquid medication dosing calculator for pediatric patients.        | ✅ Active |
+| **Document Download**         | Centralized repository for departmental documents and forms.       | ✅ Active |
+| **Hospital Drug List**        | Real-time formulary lookup for Sabot Hospital.                     | ✅ Active |
+| **High-Alert Drugs List**     | Reference database for High-Alert Medications (HAD).               | ✅ Active |
+| **DrugTracker**               | Inventory system for ordering and tracking drug procurement.       | ✅ Active |
+| **e-Lactancia**               | External integration for breastfeeding drug safety data.           | ✅ Active |
 
 ### 📊 Reporting & Analytics
-| Report | Description | Status |
-| :--- | :--- | :--- |
-| **MedSafety Net Dashboard** | Analytics and management interface for medication errors. | ✅ Active |
-| **Med Support Dashboard** | Visualization of support medication value metrics. | ✅ Active |
-| **Monthly Summary Report** | Operational overview and key performance indicators. | 🚧 Maintenance |
-| **Stock Value Report** | Drug inventory valuation tracking. | 🚧 Maintenance |
-| **OPD Drug Usage Report** | Outpatient department utilization statistics. | 🚧 Maintenance |
+
+| Report                      | Description                                               | Status         |
+| :-------------------------- | :-------------------------------------------------------- | :------------- |
+| **MedSafety Net Dashboard** | Analytics and management interface for medication errors. | ✅ Active      |
+| **Med Support Dashboard**   | Visualization of support medication value metrics.        | ✅ Active      |
+| **Monthly Summary Report**  | Operational overview and key performance indicators.      | 🚧 Maintenance |
+| **Stock Value Report**      | Drug inventory valuation tracking.                        | 🚧 Maintenance |
+| **OPD Drug Usage Report**   | Outpatient department utilization statistics.             | 🚧 Maintenance |
 
 ### 🔗 External Systems
-| System | Description | Status |
-| :--- | :--- | :--- |
+
+| System                        | Description                                        | Status    |
+| :---------------------------- | :------------------------------------------------- | :-------- |
 | **Warfarin Registry Network** | National registry for Warfarin and NOACs patients. | ✅ Active |
 
 ## Tech Stack
@@ -60,6 +63,7 @@ The application provides categorized access to internal tools, reporting dashboa
 This project adheres to modern frontend best practices and a robust toolchain.
 
 ### Core Framework
+
 - **Framework:** [Vue.js 3](https://vuejs.org/) (Composition API)
 - **Language:** [TypeScript 5.9](https://www.typescriptlang.org/)
 - **Build Tool:** [Vite 7](https://vitejs.dev/)
@@ -67,11 +71,13 @@ This project adheres to modern frontend best practices and a robust toolchain.
 - **Routing:** [Vue Router 4](https://router.vuejs.org/)
 
 ### UI & Styling
+
 - **Styling:** [Tailwind CSS 4](https://tailwindcss.com/) (Vite Plugin)
 - **Icons:** [Lucide Vue Next](https://lucide.dev/)
 - **Fonts:** [Prompt](https://fonts.google.com/specimen/Prompt) (Google Fonts)
 
 ### Development & Quality
+
 - **Linter:** [ESLint](https://eslint.org/) with [@antfu/eslint-config](https://github.com/antfu/eslint-config)
 - **Formatting:** Prettier (integrated via ESLint config)
 - **Git Hooks:** [Husky](https://typicode.github.io/husky/) & [lint-staged](https://github.com/okonet/lint-staged)
@@ -80,6 +86,7 @@ This project adheres to modern frontend best practices and a robust toolchain.
 - **Utilities:** [@vueuse/core](https://vueuse.org/)
 
 ### Deployment
+
 - **Hosting:** [Firebase Hosting](https://firebase.google.com/docs/hosting)
 - **CI/CD:** GitHub Actions
 
@@ -140,15 +147,15 @@ pharmacy-hub-sabot/
 
 ## Available Scripts
 
-| Command | Action |
-| :--- | :--- |
-| `bun run dev` | Starts Vite development server with HMR. |
-| `bun run build` | Type-checks and builds for production. |
-| `bun run preview` | Locally previews the production build. |
-| `bun run type-check` | Runs TypeScript compiler to verify types. |
-| `bun run lint` | Runs ESLint to check code quality. |
-| `bun run lint:fix` | Automatically fixes linting issues. |
-| `bun run test:unit` | Runs Vitest unit tests. |
+| Command                 | Action                                    |
+| :---------------------- | :---------------------------------------- |
+| `bun run dev`           | Starts Vite development server with HMR.  |
+| `bun run build`         | Type-checks and builds for production.    |
+| `bun run preview`       | Locally previews the production build.    |
+| `bun run type-check`    | Runs TypeScript compiler to verify types. |
+| `bun run lint`          | Runs ESLint to check code quality.        |
+| `bun run lint:fix`      | Automatically fixes linting issues.       |
+| `bun run test:unit`     | Runs Vitest unit tests.                   |
 | `bun run test:coverage` | Runs tests and generates coverage report. |
 
 ## Development Workflow
@@ -171,6 +178,7 @@ This project uses [Conventional Commits](https://www.conventionalcommits.org/) e
 ### CI/CD Pipeline
 
 The **CI Quality Workflow** runs on every pull request and push to `main`:
+
 1.  **Linting:** Ensures code style consistency.
 2.  **Type Checking:** Validates TypeScript strict mode compliance.
 3.  **Testing:** Executes the unit test suite.
@@ -183,6 +191,7 @@ The **Release Workflow** automates versioning and publishing via Semantic Releas
 The application is configured for continuous deployment to Firebase Hosting.
 
 1.  **Build the application**
+
     ```bash
     bun run build
     ```
@@ -191,7 +200,7 @@ The application is configured for continuous deployment to Firebase Hosting.
     ```bash
     firebase deploy
     ```
-    *Note: Ensure you are authenticated and have the Firebase CLI installed.*
+    _Note: Ensure you are authenticated and have the Firebase CLI installed._
 
 ## Contributing
 
@@ -212,4 +221,7 @@ This project is **proprietary software**.
 Copyright (c) 2025 Sabot Hospital Pharmacy Department. All Rights Reserved.
 
 This software is licensed for internal use by authorized employees of Sabot Hospital only. Redistribution, modification, or commercial use outside of the organization is strictly prohibited. See the [LICENSE](LICENSE) file for full details.
+
+```
+
 ```
