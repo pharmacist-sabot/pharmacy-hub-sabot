@@ -1,3 +1,13 @@
+## [1.4.5](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.4.4...v1.4.5) (2026-01-14)
+
+### 📦 Dependency Updates
+
+* delete .firebase/hosting.ZGlzdA.cache ([2d93719](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/2d93719f5387830f40b9067cba340caa4bbd5d92))
+
+### ♻️ Refactoring
+
+* enforce type safety, remove axios, and add CSP ([#5](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/issues/5)) ([251aa99](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/251aa99b54e6387922075d235e3f862648bfbec3))
+
 ## [1.4.4](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.4.3...v1.4.4) (2026-01-11)
 
 ### ♻️ Refactoring
