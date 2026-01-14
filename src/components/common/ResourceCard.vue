@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { Component } from 'vue';
+
 import {
   AlertTriangle,
   ArrowRight,
@@ -23,7 +25,7 @@ const props = defineProps<{
   item: ResourceItem;
 }>();
 
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, Component> = {
   AlertTriangle,
   FileSignature,
   Calculator,
