@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { Component } from 'vue';
+
 import {
   AlertTriangle,
   ArrowRight,
@@ -10,6 +12,7 @@ import {
   ClipboardList,
   FileDown,
   FileSignature,
+  Link,
   PieChart,
   Pill,
   Siren,
@@ -23,7 +26,7 @@ const props = defineProps<{
   item: ResourceItem;
 }>();
 
-const iconMap: Record<string, any> = {
+const iconMap: Record<ResourceItem['iconName'], Component> = {
   AlertTriangle,
   FileSignature,
   Calculator,
@@ -37,6 +40,7 @@ const iconMap: Record<string, any> = {
   CalendarRange,
   Banknote,
   Users,
+  Link,
 };
 
 const currentIcon = computed(() => iconMap[props.item.iconName] || Pill);
