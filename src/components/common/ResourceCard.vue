@@ -12,6 +12,7 @@ import {
   ClipboardList,
   FileDown,
   FileSignature,
+  Link,
   PieChart,
   Pill,
   Siren,
@@ -25,7 +26,7 @@ const props = defineProps<{
   item: ResourceItem;
 }>();
 
-const iconMap: Record<string, Component> = {
+const iconMap: Record<ResourceItem['iconName'], Component> = {
   AlertTriangle,
   FileSignature,
   Calculator,
@@ -39,6 +40,7 @@ const iconMap: Record<string, Component> = {
   CalendarRange,
   Banknote,
   Users,
+  Link,
 };
 
 const currentIcon = computed(() => iconMap[props.item.iconName] || Pill);
