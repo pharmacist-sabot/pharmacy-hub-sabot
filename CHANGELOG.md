@@ -1,3 +1,9 @@
+## [1.4.6](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.4.5...v1.4.6) (2026-01-19)
+
+### 📝 Documentation
+
+* add Medication Safety Standard Assessment resource ([f6f8b40](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/f6f8b40cedb177daaf71dc1da83e82a3c7e77658))
+
 ## [1.4.5](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.4.4...v1.4.5) (2026-01-14)
 
 ### 📦 Dependency Updates
