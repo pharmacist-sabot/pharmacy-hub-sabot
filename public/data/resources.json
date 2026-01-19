@@ -90,6 +90,15 @@
     "type": "external"
   },
   {
+    "id": "phdb-medication-safety",
+    "title": "Medication Safety Standard Assessment",
+    "description": "ระบบประเมินมาตรฐานความปลอดภัยด้านยา (PHDB กระทรวงสาธารณสุข)",
+    "iconName": "Link",
+    "url": "https://phdb-service.moph.go.th/APP/PHARMACY/index.php/member/login",
+    "isActive": true,
+    "type": "external"
+  },
+  {
     "id": "dashboard-safety",
     "title": "MedSafety Net Dashboard",
     "description": "รายงานและจัดการคลาดเคลื่อนทางยา",
