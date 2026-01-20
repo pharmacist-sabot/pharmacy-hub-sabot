@@ -24,6 +24,7 @@ export default mergeConfig(
           'src/**/*.d.ts',
           'src/types/**',
         ],
+        all: true,
         thresholds: {
           statements: 70,
           branches: 70,

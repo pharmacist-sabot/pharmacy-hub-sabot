@@ -56,6 +56,7 @@ function navigateToTab(tab: 'all' | 'tool' | 'report' | 'external') {
         </div>
 
         <button
+          data-testid="nav-all"
           class="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl transition-all outline-none"
           :class="currentTab === 'all' ? 'bg-sabot-600 text-white shadow-lg shadow-sabot-900/20' : 'text-sabot-100 hover:bg-sabot-600/50 hover:text-white'"
           @click="navigateToTab('all')"
@@ -65,6 +66,7 @@ function navigateToTab(tab: 'all' | 'tool' | 'report' | 'external') {
         </button>
 
         <button
+          data-testid="nav-tool"
           class="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl transition-all outline-none"
           :class="currentTab === 'tool' ? 'bg-sabot-600 text-white shadow-lg shadow-sabot-900/20' : 'text-sabot-100 hover:bg-sabot-600/50 hover:text-white'"
           @click="navigateToTab('tool')"
@@ -74,6 +76,7 @@ function navigateToTab(tab: 'all' | 'tool' | 'report' | 'external') {
         </button>
 
         <button
+          data-testid="nav-report"
           class="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl transition-all outline-none"
           :class="currentTab === 'report' ? 'bg-sabot-600 text-white shadow-lg shadow-sabot-900/20' : 'text-sabot-100 hover:bg-sabot-600/50 hover:text-white'"
           @click="navigateToTab('report')"
@@ -83,6 +86,7 @@ function navigateToTab(tab: 'all' | 'tool' | 'report' | 'external') {
         </button>
 
         <button
+          data-testid="nav-external"
           class="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl transition-all outline-none"
           :class="currentTab === 'external' ? 'bg-sabot-600 text-white shadow-lg shadow-sabot-900/20' : 'text-sabot-100 hover:bg-sabot-600/50 hover:text-white'"
           @click="navigateToTab('external')"

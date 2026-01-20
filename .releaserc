@@ -19,7 +19,7 @@
           { "type": "build", "scope": "deps", "release": "patch" },
 
           { "type": "style", "release": false },
-          { "type": "test", "release": false },
+          { "type": "test", "release": false }
         ]
       }
     ],
