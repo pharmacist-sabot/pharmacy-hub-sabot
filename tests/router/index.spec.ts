@@ -43,4 +43,25 @@ describe('router', () => {
     await router.push('/reports');
     expect(store.currentTab).toBe('report');
   });
+
+  it('does not update store tab on navigation to non-tab route', async () => {
+    const store = useUIStore();
+    store.currentTab = 'all';
+
+    await router.push('/not-found-page-123');
+    // Should remain 'all' because the new route doesn't have meta.tab
+    expect(store.currentTab).toBe('all');
+  });
+
+  it('defines scroll behavior', () => {
+    const scrollBehavior = router.options.scrollBehavior;
+    expect(scrollBehavior).toBeDefined();
+
+    // Test savedPosition
+    const savedPos = { left: 0, top: 100 };
+    expect(scrollBehavior?.({} as any, {} as any, savedPos)).toEqual(savedPos);
+
+    // Test no savedPosition
+    expect(scrollBehavior?.({} as any, {} as any, null)).toEqual({ top: 0 });
+  });
 });

@@ -137,6 +137,46 @@ describe('appSidebar', () => {
     expect(pushSpy).toHaveBeenCalledWith('/tools');
   });
 
+  it('navigates to report tab', async () => {
+    const pushSpy = vi.spyOn(router, 'push');
+    const wrapper = mount(AppSidebar, {
+      global: {
+        plugins: [router],
+        stubs: {
+          BarChart3: true,
+          LayoutGrid: true,
+          Link: true,
+          Pill: true,
+          Stethoscope: true,
+        },
+      },
+    });
+
+    await wrapper.find('[data-testid="nav-report"]').trigger('click');
+
+    expect(pushSpy).toHaveBeenCalledWith('/reports');
+  });
+
+  it('navigates to external tab', async () => {
+    const pushSpy = vi.spyOn(router, 'push');
+    const wrapper = mount(AppSidebar, {
+      global: {
+        plugins: [router],
+        stubs: {
+          BarChart3: true,
+          LayoutGrid: true,
+          Link: true,
+          Pill: true,
+          Stethoscope: true,
+        },
+      },
+    });
+
+    await wrapper.find('[data-testid="nav-external"]').trigger('click');
+
+    expect(pushSpy).toHaveBeenCalledWith('/external');
+  });
+
   it('toggles mobile menu', async () => {
     const store = useUIStore();
     store.isMobileMenuOpen = true;

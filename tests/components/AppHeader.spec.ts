@@ -58,6 +58,50 @@ describe('appHeader', () => {
     expect(container.exists()).toBe(true);
   });
 
+  it('closes mobile search via back button', async () => {
+    const wrapper = mountHeader();
+
+    // Open mobile search first
+    const searchButton = wrapper.find('button[aria-label="ค้นหา"]');
+    await searchButton.trigger('click');
+
+    // Verify search container is open
+    let container = wrapper.find('.absolute.inset-x-0.top-0');
+    expect(container.exists()).toBe(true);
+
+    // Click the back/close button
+    const closeButton = wrapper.find('button[aria-label="ปิดการค้นหา"]');
+    expect(closeButton.exists()).toBe(true);
+    await closeButton.trigger('click');
+
+    // Wait for DOM update
+    await wrapper.vm.$nextTick();
+
+    // After closing, the container should no longer have absolute positioning classes
+    container = wrapper.find('.absolute.inset-x-0.top-0');
+    expect(container.exists()).toBe(false);
+  });
+
+  it('toggles mobile menu', async () => {
+    const wrapper = mount(AppHeader, {
+      global: {
+        stubs: {
+          'router-link': true,
+          'LucideIcon': true,
+        },
+      },
+    });
+    const store = useUIStore();
+
+    expect(store.isMobileMenuOpen).toBe(false);
+
+    // Find the menu toggle button
+    const menuButton = wrapper.find('button[aria-label="เปิดเมนู"]');
+    await menuButton.trigger('click');
+
+    expect(store.isMobileMenuOpen).toBe(true);
+  });
+
   it('updates search query in store', async () => {
     const wrapper = mountHeader();
     const store = useUIStore();
