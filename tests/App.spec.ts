@@ -36,6 +36,30 @@ describe('app.vue Layout Switching', () => {
     expect(wrapper.findComponent(BlankLayout).exists()).toBe(false);
   });
 
+  it('renders DefaultLayout when meta layout is undefined', async () => {
+    const router = createRouter({
+      history: createWebHistory(),
+      routes: [
+        { path: '/no-layout', component: DummyComponent }, // No meta.layout
+      ],
+    });
+
+    router.push('/no-layout');
+    await router.isReady();
+
+    const wrapper = mount(App, {
+      global: {
+        plugins: [router],
+        stubs: {
+          DefaultLayout: true,
+          BlankLayout: true,
+        },
+      },
+    });
+
+    expect(wrapper.findComponent(DefaultLayout).exists()).toBe(true);
+  });
+
   it('renders BlankLayout when meta layout is blank', async () => {
     const router = createRouter({
       history: createWebHistory(),

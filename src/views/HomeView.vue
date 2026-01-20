@@ -97,7 +97,11 @@ function clearSearch() {
       <p class="text-sabot-500 text-sm mt-1">
         ลองใช้คำค้นหาอื่น หรือเลือกหมวดหมู่ใหม่
       </p>
-      <button class="mt-4 text-sabot-600 hover:text-sabot-800 font-bold text-sm underline decoration-sabot-300 underline-offset-4 cursor-pointer" @click="clearSearch">
+      <button
+        data-testid="clear-search-button"
+        class="mt-4 text-sabot-600 hover:text-sabot-800 font-bold text-sm underline decoration-sabot-300 underline-offset-4 cursor-pointer"
+        @click="clearSearch"
+      >
         ล้างคำค้นหา
       </button>
     </div>
