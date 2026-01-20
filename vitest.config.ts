@@ -12,6 +12,25 @@ export default mergeConfig(
       exclude: [...configDefaults.exclude, 'e2e/**'],
       root: fileURLToPath(new URL('./', import.meta.url)),
       globals: true,
+      coverage: {
+        provider: 'v8',
+        reporter: ['text', 'json', 'html'],
+        include: [
+          'src/**/*.{js,ts,vue}',
+        ],
+        exclude: [
+          'src/main.ts',
+          'src/env.d.ts',
+          'src/**/*.d.ts',
+          'src/types/**',
+        ],
+        thresholds: {
+          statements: 70,
+          branches: 70,
+          functions: 70,
+          lines: 70,
+        },
+      },
     },
   }),
 );
