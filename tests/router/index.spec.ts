@@ -4,33 +4,27 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import router from '@/router/index';
 import { useUIStore } from '@/stores/ui';
 
+// Helper to find route by path
+function findRoute(path: string) {
+  return router.getRoutes().find(r => r.path === path);
+}
+
 describe('router', () => {
   beforeEach(() => {
     setActivePinia(createPinia());
   });
 
-  it('defines the home route', () => {
-    const route = router.getRoutes().find(r => r.path === '/');
-    expect(route).toBeDefined();
-    expect(route?.meta?.tab).toBe('all');
-  });
-
-  it('defines the tools route', () => {
-    const route = router.getRoutes().find(r => r.path === '/tools');
-    expect(route).toBeDefined();
-    expect(route?.meta?.tab).toBe('tool');
-  });
-
-  it('defines the reports route', () => {
-    const route = router.getRoutes().find(r => r.path === '/reports');
-    expect(route).toBeDefined();
-    expect(route?.meta?.tab).toBe('report');
-  });
-
-  it('defines the external route', () => {
-    const route = router.getRoutes().find(r => r.path === '/external');
-    expect(route).toBeDefined();
-    expect(route?.meta?.tab).toBe('external');
+  describe('route definitions', () => {
+    it.each([
+      { path: '/', expectedTab: 'all' },
+      { path: '/tools', expectedTab: 'tool' },
+      { path: '/reports', expectedTab: 'report' },
+      { path: '/external', expectedTab: 'external' },
+    ])('defines route $path with tab $expectedTab', ({ path, expectedTab }) => {
+      const route = findRoute(path);
+      expect(route).toBeDefined();
+      expect(route?.meta?.tab).toBe(expectedTab);
+    });
   });
 
   it('updates store tab on navigation', async () => {
@@ -49,7 +43,6 @@ describe('router', () => {
     store.currentTab = 'all';
 
     await router.push('/not-found-page-123');
-    // Should remain 'all' because the new route doesn't have meta.tab
     expect(store.currentTab).toBe('all');
   });
 
@@ -57,11 +50,8 @@ describe('router', () => {
     const scrollBehavior = router.options.scrollBehavior;
     expect(scrollBehavior).toBeDefined();
 
-    // Test savedPosition
     const savedPos = { left: 0, top: 100 };
-    expect(scrollBehavior?.({} as any, {} as any, savedPos)).toEqual(savedPos);
-
-    // Test no savedPosition
-    expect(scrollBehavior?.({} as any, {} as any, null)).toEqual({ top: 0 });
+    expect(scrollBehavior?.({} as never, {} as never, savedPos)).toEqual(savedPos);
+    expect(scrollBehavior?.({} as never, {} as never, null)).toEqual({ top: 0 });
   });
 });
