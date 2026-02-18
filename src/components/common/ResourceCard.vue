@@ -48,27 +48,34 @@ const currentIcon = computed(() => iconMap[props.item.iconName] || Pill);
 
 <template>
   <a
-    :data-testid="`tool-card-${item.id}`"
-    :href="item.isActive ? item.url : undefined"
-    :target="item.isActive ? '_blank' : undefined"
+    :data-testid="`tool-card-${item.id}`" :href="item.isActive ? item.url : undefined"
+    :target="item.isActive ? '_blank' : undefined" :rel="item.isActive ? 'noopener noreferrer' : undefined"
     :aria-disabled="!item.isActive"
     class="bg-white rounded-2xl p-6 border border-sabot-200/60 shadow-soft relative group tool-card-hover flex flex-col h-full"
     :class="{ 'opacity-80 grayscale-[0.8] cursor-not-allowed bg-gray-50 pointer-events-none': !item.isActive }"
   >
     <!-- Status Badge -->
     <div class="absolute top-6 right-6">
-      <span v-if="item.isActive" class="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-sabot-50 text-sabot-600 border border-sabot-200">
+      <span
+        v-if="item.isActive"
+        class="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-sabot-50 text-sabot-600 border border-sabot-200"
+      >
         <span class="w-1.5 h-1.5 rounded-full bg-sabot-500 animate-pulse" />
         ONLINE
       </span>
-      <span v-else class="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-gray-100 text-gray-500 border border-gray-200">
+      <span
+        v-else
+        class="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-gray-100 text-gray-500 border border-gray-200"
+      >
         MAINTENANCE
       </span>
     </div>
 
     <!-- Icon & Header -->
     <div class="mb-4">
-      <div class="w-14 h-14 rounded-xl bg-sabot-50 border border-sabot-100 flex items-center justify-center text-sabot-500 group-hover:bg-sabot-500 group-hover:text-white group-hover:border-sabot-500 transition-all duration-300 shadow-sm">
+      <div
+        class="w-14 h-14 rounded-xl bg-sabot-50 border border-sabot-100 flex items-center justify-center text-sabot-500 group-hover:bg-sabot-500 group-hover:text-white group-hover:border-sabot-500 transition-all duration-300 shadow-sm"
+      >
         <component :is="currentIcon" class="w-7 h-7" :stroke-width="2" />
       </div>
     </div>
@@ -88,8 +95,12 @@ const currentIcon = computed(() => iconMap[props.item.iconName] || Pill);
       <span class="text-xs font-semibold text-sabot-300 uppercase tracking-wider">
         {{ item.type === 'tool' ? 'Application' : 'Dashboard' }}
       </span>
-      <span v-if="item.isActive" class="flex items-center text-sm font-bold text-sabot-600 group-hover:translate-x-1 transition-transform">
-        เปิดใช้งาน <ArrowRight class="w-4 h-4 ml-1" />
+      <span
+        v-if="item.isActive"
+        class="flex items-center text-sm font-bold text-sabot-600 group-hover:translate-x-1 transition-transform"
+      >
+        เปิดใช้งาน
+        <ArrowRight class="w-4 h-4 ml-1" />
       </span>
       <span v-else class="text-xs text-gray-400 font-medium">Coming Soon</span>
     </div>

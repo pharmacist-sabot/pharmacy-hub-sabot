@@ -115,7 +115,7 @@ test.describe('Search Functionality', () => {
 
       // Click the clear search button in the empty state
       await homePage.clearSearchButton.click();
-      await homePage.page.waitForTimeout(300);
+      await homePage.waitForCardsLoaded();
 
       const countAfter = await homePage.getVisibleCardCount();
       expect(countAfter).toBe(totalBefore);
@@ -129,7 +129,7 @@ test.describe('Search Functionality', () => {
   test.describe('Search with Tab Filtering', () => {
     test('should search within the Tools tab only', async () => {
       await homePage.navigateToTools();
-      await homePage.page.waitForTimeout(300);
+      await homePage.waitForCardsLoaded();
 
       const toolsCount = await homePage.getVisibleCardCount();
 
@@ -143,7 +143,7 @@ test.describe('Search Functionality', () => {
 
     test('should return no results when searching for a report title in Tools tab', async () => {
       await homePage.navigateToTools();
-      await homePage.page.waitForTimeout(300);
+      await homePage.waitForCardsLoaded();
 
       // "Dashboard" is a report title, should not appear in Tools tab
       const count = await homePage.searchAndWait('MedSafety Net Dashboard');
@@ -173,7 +173,13 @@ test.describe('Search Functionality', () => {
 
       // Type a query
       await homePage.searchInput.fill('Warfarin');
-      await homePage.page.waitForTimeout(300);
+      // Wait for Vue's reactive filter to flush DOM updates
+      await homePage.page.evaluate(
+        () =>
+          new Promise(resolve =>
+            requestAnimationFrame(() => requestAnimationFrame(resolve)),
+          ),
+      );
 
       const count = await homePage.getVisibleCardCount();
       expect(count).toBeGreaterThan(0);

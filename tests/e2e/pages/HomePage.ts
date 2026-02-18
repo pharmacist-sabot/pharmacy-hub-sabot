@@ -72,20 +72,26 @@ export class HomePage extends AppPage {
   async getCardTitle(id: string): Promise<string> {
     const card = this.getCardById(id);
     const title = card.locator('h3');
-    return title.textContent() ?? '';
+    return (await title.textContent()) ?? '';
   }
 
   /** Get the description text of a specific card. */
   async getCardDescription(id: string): Promise<string> {
     const card = this.getCardById(id);
     const description = card.locator('p');
-    return description.textContent() ?? '';
+    return (await description.textContent()) ?? '';
   }
 
   /** Get the href attribute of a specific card. */
   async getCardHref(id: string): Promise<string | null> {
     const card = this.getCardById(id);
     return card.getAttribute('href');
+  }
+
+  /** Get the rel attribute of a specific card (for external link safety). */
+  async getCardRel(id: string): Promise<string | null> {
+    const card = this.getCardById(id);
+    return card.getAttribute('rel');
   }
 
   /** Check whether a specific card has an active (ONLINE) status badge. */
@@ -108,7 +114,7 @@ export class HomePage extends AppPage {
 
   /** Get the current section title text. */
   async getSectionTitle(): Promise<string> {
-    return this.sectionTitle.textContent() ?? '';
+    return (await this.sectionTitle.textContent()) ?? '';
   }
 
   // ─── Convenience Methods ───────────────────────────────────
@@ -137,8 +143,13 @@ export class HomePage extends AppPage {
    */
   async searchAndWait(query: string): Promise<number> {
     await this.search(query);
-    // Give the reactive filter a moment to update
-    await this.page.waitForTimeout(300);
+    // Wait for Vue's reactive filter to flush DOM updates
+    await this.page.evaluate(
+      () =>
+        new Promise(resolve =>
+          requestAnimationFrame(() => requestAnimationFrame(resolve)),
+        ),
+    );
     return this.getVisibleCardCount();
   }
 
@@ -148,7 +159,13 @@ export class HomePage extends AppPage {
    */
   async clearSearchAndWait(): Promise<number> {
     await this.clearSearch();
-    await this.page.waitForTimeout(300);
+    // Wait for Vue's reactive filter to flush DOM updates
+    await this.page.evaluate(
+      () =>
+        new Promise(resolve =>
+          requestAnimationFrame(() => requestAnimationFrame(resolve)),
+        ),
+    );
     return this.getVisibleCardCount();
   }
 }

@@ -4,25 +4,14 @@
     "composite": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "types": [
-        "vitest/globals"
-      ]
+      "@/*": ["./src/*"],
+      "types": ["vitest/globals"]
     },
     "strict": true,
     "noImplicitOverride": true,
     "noUncheckedIndexedAccess": true,
     "verbatimModuleSyntax": true
   },
-  "include": [
-    "src/**/*",
-    "src/**/*.vue",
-    "src/**/*.d.ts",
-    "tests/**/*"
-  ],
-  "exclude": [
-    "src/**/__tests__/*"
-  ]
+  "include": ["src/**/*", "src/**/*.vue", "src/**/*.d.ts", "tests/**/*"],
+  "exclude": ["src/**/__tests__/*", "tests/e2e/**"]
 }
