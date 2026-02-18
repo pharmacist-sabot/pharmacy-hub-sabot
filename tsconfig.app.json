@@ -4,9 +4,9 @@
     "composite": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "types": ["vitest/globals"]
+      "@/*": ["./src/*"]
     },
+    "types": ["vitest/globals"],
     "strict": true,
     "noImplicitOverride": true,
     "noUncheckedIndexedAccess": true,

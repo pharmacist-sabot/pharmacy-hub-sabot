@@ -53,12 +53,12 @@ export class HomePage extends AppPage {
 
   /** Get a specific resource card by its id (e.g. 'med-safety', 'warfarin-calc'). */
   getCardById(id: string): Locator {
-    return this.page.getByTestId(`tool-card-${id}`);
+    return this.page.locator(`a[data-testid^="resource-card-"][data-testid$="-${id}"]`);
   }
 
   /** Get all visible resource cards in the grid. */
   getAllCards(): Locator {
-    return this.page.locator('a[data-testid^="tool-card-"]');
+    return this.page.locator('a[data-testid^="resource-card-"]');
   }
 
   /** Get the count of currently visible resource cards. */

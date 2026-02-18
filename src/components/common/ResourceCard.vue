@@ -48,11 +48,11 @@ const currentIcon = computed(() => iconMap[props.item.iconName] || Pill);
 
 <template>
   <a
-    :data-testid="`tool-card-${item.id}`" :href="item.isActive ? item.url : undefined"
+    :data-testid="`resource-card-${item.type}-${item.id}`" :href="item.isActive ? item.url : undefined"
     :target="item.isActive ? '_blank' : undefined" :rel="item.isActive ? 'noopener noreferrer' : undefined"
-    :aria-disabled="!item.isActive"
+    :aria-disabled="!item.isActive" :tabindex="item.isActive ? undefined : 0"
     class="bg-white rounded-2xl p-6 border border-sabot-200/60 shadow-soft relative group tool-card-hover flex flex-col h-full"
-    :class="{ 'opacity-80 grayscale-[0.8] cursor-not-allowed bg-gray-50 pointer-events-none': !item.isActive }"
+    :class="{ 'opacity-80 grayscale-[0.8] cursor-not-allowed bg-gray-50': !item.isActive }"
   >
     <!-- Status Badge -->
     <div class="absolute top-6 right-6">
