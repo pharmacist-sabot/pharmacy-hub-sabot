@@ -6,11 +6,17 @@ on:
   pull_request:
     branches: [main, master]
 
+# ─── Concurrency ────────────────────────────────────────────────
+# PRs: cancel previous runs on the same PR (fast iteration).
+# main/master: never cancel — every merge commit should complete.
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.sha }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
+  # ═══════════════════════════════════════════════════════════════
+  # Job 1: Quality Gates (lint, types, unit tests, build)
+  # ═══════════════════════════════════════════════════════════════
   quality:
     name: Quality Gates
     runs-on: ubuntu-latest
@@ -20,10 +26,10 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        uses: actions/checkout@v4
 
       - name: Setup Bun
-        uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76 # v2.0.2
+        uses: oven-sh/setup-bun@v2
 
       - name: Install Dependencies
         run: bun install --frozen-lockfile
@@ -40,25 +46,46 @@ jobs:
       - name: Build Production
         run: bun run build
 
-  e2e:
-    name: E2E Tests
+      # Share the build artifact with downstream E2E jobs so they can
+      # serve the production bundle via `vite preview` instead of
+      # spinning up a slow dev server.
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-build
+          path: dist/
+          retention-days: 1
+          if-no-files-found: error
+
+  # ═══════════════════════════════════════════════════════════════
+  # Job 2: Desktop E2E (runs on PRs AND main — required check)
+  # ═══════════════════════════════════════════════════════════════
+  e2e-desktop:
+    name: E2E — Desktop Chrome
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 12
     needs: quality
     permissions:
       contents: read
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        uses: actions/checkout@v4
 
       - name: Setup Bun
-        uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76 # v2.0.2
+        uses: oven-sh/setup-bun@v2
 
       - name: Install Dependencies
         run: bun install --frozen-lockfile
 
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: production-build
+          path: dist/
+
       - name: Cache Playwright Browsers
+        id: playwright-cache
         uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
@@ -67,19 +94,85 @@ jobs:
             ${{ runner.os }}-playwright-
 
       - name: Install Playwright Browsers
-        env:
-          PLAYWRIGHT_BROWSERS_PATH: ~/.cache/ms-playwright
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: bunx playwright install chromium --with-deps
 
-      - name: Run Playwright E2E Tests
+      - name: Install Playwright System Deps
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: bunx playwright install-deps chromium
+
+      - name: Run Desktop E2E Tests
         env:
-          PLAYWRIGHT_BROWSERS_PATH: ~/.cache/ms-playwright
-        run: bun run test:e2e
+          CI: 'true'
+          E2E_PROJECT: desktop
+        run: bunx playwright test
 
       - name: Upload Playwright Report
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        uses: actions/upload-artifact@v4
         with:
-          name: playwright-report
+          name: playwright-report-desktop
           path: playwright-report/
-          retention-days: 30
+          retention-days: 14
+
+  # ═══════════════════════════════════════════════════════════════
+  # Job 3: Mobile E2E (runs ONLY on main — non-blocking)
+  # ═══════════════════════════════════════════════════════════════
+  e2e-mobile:
+    name: E2E — Mobile iPhone 13
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    needs: quality
+    # Mobile failures should not block the pipeline on main.
+    # They surface as warnings — investigate in the Playwright report.
+    continue-on-error: true
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install Dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: production-build
+          path: dist/
+
+      - name: Cache Playwright Browsers
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
+      - name: Install Playwright Browsers
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: bunx playwright install chromium --with-deps
+
+      - name: Install Playwright System Deps
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: bunx playwright install-deps chromium
+
+      - name: Run Mobile E2E Tests
+        env:
+          CI: 'true'
+          E2E_PROJECT: mobile
+        run: bunx playwright test
+
+      - name: Upload Playwright Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-mobile
+          path: playwright-report/
+          retention-days: 14

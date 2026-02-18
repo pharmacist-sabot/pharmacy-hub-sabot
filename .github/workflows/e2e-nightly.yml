@@ -1,0 +1,210 @@
+# ─────────────────────────────────────────────────────────────────
+# Nightly E2E — Comprehensive end-to-end test suite
+#
+# Runs every night at 02:00 UTC (09:00 ICT) against the main branch.
+# Executes ALL projects (Desktop Chrome + Mobile iPhone 13) with
+# full tracing, video capture, and extra retries to surface flaky
+# tests without blocking daytime development.
+#
+# Can also be triggered manually via workflow_dispatch for debugging.
+# ─────────────────────────────────────────────────────────────────
+name: E2E Nightly
+
+on:
+  schedule:
+    # Every day at 02:00 UTC
+    - cron: '0 2 * * *'
+
+  workflow_dispatch:
+    inputs:
+      project:
+        description: Which E2E project to run
+        required: false
+        default: all
+        type: choice
+        options:
+          - all
+          - desktop
+          - mobile
+      retries:
+        description: Number of retries per test
+        required: false
+        default: '2'
+        type: string
+
+concurrency:
+  group: e2e-nightly-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ═══════════════════════════════════════════════════════════════
+  # Build — produce the production bundle once
+  # ═══════════════════════════════════════════════════════════════
+  build:
+    name: Build Production Bundle
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install Dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build Production
+        run: bun run build
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-build
+          path: dist/
+          retention-days: 1
+          if-no-files-found: error
+
+  # ═══════════════════════════════════════════════════════════════
+  # E2E Full Suite — Desktop + Mobile with full diagnostics
+  # ═══════════════════════════════════════════════════════════════
+  e2e-nightly:
+    name: E2E — Full Suite (${{ matrix.project }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: build
+    permissions:
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [desktop, mobile]
+        exclude:
+          # When triggered manually with a specific project, exclude the other
+          - project: ${{ github.event_name == 'workflow_dispatch' && inputs.project == 'desktop' && 'mobile' || 'NONE' }}
+          - project: ${{ github.event_name == 'workflow_dispatch' && inputs.project == 'mobile' && 'desktop' || 'NONE' }}
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install Dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: production-build
+          path: dist/
+
+      - name: Cache Playwright Browsers
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
+      - name: Install Playwright Browsers
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: bunx playwright install chromium --with-deps
+
+      - name: Install Playwright System Deps
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: bunx playwright install-deps chromium
+
+      - name: Run E2E Tests — ${{ matrix.project }}
+        env:
+          CI: 'true'
+          E2E_PROJECT: ${{ matrix.project }}
+          # Nightly runs get more retries for flake detection
+          PLAYWRIGHT_RETRIES: ${{ github.event_name == 'workflow_dispatch' && inputs.retries || '2' }}
+        run: |
+          bunx playwright test \
+            --retries="${PLAYWRIGHT_RETRIES}" \
+            --reporter=github,html,json
+
+      - name: Upload Playwright HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-nightly-${{ matrix.project }}
+          path: playwright-report/
+          retention-days: 30
+
+      - name: Upload Playwright JSON Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-results-nightly-${{ matrix.project }}
+          path: test-results/
+          retention-days: 14
+
+  # ═══════════════════════════════════════════════════════════════
+  # Notification — alert on nightly failures
+  # ═══════════════════════════════════════════════════════════════
+  notify:
+    name: Notify on Failure
+    runs-on: ubuntu-latest
+    needs: e2e-nightly
+    if: failure() && github.event_name == 'schedule'
+    permissions:
+      contents: read
+      issues: write
+
+    steps:
+      - name: Create or Update Nightly Failure Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = '🚨 Nightly E2E tests failed';
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = [
+              `## Nightly E2E Failure`,
+              ``,
+              `**Run:** [${context.runId}](${runUrl})`,
+              `**Branch:** \`${context.ref}\``,
+              `**Date:** ${new Date().toISOString()}`,
+              ``,
+              `One or more nightly E2E test suites failed. Please review the Playwright report artifacts in the linked run.`,
+              ``,
+              `> This issue was auto-generated by the nightly E2E workflow.`,
+            ].join('\n');
+
+            // Check if an open issue already exists
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'e2e-nightly-failure',
+              per_page: 1,
+            });
+
+            if (issues.length > 0) {
+              // Update the existing issue with a new comment
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issues[0].number,
+                body,
+              });
+              core.info(`Updated existing issue #${issues[0].number}`);
+            } else {
+              // Create a new issue
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ['e2e-nightly-failure', 'bug'],
+              });
+              core.info('Created new nightly failure issue');
+            }

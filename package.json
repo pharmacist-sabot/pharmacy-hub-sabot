@@ -14,6 +14,8 @@
     "test:unit": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "bunx playwright test",
+    "test:e2e:desktop": "E2E_PROJECT=desktop bunx playwright test",
+    "test:e2e:mobile": "E2E_PROJECT=mobile bunx playwright test",
     "test:e2e:report": "bunx playwright show-report"
   },
   "dependencies": {
