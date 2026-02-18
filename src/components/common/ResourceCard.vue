@@ -48,6 +48,7 @@ const currentIcon = computed(() => iconMap[props.item.iconName] || Pill);
 
 <template>
   <a
+    :data-testid="`tool-card-${item.id}`"
     :href="item.isActive ? item.url : undefined"
     :target="item.isActive ? '_blank' : undefined"
     :aria-disabled="!item.isActive"

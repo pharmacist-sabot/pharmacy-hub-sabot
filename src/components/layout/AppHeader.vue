@@ -82,6 +82,7 @@ async function toggleMobileSearch() {
           <input
             ref="searchInput"
             v-model="searchQuery"
+            data-testid="search-input"
             type="text"
             placeholder="ค้นหาเครื่องมือ..."
             class="w-full bg-sabot-50 border border-sabot-200 text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-sabot-500/20 focus:border-sabot-500 block pl-9 p-2.5 transition-all outline-none placeholder:text-sabot-300"
@@ -100,6 +101,7 @@ async function toggleMobileSearch() {
 
     <div v-show="!isMobileSearchOpen" class="flex items-center gap-1 lg:gap-2">
       <button
+        data-testid="mobile-search-btn"
         aria-label="ค้นหา"
         class="lg:hidden p-2 text-sabot-500 hover:text-sabot-700 hover:bg-sabot-50 rounded-lg transition-colors"
         @click="toggleMobileSearch"

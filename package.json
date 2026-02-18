@@ -12,7 +12,9 @@
     "lint:fix": "eslint . --fix",
     "prepare": "husky",
     "test:unit": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "bunx playwright test",
+    "test:e2e:report": "bunx playwright show-report"
   },
   "dependencies": {
     "@vueuse/core": "^14.1.0",
@@ -25,6 +27,7 @@
     "@antfu/eslint-config": "^6.3.0",
     "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",
+    "@playwright/test": "^1.58.2",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/git": "^10.0.1",
