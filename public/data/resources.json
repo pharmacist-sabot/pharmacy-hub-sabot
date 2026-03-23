@@ -142,5 +142,14 @@
     "url": "#",
     "isActive": false,
     "type": "report"
+  },
+  {
+    "id": "nhso-drugcatalogue",
+    "title": "Drug Catalogue (สปสช.)",
+    "description": "ฐานข้อมูลรายการยา สปสช.",
+    "iconName": "Link",
+    "url": "https://drug.nhso.go.th/drugcatalogue/",
+    "isActive": true,
+    "type": "external"
   }
 ]
