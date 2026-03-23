@@ -1,3 +1,9 @@
+## [1.5.0](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.4.6...v1.5.0) (2026-03-23)
+
+### 🚀 New Features
+
+* add link nhso-drugcatalogue ([05bae3d](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/05bae3d1213f005752dd12def86db735511bdaaf))
+
 ## [1.4.6](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.4.5...v1.4.6) (2026-01-19)
 
 ### 📝 Documentation
