@@ -1,3 +1,9 @@
+## [1.5.2](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.1...v1.5.2) (2026-04-16)
+
+### 📦 Dependency Updates
+
+* **deps:** update dependency @vue/tsconfig to ^0.9.0 ([#10](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/issues/10)) ([f373ed3](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/f373ed37eef727ec9a2546aa4f81b14735755ad1))
+
 ## [1.5.1](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.0...v1.5.1) (2026-04-16)
 
 ### 📦 Dependency Updates
