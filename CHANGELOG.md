@@ -1,3 +1,9 @@
+## [1.5.3](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.2...v1.5.3) (2026-04-16)
+
+### 📦 Dependency Updates
+
+* **deps:** update oven-sh/setup-bun action to v2.2.0 ([#12](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/issues/12)) ([538b456](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/538b456b928e843c3acc661554dbdb2a3cd83661))
+
 ## [1.5.2](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.1...v1.5.2) (2026-04-16)
 
 ### 📦 Dependency Updates
