@@ -1,3 +1,9 @@
+## [1.5.5](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.4...v1.5.5) (2026-04-18)
+
+### 📦 Dependency Updates
+
+* **deps:** update actions/checkout action to v6.0.2 ([#14](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/issues/14)) ([c052a91](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/c052a914acb2ba50d00024c97a68e9fa1451048a))
+
 ## [1.5.4](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.3...v1.5.4) (2026-04-17)
 
 ### 🐛 Bug Fixes
