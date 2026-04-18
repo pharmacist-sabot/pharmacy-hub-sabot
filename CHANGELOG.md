@@ -1,3 +1,9 @@
+## [1.5.7](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.6...v1.5.7) (2026-04-18)
+
+### 📦 Dependency Updates
+
+* **deps:** update dependency eslint-plugin-format to v2 ([#18](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/issues/18)) ([0327ab9](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/0327ab906bfb742154924acb21c5cb3fbc08d06c))
+
 ## [1.5.6](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.5...v1.5.6) (2026-04-18)
 
 ### 📦 Dependency Updates
