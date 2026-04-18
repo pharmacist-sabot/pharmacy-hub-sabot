@@ -1,3 +1,9 @@
+## [1.5.6](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.5...v1.5.6) (2026-04-18)
+
+### 📦 Dependency Updates
+
+* **deps:** update dependency @types/node to v25 ([#16](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/issues/16)) ([b724e31](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/b724e31ef601d40d4f8b173be0b1b49c434eca45))
+
 ## [1.5.5](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.4...v1.5.5) (2026-04-18)
 
 ### 📦 Dependency Updates
