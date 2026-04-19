@@ -1,8 +1,8 @@
-import type { ResourceItem } from '@/types/resource';
-import ResourceCard from '@/components/common/ResourceCard.vue';
-
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
+
+import ResourceCard from '@/components/common/ResourceCard.vue';
+import type { ResourceItem } from '@/types/resource';
 
 const mockItem: ResourceItem = {
   id: 'test-tool',

@@ -1,9 +1,7 @@
-import type { TabType } from '@/stores/ui';
-
 import type { NavigationGuardNext, RouteLocationNormalized, RouteRecordRaw } from 'vue-router';
-
 import { createRouter, createWebHistory } from 'vue-router';
 
+import type { TabType } from '@/stores/ui';
 import { useUIStore } from '@/stores/ui';
 import HomeView from '@/views/HomeView.vue';
 import NotFoundView from '@/views/NotFoundView.vue';

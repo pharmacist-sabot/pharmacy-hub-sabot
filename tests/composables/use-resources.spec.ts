@@ -1,5 +1,5 @@
-import type { ResourceItem } from '@/types/resource';
 import type { Ref } from 'vue';
+import type { ResourceItem } from '@/types/resource';
 
 import { flushPromises, mount } from '@vue/test-utils';
 import { createPinia, setActivePinia } from 'pinia';

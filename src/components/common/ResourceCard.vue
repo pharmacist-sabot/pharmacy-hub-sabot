@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import type { ResourceItem } from '@/types/resource';
-import type { Component } from 'vue';
-import { computed } from 'vue';
-
 import {
   AlertTriangle,
   ArrowRight,
@@ -20,6 +16,10 @@ import {
   Siren,
   Users,
 } from 'lucide-vue-next';
+
+import type { Component } from 'vue';
+import { computed } from 'vue';
+import type { ResourceItem } from '@/types/resource';
 
 const props = defineProps<{
   item: ResourceItem;
