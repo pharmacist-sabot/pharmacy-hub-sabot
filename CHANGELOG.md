@@ -1,3 +1,10 @@
+## [1.5.13](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.12...v1.5.13) (2026-04-19)
+
+### 📦 Dependency Updates
+
+* **deps:** update dependency eslint to v10 ([#17](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/issues/17)) ([691df5d](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/691df5dcd1e6f6c4d72691337cda52862f73db8a))
+* **lint:** remove .eslintignore and fix lint in release.yml ([fc7da55](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/fc7da5519f97ec07747918cd39a29fc88aad240f))
+
 ## [1.5.12](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.11...v1.5.12) (2026-04-19)
 
 ### 📦 Dependency Updates
