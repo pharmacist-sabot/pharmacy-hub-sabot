@@ -1,3 +1,9 @@
+## [1.5.10](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.9...v1.5.10) (2026-04-19)
+
+### 🐛 Bug Fixes
+
+* **lint:** fix formatting in CI workflow file ([97fdf73](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/97fdf73aae1915e57923dc01977c627dc934ab67))
+
 ## [1.5.9](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.8...v1.5.9) (2026-04-19)
 
 ### 📦 Dependency Updates
