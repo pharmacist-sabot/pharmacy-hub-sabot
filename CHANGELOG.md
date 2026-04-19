@@ -1,3 +1,9 @@
+## [1.5.14](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.13...v1.5.14) (2026-04-19)
+
+### 🐛 Bug Fixes
+
+* **deps:** update dependency vue-router to v5 ([#23](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/issues/23)) ([e076acd](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/e076acd3da87d65d01be820c371a667b632c29a4))
+
 ## [1.5.13](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.12...v1.5.13) (2026-04-19)
 
 ### 📦 Dependency Updates
