@@ -14,6 +14,7 @@ export default antfu({
     quotes: 'single',
   },
 }, {
+  ignores: ['**/*.md'],
   rules: {
     'ts/no-redeclare': 'off',
     'ts/consistent-type-definitions': ['error', 'type'],
@@ -21,9 +22,7 @@ export default antfu({
     'antfu/no-top-level-await': ['off'],
     'node/prefer-global/process': ['off'],
     'node/no-process-env': ['error'],
-    'perfectionist/sort-imports': ['error', {
-      tsconfigRootDir: '.',
-    }],
+    'perfectionist/sort-imports': ['error'],
     'unicorn/filename-case': ['error', {
       cases: {
         kebabCase: true,

@@ -1,11 +1,11 @@
+import type { ResourceItem } from '@/types/resource';
 import type { Ref } from 'vue';
 
 import { flushPromises, mount } from '@vue/test-utils';
 import { createPinia, setActivePinia } from 'pinia';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { defineComponent } from 'vue';
 
-import type { ResourceItem } from '@/types/resource';
+import { defineComponent } from 'vue';
 
 import { useResources } from '@/composables/use-resources';
 

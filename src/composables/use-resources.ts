@@ -1,6 +1,6 @@
-import { onMounted, ref } from 'vue';
-
 import type { ResourceItem } from '@/types/resource';
+
+import { onMounted, ref } from 'vue';
 
 export function useResources() {
   const resources = ref<ResourceItem[]>([]);
