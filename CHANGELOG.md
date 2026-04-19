@@ -1,3 +1,9 @@
+## [1.5.9](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.8...v1.5.9) (2026-04-19)
+
+### 📦 Dependency Updates
+
+* **deps:** update dependency vite to v8 ([#21](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/issues/21)) ([4d64241](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/4d6424158eadce99a248bb2e38f2b69b0e88ec24))
+
 ## [1.5.8](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.7...v1.5.8) (2026-04-19)
 
 ### 📦 Dependency Updates
