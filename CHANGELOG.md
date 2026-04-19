@@ -1,3 +1,9 @@
+## [1.5.11](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.10...v1.5.11) (2026-04-19)
+
+### 🐛 Bug Fixes
+
+* **deps:** update dependency lucide-vue-next to v1 ([#22](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/issues/22)) ([201baea](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/201baea3e716e1155e75860159f1ae54613105a4))
+
 ## [1.5.10](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.9...v1.5.10) (2026-04-19)
 
 ### 🐛 Bug Fixes
