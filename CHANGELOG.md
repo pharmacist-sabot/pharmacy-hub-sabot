@@ -1,3 +1,9 @@
+## [1.5.8](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.7...v1.5.8) (2026-04-19)
+
+### 📦 Dependency Updates
+
+* **deps:** update dependency jsdom to v29 ([#19](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/issues/19)) ([befbac0](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/befbac0d0ca23b9166745f924625fa2804c7cd24))
+
 ## [1.5.7](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.6...v1.5.7) (2026-04-18)
 
 ### 📦 Dependency Updates
