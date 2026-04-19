@@ -1,3 +1,12 @@
+## [1.5.12](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.11...v1.5.12) (2026-04-19)
+
+### 📦 Dependency Updates
+
+* **deps:** update dependency @antfu/eslint-config to v8 ([#15](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/issues/15)) ([ce5f919](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/ce5f919f065fdb4b2854368ec0c721da4abae60a))
+* **lint:** auto-fix import order ([c840609](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/c840609a05cad89f5c1b2477f4999c8b24e1c22b))
+* **lint:** fix import order ([e7cb0ac](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/e7cb0aca8bd47f3e8e383fb96a6227dc50457203))
+* **lint:** reorder imports to satisfy perfectionist/sort-imports ([6e795cc](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/6e795ccdc6fe712068d0cee2920f8e92eaadadaa))
+
 ## [1.5.11](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.10...v1.5.11) (2026-04-19)
 
 ### 🐛 Bug Fixes
