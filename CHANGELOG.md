@@ -1,3 +1,9 @@
+## [1.6.1](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.6.0...v1.6.1) (2026-04-20)
+
+### 🐛 Bug Fixes
+
+* **tests:** make unit tests pass ([09acf69](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/09acf69382dcf99040230bb3b16a4d228a18ca3f))
+
 ## [1.6.0](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.14...v1.6.0) (2026-04-20)
 
 ### 🚀 New Features
