@@ -1,3 +1,9 @@
+## [1.6.0](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.14...v1.6.0) (2026-04-20)
+
+### 🚀 New Features
+
+* **ui:** redesign UI; prompt font; simplify header & sidebar ([bee0ea7](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/bee0ea7148a3f950bf9f4ff34004ec3050e20f36))
+
 ## [1.5.14](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.5.13...v1.5.14) (2026-04-19)
 
 ### 🐛 Bug Fixes
