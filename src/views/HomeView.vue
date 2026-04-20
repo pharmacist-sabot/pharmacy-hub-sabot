@@ -35,10 +35,10 @@ const filteredResources = computed(() => {
 });
 
 const tabConfig = {
-  all: { title: 'เครื่องมือและรายงานทั้งหมด', icon: LayoutGrid },
-  tool: { title: 'เครื่องมือปฏิบัติงาน', icon: Stethoscope },
-  report: { title: 'รายงานและสถิติ', icon: BarChart3 },
-  external: { title: 'ระบบงานภายนอก', icon: Link },
+  all: { title: 'เครื่องมือและรายงานทั้งหมด (All)', icon: LayoutGrid },
+  tool: { title: 'เครื่องมือปฏิบัติงาน (Tools)', icon: Stethoscope },
+  report: { title: 'รายงานและสถิติ (Reports)', icon: BarChart3 },
+  external: { title: 'ระบบงานภายนอก (External)', icon: Link },
 };
 
 const sectionTitle = computed(() =>
@@ -99,7 +99,7 @@ function clearSearch() {
       class="p-4 rounded-2xl text-sm font-medium"
       style="background-color: #fff0f0; color: #d03238; border: 1px solid rgba(208,50,56,0.15);"
     >
-      เกิดข้อผิดพลาด: {{ error }}
+      Error loading resources: {{ error }}
     </div>
 
     <!-- Loading skeletons -->
@@ -110,12 +110,12 @@ function clearSearch() {
         class="rounded-[28px] overflow-hidden"
         style="border: 1px solid rgba(14,15,12,0.07);"
       >
-        <div class="skeleton h-[104px]" />
+        <div class="skeleton animate-pulse h-[104px]" />
         <div class="bg-white p-5 space-y-3">
-          <div class="skeleton h-2.5 w-14 rounded-full" />
-          <div class="skeleton h-4 w-3/4 rounded-full" />
-          <div class="skeleton h-3 w-full rounded-full" />
-          <div class="skeleton h-3 w-4/5 rounded-full" />
+          <div class="skeleton animate-pulse h-2.5 w-14 rounded-full" />
+          <div class="skeleton animate-pulse h-4 w-3/4 rounded-full" />
+          <div class="skeleton animate-pulse h-3 w-full rounded-full" />
+          <div class="skeleton animate-pulse h-3 w-4/5 rounded-full" />
           <div class="pt-3 mt-1" style="border-top: 1px solid rgba(14,15,12,0.06);">
             <div class="skeleton h-8 w-28 rounded-full" />
           </div>
@@ -191,6 +191,3 @@ function clearSearch() {
   transform: scale(0.96);
 }
 </style>
-```
-
-ขออภัยครับ ไฟล์ด้านบนเป็นส่วนที่ระบบ sub-agent ตอบกลับมา ผมจะบันทึกไฟล์นี้ให้ถูกต้องเลยครับ

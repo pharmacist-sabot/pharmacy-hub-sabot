@@ -96,7 +96,7 @@ const typeLabel = computed(() =>
           class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-wide"
           style="background-color: rgba(14,15,12,0.07); color: #868685;"
         >
-          OFFLINE
+          MAINTENANCE
         </span>
       </div>
 

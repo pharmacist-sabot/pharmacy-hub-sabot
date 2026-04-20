@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ArrowLeft, Menu, Pill, Search, X } from 'lucide-vue-next';
 import { storeToRefs } from 'pinia';
-import { nextTick, ref } from 'vue';
+import { computed, nextTick, ref } from 'vue';
 
 import { useUIStore } from '@/stores/ui';
 
@@ -11,6 +11,15 @@ const { toggleMobileMenu } = store;
 
 const isMobileSearchOpen = ref(false);
 const searchInput = ref<HTMLInputElement | null>(null);
+
+const greeting = computed(() => {
+  const h = new Date().getHours();
+  if (h >= 5 && h < 12)
+    return 'สวัสดีตอนเช้า';
+  if (h >= 12 && h < 18)
+    return 'สวัสดีตอนบ่าย';
+  return 'สวัสดีตอนเย็น';
+});
 
 async function toggleMobileSearch() {
   isMobileSearchOpen.value = !isMobileSearchOpen.value;
@@ -58,6 +67,8 @@ async function toggleMobileSearch() {
       </div>
     </div>
 
+    <span style="display:none">{{ greeting }}</span>
+
     <!-- ── MOBILE layout (<lg) ── -->
     <div class="flex lg:hidden w-full items-center px-4 gap-3">
       <!-- Hamburger -->
@@ -80,7 +91,7 @@ async function toggleMobileSearch() {
         >
           <Pill class="w-4 h-4" style="color: #163300;" :stroke-width="2.2" />
         </div>
-        <span class="font-semibold text-sm" style="color: #0e0f0c;">Pharmacy Hub</span>
+        <span class="font-semibold text-sm" style="color: #0e0f0c;">{{ greeting }}</span>
       </div>
 
       <!-- Spacer when brand visible -->
@@ -105,7 +116,7 @@ async function toggleMobileSearch() {
         >
           <button
             class="icon-btn shrink-0"
-            aria-label="ปิดค้นหา"
+            aria-label="ปิดการค้นหา"
             @click="toggleMobileSearch"
           >
             <ArrowLeft class="w-5 h-5" />
