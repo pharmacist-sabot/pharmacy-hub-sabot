@@ -4,6 +4,18 @@
   /* Font Family: Prompt */
   --font-family-sans: 'Prompt', ui-sans-serif, system-ui, sans-serif;
 
+  /* ── Wise Design Tokens ── */
+  --color-wise-green: #9fe870;
+  --color-wise-dark-green: #163300;
+  --color-wise-near-black: #0e0f0c;
+  --color-wise-mint: #e2f6d5;
+  --color-wise-pastel: #cdffad;
+  --color-wise-gray: #868685;
+  --color-wise-warm-dark: #454745;
+  --color-wise-surface: #f7faf4;
+  --color-wise-canvas: #f0f4eb;
+
+  /* ── Sabot brand scale (kept for compatibility) ── */
   --color-sabot-50: #f7f9f2;
   --color-sabot-100: #eeefe0;
   --color-sabot-200: #d4e3b5;
@@ -16,55 +28,231 @@
   --color-sabot-900: #2d4119;
   --color-sabot-950: #1a260f;
 
-  /* Semantic Mappings */
-  --color-sabot-bg: var(--color-sabot-100);
-  --color-sabot-primary: var(--color-sabot-600);
-  --color-sabot-secondary: var(--color-sabot-500);
-  --color-sabot-text: #1e293b; /* Slate 800 */
+  /* ── Semantic aliases ── */
+  --color-sabot-bg: var(--color-wise-canvas);
+  --color-sabot-primary: var(--color-wise-green);
+  --color-sabot-text: var(--color-wise-near-black);
 
-  /* Shadows */
-  --shadow-soft: 0 4px 20px -2px rgba(74, 107, 41, 0.1);
-  --shadow-glow: 0 0 15px rgba(128, 157, 60, 0.4);
+  /* ── Shadows ── */
+  --shadow-ring: rgba(14, 15, 12, 0.1) 0px 0px 0px 1px;
+  --shadow-soft: 0 2px 16px -4px rgba(14, 15, 12, 0.1);
+  --shadow-card: 0 4px 32px -8px rgba(22, 51, 0, 0.1);
+  --shadow-float: 0 8px 40px -8px rgba(22, 51, 0, 0.14);
 }
 
-/* Global Styles */
+/* ─────────────────────────────────────────
+   Base
+───────────────────────────────────────── */
 :root {
   font-family: var(--font-family-sans);
 }
 
 body {
-  background-color: var(--color-sabot-100);
-  color: var(--color-sabot-text);
+  background-color: var(--color-wise-canvas);
+  color: var(--color-wise-near-black);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'calt' 1;
 }
 
+/* ─────────────────────────────────────────
+   Scrollbar
+───────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-sabot-100);
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-sabot-300);
-  border-radius: 4px;
+  background: rgba(159, 232, 112, 0.35);
+  border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-sabot-500);
+  background: #9fe870;
 }
 
-.glass-panel {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+/* ─────────────────────────────────────────
+   Utility classes
+───────────────────────────────────────── */
+
+/* Pill button — primary green */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  background-color: #9fe870;
+  color: #163300;
+  font-weight: 600;
+  font-size: 0.9rem;
+  line-height: 1;
+  border: none;
+  cursor: pointer;
+  transition:
+    transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.18s ease;
+  box-shadow: 0 2px 12px -2px rgba(159, 232, 112, 0.4);
+  outline: none;
+  white-space: nowrap;
+  font-feature-settings: 'calt' 1;
+}
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px -2px rgba(159, 232, 112, 0.5);
+}
+.btn-primary:active {
+  transform: scale(0.95);
+}
+.btn-primary:focus-visible {
+  box-shadow: 0 0 0 3px rgba(159, 232, 112, 0.5);
 }
 
+/* Pill button — ghost / subtle */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  background-color: rgba(22, 51, 0, 0.06);
+  color: #0e0f0c;
+  font-weight: 600;
+  font-size: 0.9rem;
+  line-height: 1;
+  border: none;
+  cursor: pointer;
+  transition:
+    transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.15s ease;
+  outline: none;
+  white-space: nowrap;
+  font-feature-settings: 'calt' 1;
+}
+.btn-ghost:hover {
+  transform: scale(1.05);
+  background-color: rgba(211, 242, 192, 0.5);
+}
+.btn-ghost:active {
+  transform: scale(0.95);
+}
+
+/* ─────────────────────────────────────────
+   Resource / Tool card
+───────────────────────────────────────── */
 .tool-card-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    transform 0.25s cubic-bezier(0.34, 1.2, 0.64, 1),
+    box-shadow 0.25s ease;
+  will-change: transform;
 }
 .tool-card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px -5px rgba(74, 107, 41, 0.15);
-  border-color: var(--color-sabot-500);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow:
+    0 0 0 1px rgba(159, 232, 112, 0.5),
+    0 16px 40px -8px rgba(22, 51, 0, 0.14);
+}
+.tool-card-hover:active {
+  transform: translateY(-2px) scale(0.99);
+}
+
+/* ─────────────────────────────────────────
+   Glass panel
+───────────────────────────────────────── */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(14, 15, 12, 0.08);
+}
+
+/* ─────────────────────────────────────────
+   Sidebar nav item hover (via JS events)
+   — applied inline; defined here for ref
+───────────────────────────────────────── */
+.nav-item-active {
+  background-color: #9fe870;
+  color: #163300;
+}
+.nav-item-hover {
+  background-color: rgba(211, 242, 192, 0.45);
+}
+
+/* ─────────────────────────────────────────
+   Animations
+───────────────────────────────────────── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.animate-fade-in {
+  animation: fadeIn 0.3s ease both;
+}
+.animate-scale-in {
+  animation: scaleIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Staggered card entrance */
+.animate-fade-in-up:nth-child(1) {
+  animation-delay: 0.04s;
+}
+.animate-fade-in-up:nth-child(2) {
+  animation-delay: 0.08s;
+}
+.animate-fade-in-up:nth-child(3) {
+  animation-delay: 0.12s;
+}
+.animate-fade-in-up:nth-child(4) {
+  animation-delay: 0.16s;
+}
+.animate-fade-in-up:nth-child(5) {
+  animation-delay: 0.2s;
+}
+.animate-fade-in-up:nth-child(6) {
+  animation-delay: 0.24s;
+}
+
+/* Skeleton shimmer */
+.skeleton {
+  background: linear-gradient(90deg, #edf2e8 25%, #e2f6d5 50%, #edf2e8 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.6s infinite linear;
 }

@@ -19,108 +19,142 @@ const { toggleMobileMenu } = store;
 function navigateToTab(tab: 'all' | 'tool' | 'report' | 'external') {
   const routes = { all: '/', tool: '/tools', report: '/reports', external: '/external' };
   router.push(routes[tab]);
+  toggleMobileMenu();
 }
+
+const navItems = [
+  { key: 'all', label: 'ภาพรวมทั้งหมด', icon: LayoutGrid, testId: 'nav-all' },
+  { key: 'tool', label: 'เครื่องมือปฏิบัติงาน', icon: Stethoscope, testId: 'nav-tool' },
+  { key: 'report', label: 'รายงานและสถิติ', icon: BarChart3, testId: 'nav-report' },
+  { key: 'external', label: 'ระบบงานภายนอก', icon: Link, testId: 'nav-external' },
+] as const;
 </script>
 
 <template>
   <div>
     <!-- Mobile Overlay -->
-    <div
-      v-if="isMobileMenuOpen"
-      class="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm lg:hidden"
-      @click="toggleMobileMenu"
-    />
+    <Transition name="overlay">
+      <div
+        v-if="isMobileMenuOpen"
+        class="fixed inset-0 z-40 lg:hidden"
+        style="background: rgba(14,15,12,0.35); backdrop-filter: blur(2px);"
+        @click="toggleMobileMenu"
+      />
+    </Transition>
 
     <!-- Sidebar -->
     <aside
-      class="fixed inset-y-0 left-0 z-50 w-72 bg-sabot-700 border-r border-sabot-600 shadow-xl transform transition-transform duration-300 lg:translate-x-0 lg:shadow-none text-white flex flex-col"
+      class="fixed inset-y-0 left-0 z-50 flex flex-col w-72 transform transition-transform duration-300 ease-out lg:translate-x-0"
+      style="background-color: #ffffff; border-right: 1px solid rgba(14,15,12,0.08);"
       :class="isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'"
     >
       <!-- Brand -->
-      <div class="h-20 flex items-center px-8 border-b border-sabot-600 shrink-0">
+      <div
+        class="h-[68px] flex items-center px-6 shrink-0"
+        style="border-bottom: 1px solid rgba(14,15,12,0.08);"
+      >
         <div class="flex items-center gap-3">
-          <div class="bg-white/10 p-2 rounded-lg backdrop-blur-sm border border-white/10">
-            <Pill class="w-6 h-6 text-white" />
+          <div
+            class="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
+            style="background-color: #9fe870;"
+          >
+            <Pill class="w-5 h-5" style="color: #163300;" :stroke-width="2.2" />
           </div>
-          <div class="flex flex-col">
-            <span class="font-bold text-lg leading-tight tracking-wide">Pharmacy Hub</span>
-            <span class="text-[10px] text-sabot-200 font-medium tracking-wide">SABOT HOSPITAL</span>
+          <div class="flex flex-col leading-none">
+            <span class="font-bold text-[15px]" style="color: #0e0f0c;">
+              Pharmacy Hub
+            </span>
+            <span class="text-[10px] font-medium mt-0.5 tracking-wider uppercase" style="color: #868685;">
+              Sabot Hospital
+            </span>
           </div>
         </div>
       </div>
 
-      <!-- Navigation Links -->
-      <div class="flex-1 px-4 py-6 space-y-1 overflow-y-auto custom-scrollbar">
-        <div class="px-4 mb-2 text-xs font-semibold text-sabot-300 uppercase tracking-wider">
-          Main Menu
-        </div>
+      <!-- Nav -->
+      <nav class="flex-1 overflow-y-auto custom-scrollbar px-3 py-4">
+        <p class="px-3 mb-2 text-[10px] font-semibold uppercase tracking-widest" style="color: #868685;">
+          เมนูหลัก
+        </p>
 
-        <button
-          data-testid="nav-all"
-          class="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl transition-all outline-none"
-          :class="currentTab === 'all' ? 'bg-sabot-600 text-white shadow-lg shadow-sabot-900/20' : 'text-sabot-100 hover:bg-sabot-600/50 hover:text-white'"
-          @click="navigateToTab('all')"
-        >
-          <LayoutGrid class="w-5 h-5" />
-          ภาพรวมทั้งหมด
-        </button>
+        <ul class="space-y-0.5">
+          <li v-for="item in navItems" :key="item.key">
+            <button
+              :data-testid="item.testId"
+              class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 outline-none text-left"
+              :class="currentTab === item.key ? 'nav-btn--active' : 'nav-btn--idle'"
+              @click="navigateToTab(item.key)"
+            >
+              <span
+                class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-all duration-150"
+                :class="currentTab === item.key ? 'nav-icon--active' : 'nav-icon--idle'"
+              >
+                <component :is="item.icon" class="w-4 h-4" :stroke-width="2" />
+              </span>
+              <span class="flex-1">{{ item.label }}</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
 
-        <button
-          data-testid="nav-tool"
-          class="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl transition-all outline-none"
-          :class="currentTab === 'tool' ? 'bg-sabot-600 text-white shadow-lg shadow-sabot-900/20' : 'text-sabot-100 hover:bg-sabot-600/50 hover:text-white'"
-          @click="navigateToTab('tool')"
-        >
-          <Stethoscope class="w-5 h-5" />
-          เครื่องมือปฏิบัติงาน
-        </button>
-
-        <button
-          data-testid="nav-report"
-          class="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl transition-all outline-none"
-          :class="currentTab === 'report' ? 'bg-sabot-600 text-white shadow-lg shadow-sabot-900/20' : 'text-sabot-100 hover:bg-sabot-600/50 hover:text-white'"
-          @click="navigateToTab('report')"
-        >
-          <BarChart3 class="w-5 h-5" />
-          รายงานและสถิติ
-        </button>
-
-        <button
-          data-testid="nav-external"
-          class="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl transition-all outline-none"
-          :class="currentTab === 'external' ? 'bg-sabot-600 text-white shadow-lg shadow-sabot-900/20' : 'text-sabot-100 hover:bg-sabot-600/50 hover:text-white'"
-          @click="navigateToTab('external')"
-        >
-          <Link class="w-5 h-5" />
-          ระบบงานภายนอก
-        </button>
-      </div>
-
-      <!-- User Profile Footer -->
-      <div class="p-4 border-t border-sabot-600 bg-sabot-800/30 shrink-0">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-sabot-500 text-white flex items-center justify-center font-bold shadow-md border-2 border-sabot-400">
-            Rx
-          </div>
-          <div class="flex flex-col">
-            <span class="text-sm font-medium text-white">ห้องยา</span>
-            <span class="text-xs text-sabot-300">ผู้ใช้งานทั่วไป</span>
-          </div>
-        </div>
+      <!-- Version tag -->
+      <div
+        class="shrink-0 px-6 py-4"
+        style="border-top: 1px solid rgba(14,15,12,0.08);"
+      >
+        <span class="text-[11px]" style="color: #868685;">Pharmacy Hub &mdash; Sabot Hospital</span>
       </div>
     </aside>
   </div>
 </template>
 
 <style scoped>
+.nav-btn--active {
+  background-color: #f0fbe8;
+  color: #163300;
+  font-weight: 600;
+}
+.nav-btn--idle {
+  color: #454745;
+}
+.nav-btn--idle:hover {
+  background-color: #f7faf4;
+  color: #0e0f0c;
+}
+
+.nav-icon--active {
+  background-color: #9fe870;
+  color: #163300;
+}
+.nav-icon--idle {
+  background-color: transparent;
+  color: #868685;
+}
+.nav-btn--idle:hover .nav-icon--idle {
+  background-color: #e2f6d5;
+  color: #163300;
+}
+
 .custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
+  width: 3px;
 }
 .custom-scrollbar::-webkit-scrollbar-track {
   background: transparent;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
+  background: rgba(159, 232, 112, 0.3);
+  border-radius: 999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #9fe870;
+}
+
+.overlay-enter-active,
+.overlay-leave-active {
+  transition: opacity 0.2s ease;
+}
+.overlay-enter-from,
+.overlay-leave-to {
+  opacity: 0;
 }
 </style>
