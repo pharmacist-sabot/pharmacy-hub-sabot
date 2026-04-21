@@ -1,3 +1,9 @@
+## [1.6.2](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.6.1...v1.6.2) (2026-04-21)
+
+### 📦 Dependency Updates
+
+* **deps:** update actions/setup-node action to v6.4.0 ([#24](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/issues/24)) ([e2f1dbf](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/e2f1dbfa4c25073fdc9a4abd84e765f04db25b5e))
+
 ## [1.6.1](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.6.0...v1.6.1) (2026-04-20)
 
 ### 🐛 Bug Fixes
