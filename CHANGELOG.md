@@ -1,3 +1,9 @@
+## [1.6.3](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.6.2...v1.6.3) (2026-04-21)
+
+### 📦 Dependency Updates
+
+* **deps:** update dependency bun to v1.3.13 ([#25](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/issues/25)) ([1a18f80](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/commit/1a18f80d275cc581dd90e312996b08784994005d))
+
 ## [1.6.2](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.6.1...v1.6.2) (2026-04-21)
 
 ### 📦 Dependency Updates
