@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ResourceItem } from '@/types/resource';
 
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 
 const props = defineProps<{
   item: ResourceItem;
@@ -28,8 +28,10 @@ const gradient = computed(() => {
 });
 
 const imageUrl = computed(() => {
-  return `/images/${props.item.id}.webp`;
+  return `/images/${props.item.id}.png`;
 });
+
+const imageLoaded = ref(true);
 </script>
 
 <template>
@@ -39,15 +41,18 @@ const imageUrl = computed(() => {
   >
     <div class="combo-image-wrapper">
       <img
+        v-if="imageLoaded"
         :src="imageUrl"
         :alt="item.title"
         class="combo-img"
         loading="lazy"
         decoding="async"
         fetchpriority="low"
-        @error="(e) => (e.target as HTMLImageElement).style.display = 'none'"
+        @load="imageLoaded = true"
+        @error="imageLoaded = false"
       >
       <div
+        v-if="!imageLoaded"
         class="combo-fallback"
         :style="{ background: gradient }"
       >
