@@ -119,13 +119,16 @@ onMounted(() => {
       </section>
 
       <section class="img-alitas hover-shrink">
-        <div class="mock-visual mock-visual--secondary" aria-label="พื้นที่ภาพตัวอย่างรอง">
-          <span class="mock-chip">Mock Image</span>
-          <div class="folder-stack">
-            <span />
-            <span />
-            <span />
-          </div>
+        <div class="mock-visual mock-visual--secondary" aria-label="พื้นที่วิดีโอ">
+          <video
+            class="pharmacy-video"
+            autoplay
+            loop
+            muted
+            playsinline
+          >
+            <source src="/video/pharmacy.webm" type="video/webm">
+          </video>
         </div>
       </section>
 
@@ -317,8 +320,10 @@ onMounted(() => {
 
 .chicken-container .mock-visual,
 .img-alitas .mock-visual,
-.papas-container .mock-visual {
+.img-alitas .mock-visual {
   border-radius: 20px;
+  height: 100%;
+  min-height: 100%;
 }
 
 .mock-visual::before,
@@ -742,6 +747,7 @@ onMounted(() => {
 .img-alitas {
   grid-column: span 2 / span 2;
   grid-row-start: 3;
+  height: 100%;
 }
 
 .mock-visual--secondary {
@@ -785,6 +791,13 @@ onMounted(() => {
 .folder-stack span:nth-child(3) {
   top: 56%;
   width: 78%;
+}
+
+.pharmacy-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 20px;
 }
 
 .action-link {
