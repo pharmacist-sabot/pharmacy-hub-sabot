@@ -23,17 +23,17 @@ const tabItems: Array<{ key: Exclude<TabType, 'all'>; label: string; path: strin
 const viewMeta = {
   tool: {
     title: 'เครื่องมือปฏิบัติงาน',
-    description: 'ระบบงานหลักสำหรับการปฏิบัติงานประจำวันของกลุ่มงานเภสัชกรรม',
+    description: '',
     accent: 'tools',
   },
   report: {
     title: 'รายงานและสถิติ',
-    description: 'สรุปข้อมูลเชิงวิเคราะห์และแดชบอร์ดที่ใช้ติดตามผลการดำเนินงาน',
+    description: '',
     accent: 'reports',
   },
   external: {
     title: 'ระบบงานภายนอก',
-    description: 'ลิงก์เชื่อมต่อระบบภายนอกและฐานข้อมูลที่เกี่ยวข้องกับงานเภสัชกรรม',
+    description: '',
     accent: 'external',
   },
 } as const;
@@ -72,7 +72,9 @@ function navigateToTab(path: string) {
     <section class="cart-title-nav">
       <div class="cart-title hover-shrink" :class="`cart-title--${currentMeta.accent}`">
         <h2>{{ currentMeta.title }}</h2>
-        <p>{{ currentMeta.description }}</p>
+        <p v-if="currentMeta.description">
+          {{ currentMeta.description }}
+        </p>
       </div>
 
       <div class="cart-nav" :class="`cart-nav--${currentMeta.accent}`" aria-label="เลือกประเภทข้อมูล">
@@ -146,6 +148,7 @@ function navigateToTab(path: string) {
   align-content: center;
   gap: 8px;
   padding: 20px 6%;
+  text-align: center;
 }
 
 .cart-title h2 {
@@ -158,6 +161,7 @@ function navigateToTab(path: string) {
   margin: 0;
   font-size: 0.92rem;
   line-height: 1.4;
+  text-align: center;
 }
 
 .cart-title--tools {
