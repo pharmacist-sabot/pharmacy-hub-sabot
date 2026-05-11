@@ -61,10 +61,37 @@ onMounted(() => {
 
       <section class="papas-container hover-shrink">
         <div class="mock-visual mock-visual--vertical" aria-hidden="true">
-          <span class="mock-grid" />
-          <span class="mock-grid" />
-          <span class="mock-grid" />
-          <span class="mock-grid" />
+          <div class="pharmacy-icon pharmacy-icon--tablet">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="4" y="6" width="16" height="12" rx="3" />
+              <path d="M8 12h8" />
+            </svg>
+          </div>
+          <div class="pharmacy-icon pharmacy-icon--leaf">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22c5-5 8-10 8-16C20 4 16 2 12 2 4 4 2 10 4 16c2-6 8-6 8 6z" />
+              <path d="M12 22c-2 0-5-3-5-8" />
+              <path d="M9 14c1-2 3-4 6-4" />
+            </svg>
+          </div>
+          <div class="pharmacy-icon pharmacy-icon--bottle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 3h6v3l2 2v12a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V8l2-2z" />
+              <path d="M9 3V2a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1" />
+              <path d="M12 11v4" />
+              <path d="M10 13h4" />
+            </svg>
+          </div>
+          <div class="pharmacy-icon pharmacy-icon--clipboard">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="4" y="4" width="16" height="18" rx="2" />
+              <path d="M8 2v4" />
+              <path d="M16 2v4" />
+              <path d="M8 10h8" />
+              <path d="M8 14h4" />
+              <path d="M8 18h2" />
+            </svg>
+          </div>
         </div>
       </section>
 
@@ -513,32 +540,56 @@ onMounted(() => {
   transform: scale(1.08);
 }
 
-.mock-grid {
+.pharmacy-icon {
   position: absolute;
-  width: 32%;
+  width: 28%;
   aspect-ratio: 1;
-  border: 2px solid rgb(255 255 255 / 0.45);
-  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(255 255 255 / 0.7);
+  animation: pharmacyPulse 1.8s ease-in-out infinite;
 }
 
-.mock-grid:nth-child(1) {
-  top: 12%;
-  left: 16%;
+.pharmacy-icon svg {
+  width: 100%;
+  height: 100%;
 }
 
-.mock-grid:nth-child(2) {
-  top: 12%;
-  right: 16%;
+.pharmacy-icon--tablet {
+  top: 16%;
+  left: 18%;
+  animation-delay: 0s;
 }
 
-.mock-grid:nth-child(3) {
-  bottom: 12%;
-  left: 16%;
+.pharmacy-icon--leaf {
+  top: 16%;
+  right: 18%;
+  animation-delay: 0.3s;
 }
 
-.mock-grid:nth-child(4) {
-  bottom: 12%;
-  right: 16%;
+.pharmacy-icon--bottle {
+  bottom: 16%;
+  left: 18%;
+  animation-delay: 0.6s;
+}
+
+.pharmacy-icon--clipboard {
+  bottom: 16%;
+  right: 18%;
+  animation-delay: 0.9s;
+}
+
+@keyframes pharmacyPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
 }
 
 .papas-container p {
