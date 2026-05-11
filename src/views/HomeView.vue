@@ -66,7 +66,6 @@ onMounted(() => {
           <span class="mock-grid" />
           <span class="mock-grid" />
         </div>
-        <p>เครื่องมือ</p>
       </section>
 
       <section class="logo flex-center hover-shrink">
