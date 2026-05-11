@@ -1,21 +1,260 @@
 <script setup lang="ts">
-import AppFooter from '@/components/layout/AppFooter.vue';
-import AppHeader from '@/components/layout/AppHeader.vue';
-import AppSidebar from '@/components/layout/AppSidebar.vue';
+import { House, MapPinned, Stethoscope } from 'lucide-vue-next';
+import { useRoute, useRouter } from 'vue-router';
+
+const router = useRouter();
+const route = useRoute();
+
+type NavItem = {
+  key: 'home' | 'tools' | 'department';
+  label: string;
+  icon: typeof House;
+  path: '/' | '/tools' | '/department';
+  group?: 'home' | 'department';
+};
+
+const navItems: NavItem[] = [
+  { key: 'home', label: 'หน้าแรก', icon: House, path: '/', group: 'home' },
+  { key: 'tools', label: 'เครื่องมือ', icon: Stethoscope, path: '/tools' },
+  { key: 'department', label: 'กลุ่มงาน', icon: MapPinned, path: '/department', group: 'department' },
+] as const;
+
+function isActive(path: string): boolean {
+  if (path === '/tools') {
+    return route.meta.navGroup === 'tools' || route.path === '/tools' || route.path === '/reports' || route.path === '/external';
+  }
+
+  return route.path === path || route.meta.navGroup === navItems.find(item => item.path === path)?.group;
+}
+
+function navigateTo(path: string) {
+  router.push(path);
+}
 </script>
 
 <template>
-  <div class="min-h-screen" style="background-color: #f7faf4;">
-    <AppSidebar />
-
-    <main class="lg:ml-72 min-h-screen flex flex-col transition-all duration-300">
-      <AppHeader />
-
-      <div class="flex-1 p-5 lg:p-8">
-        <slot />
-      </div>
-
-      <AppFooter />
+  <div class="elpatita-layout">
+    <main class="elpatita-main">
+      <slot />
     </main>
+
+    <nav class="elpatita-nav">
+      <div class="elpatita-nav-inner">
+        <button class="elpatita-brand" aria-label="กลับไปหน้าแรก" @click="navigateTo('/')">
+          <span class="elpatita-brand-mark">
+            <span />
+            <span />
+          </span>
+        </button>
+
+        <button
+          v-for="item in navItems"
+          :key="item.key"
+          class="elpatita-nav-item"
+          :class="{ 'elpatita-nav-item--active': isActive(item.path) }"
+          :aria-current="isActive(item.path) ? 'page' : undefined"
+          @click="navigateTo(item.path)"
+        >
+          <component :is="item.icon" class="elpatita-nav-icon" :stroke-width="2" />
+          <span class="elpatita-nav-label">{{ item.label }}</span>
+        </button>
+      </div>
+    </nav>
   </div>
 </template>
+
+<style scoped>
+.elpatita-layout {
+  min-height: 100vh;
+  background: #f4f6f5;
+  padding-bottom: 90px;
+}
+
+.elpatita-main {
+  min-height: 100vh;
+}
+
+.elpatita-nav {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+}
+
+.elpatita-nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: #ffffff;
+  border-radius: 30px;
+  border: 2px solid #f0781f;
+  box-shadow: 0 8px 32px -8px rgba(22, 51, 0, 0.2);
+}
+
+.elpatita-brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.elpatita-brand-mark {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #ffffff 0%, #dff9fb 100%);
+  box-shadow: 0 3px 12px rgba(22, 51, 0, 0.12);
+}
+
+.elpatita-brand-mark span {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  background: #f0781f;
+  border-radius: 999px;
+}
+
+.elpatita-brand-mark span:first-child {
+  width: 18px;
+  height: 18px;
+}
+
+.elpatita-brand-mark span:last-child {
+  width: 18px;
+  height: 18px;
+  clip-path: polygon(
+    0 43%,
+    43% 43%,
+    43% 0,
+    57% 0,
+    57% 43%,
+    100% 43%,
+    100% 57%,
+    57% 57%,
+    57% 100%,
+    43% 100%,
+    43% 57%,
+    0 57%
+  );
+}
+
+.elpatita-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 14px;
+  border: none;
+  background: transparent;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #868685;
+  position: relative;
+}
+
+.elpatita-nav-item:hover {
+  background: #f8dfce;
+  color: #ec5228;
+}
+
+.elpatita-nav-item:hover .elpatita-nav-icon {
+  transform: translateY(-5px) rotate(10deg) scale(1.1);
+}
+
+.elpatita-nav-icon {
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.elpatita-nav-item--active {
+  background: #f0781f;
+  color: #ffffff;
+}
+
+.elpatita-nav-item--active::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  width: 18px;
+  height: 3px;
+  background: #ffffff;
+  border-radius: 3px;
+}
+
+.elpatita-nav-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.elpatita-nav-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .elpatita-nav-inner {
+    padding: 8px 10px;
+    gap: 6px;
+  }
+
+  .elpatita-nav-item {
+    padding: 8px 10px;
+  }
+
+  .elpatita-brand {
+    width: 40px;
+    height: 40px;
+  }
+
+  .elpatita-brand-mark {
+    width: 30px;
+    height: 30px;
+  }
+
+  .elpatita-nav-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .elpatita-nav-label {
+    font-size: 0.55rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .elpatita-nav-inner {
+    gap: 2px;
+    padding: 6px 8px;
+  }
+
+  .elpatita-brand {
+    width: 36px;
+    height: 36px;
+  }
+
+  .elpatita-brand-mark {
+    width: 28px;
+    height: 28px;
+  }
+
+  .elpatita-nav-item {
+    padding: 6px 8px;
+  }
+
+  .elpatita-nav-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+</style>

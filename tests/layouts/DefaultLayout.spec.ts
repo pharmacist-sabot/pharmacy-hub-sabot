@@ -1,27 +1,46 @@
 import { mount } from '@vue/test-utils';
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
 
+const push = vi.fn();
+const route = { path: '/', meta: { navGroup: 'home' } };
+
+vi.mock('vue-router', () => ({
+  useRouter: () => ({ push }),
+  useRoute: () => route,
+}));
+
 describe('defaultLayout', () => {
-  it('renders layout components and slot content', () => {
+  beforeEach(() => {
+    push.mockReset();
+    route.path = '/';
+    route.meta = { navGroup: 'home' };
+  });
+
+  it('renders slot content with logo and the reduced bottom navigation', () => {
     const wrapper = mount(DefaultLayout, {
       slots: {
         default: '<div class="test-content">Content</div>',
       },
-      global: {
-        stubs: {
-          AppSidebar: { template: '<div class="sidebar-stub"></div>' },
-          AppHeader: { template: '<div class="header-stub"></div>' },
-          AppFooter: { template: '<div class="footer-stub"></div>' },
-        },
-      },
     });
 
-    expect(wrapper.find('.sidebar-stub').exists()).toBe(true);
-    expect(wrapper.find('.header-stub').exists()).toBe(true);
-    expect(wrapper.find('.footer-stub').exists()).toBe(true);
+    expect(wrapper.find('.elpatita-brand').exists()).toBe(true);
+    expect(wrapper.findAll('.elpatita-nav-item')).toHaveLength(3);
+    expect(wrapper.text()).toContain('หน้าแรก');
+    expect(wrapper.text()).toContain('เครื่องมือ');
+    expect(wrapper.text()).toContain('กลุ่มงาน');
     expect(wrapper.find('.test-content').exists()).toBe(true);
     expect(wrapper.text()).toContain('Content');
+  });
+
+  it('marks the tools button active for tools-group routes', () => {
+    route.path = '/reports';
+    route.meta = { navGroup: 'tools' };
+
+    const wrapper = mount(DefaultLayout);
+    const buttons = wrapper.findAll('.elpatita-nav-item');
+
+    expect(buttons[1]?.classes()).toContain('elpatita-nav-item--active');
   });
 });

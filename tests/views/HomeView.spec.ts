@@ -1,123 +1,50 @@
 import { mount } from '@vue/test-utils';
-import { createPinia, setActivePinia } from 'pinia';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { ref } from 'vue';
-
-import { useUIStore } from '@/stores/ui';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { nextTick } from 'vue';
 import HomeView from '@/views/HomeView.vue';
 
-// Mock Lucide icons
-vi.mock('lucide-vue-next', async () => {
-  // Return minimal mock as suggested in code review
-  return {
-    BarChart3: { template: '<span class="icon-mock">BarChart3</span>' },
-    LayoutGrid: { template: '<span class="icon-mock">LayoutGrid</span>' },
-    Link: { template: '<span class="icon-mock">Link</span>' },
-    Search: { template: '<span class="icon-mock">Search</span>' },
-    SearchX: { template: '<span class="icon-mock">SearchX</span>' },
-    Stethoscope: { template: '<span class="icon-mock">Stethoscope</span>' },
-  };
-});
-
-// Mock ResourceCard
-vi.mock('@/components/common/ResourceCard.vue', () => ({
-  default: {
-    template: '<div class="resource-card-stub">{{ item.title }}</div>',
-    props: ['item'],
-  },
-}));
-
-// Mock useResources
-const mockResources = ref([
-  { id: '1', title: 'Tool 1', description: 'Desc 1', type: 'tool', isActive: true },
-  { id: '2', title: 'Report 1', description: 'Desc 2', type: 'report', isActive: true },
-  { id: '3', title: 'External 1', description: 'Desc 3', type: 'external', isActive: true },
-]);
-const mockLoading = ref(false);
-const mockError = ref<string | null>(null);
-
-vi.mock('@/composables/use-resources', () => ({
-  useResources: () => ({
-    resources: mockResources,
-    loading: mockLoading,
-    error: mockError,
-  }),
-}));
-
 describe('homeView', () => {
-  beforeEach(() => {
-    setActivePinia(createPinia());
-    // Reset mocks
-    mockResources.value = [
-      { id: '1', title: 'Tool 1', description: 'Desc 1', type: 'tool', isActive: true },
-      { id: '2', title: 'Report 1', description: 'Desc 2', type: 'report', isActive: true },
-      { id: '3', title: 'External 1', description: 'Desc 3', type: 'external', isActive: true },
-    ];
-    mockLoading.value = false;
-    mockError.value = null;
+  afterEach(() => {
+    vi.useRealTimers();
   });
 
-  it('renders all resources by default', () => {
+  it('renders the ElPatita-inspired landing grid structure', () => {
     const wrapper = mount(HomeView);
-    expect(wrapper.findAll('.resource-card-stub').length).toBe(3);
-    expect(wrapper.text()).toContain('เครื่องมือและรายงานทั้งหมด');
+
+    expect(wrapper.findAll('.inicio-container > section')).toHaveLength(9);
+    expect(wrapper.text()).toContain('PHARMACY HUB');
+    expect(wrapper.text()).toContain('ศูนย์รวมระบบงาน');
+    expect(wrapper.text()).toContain('กลุ่มงานเภสัชกรรม โรงพยาบาลสระโบสถ์');
   });
 
-  it('filters by tab', async () => {
-    const store = useUIStore();
-    store.currentTab = 'tool';
-
+  it('shows placeholder surfaces for future real media replacement', () => {
     const wrapper = mount(HomeView);
-    expect(wrapper.findAll('.resource-card-stub').length).toBe(1);
-    expect(wrapper.text()).toContain('Tool 1');
-    expect(wrapper.text()).not.toContain('Report 1');
-    expect(wrapper.text()).toContain('เครื่องมือปฏิบัติงาน (Tools)');
+
+    expect(wrapper.text()).toContain('Hero Image');
+    expect(wrapper.text()).toContain('Mock Image');
+    expect(wrapper.text()).toContain('Dashboard Motion');
+    expect(wrapper.text()).toContain('คำนวณยา');
+    expect(wrapper.text()).toContain('รายงาน');
+    expect(wrapper.text()).toContain('เชื่อมต่อ');
   });
 
-  it('filters by search query', async () => {
-    const store = useUIStore();
-    store.searchQuery = 'Report';
-
+  it('links the primary call to action to the tools page', () => {
     const wrapper = mount(HomeView);
-    expect(wrapper.findAll('.resource-card-stub').length).toBe(1);
-    expect(wrapper.text()).toContain('Report 1');
-    expect(wrapper.text()).toContain('ผลการค้นหา');
+    const cta = wrapper.get('.animated-link');
+
+    expect(cta.attributes('href')).toBe('/tools');
+    expect(cta.text()).toContain('ดูเครื่องมือทั้งหมด');
   });
 
-  it('shows empty state when no results found', async () => {
-    const store = useUIStore();
-    store.searchQuery = 'NotFoundQuery';
-
-    const wrapper = mount(HomeView);
-    expect(wrapper.text()).toContain('ไม่พบข้อมูลที่ค้นหา');
-    expect(wrapper.find('[data-testid="clear-search-button"]').exists()).toBe(true);
-  });
-
-  it('clears search when button clicked in empty state', async () => {
-    const store = useUIStore();
-    store.searchQuery = 'NotFoundQuery';
-
-    const wrapper = mount(HomeView);
-    await wrapper.find('[data-testid="clear-search-button"]').trigger('click');
-
-    expect(store.searchQuery).toBe('');
-    expect(wrapper.findAll('.resource-card-stub').length).toBe(3);
-  });
-
-  it('shows loading skeleton when loading', async () => {
-    mockLoading.value = true;
-    // Force re-mount to pick up loading state if it depends on setup execution or reactive watchers
+  it('shows the loader briefly on mount', async () => {
+    vi.useFakeTimers();
     const wrapper = mount(HomeView);
 
-    expect(wrapper.findAll('.animate-pulse').length).toBeGreaterThan(0);
-    expect(wrapper.findAll('.resource-card-stub').length).toBe(0);
-  });
+    expect(wrapper.find('.loader-container').exists()).toBe(true);
 
-  it('shows error state when error occurs', async () => {
-    mockError.value = 'Failed to load';
-    mockLoading.value = false;
-    const wrapper = mount(HomeView);
+    vi.advanceTimersByTime(200);
+    await nextTick();
 
-    expect(wrapper.text()).toContain('Error loading resources: Failed to load');
+    expect(wrapper.find('.loader-container').exists()).toBe(false);
   });
 });

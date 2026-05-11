@@ -25,6 +25,18 @@ describe('router', () => {
       expect(route).toBeDefined();
       expect(route?.meta?.tab).toBe(expectedTab);
     });
+
+    it.each([
+      { path: '/', expectedGroup: 'home' },
+      { path: '/tools', expectedGroup: 'tools' },
+      { path: '/reports', expectedGroup: 'tools' },
+      { path: '/external', expectedGroup: 'tools' },
+      { path: '/department', expectedGroup: 'department' },
+    ])('defines route $path with nav group $expectedGroup', ({ path, expectedGroup }) => {
+      const route = findRoute(path);
+      expect(route).toBeDefined();
+      expect(route?.meta?.navGroup).toBe(expectedGroup);
+    });
   });
 
   it('updates store tab on navigation', async () => {
@@ -36,6 +48,9 @@ describe('router', () => {
 
     await router.push('/reports');
     expect(store.currentTab).toBe('report');
+
+    await router.push('/external');
+    expect(store.currentTab).toBe('external');
   });
 
   it('does not update store tab on navigation to non-tab route', async () => {

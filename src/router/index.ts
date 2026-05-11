@@ -1,38 +1,48 @@
-import type { NavigationGuardNext, RouteLocationNormalized, RouteRecordRaw } from 'vue-router';
-import type { TabType } from '@/stores/ui';
-
 import { createRouter, createWebHistory } from 'vue-router';
 import { useUIStore } from '@/stores/ui';
+
+import DepartmentView from '@/views/DepartmentView.vue';
 import HomeView from '@/views/HomeView.vue';
 import NotFoundView from '@/views/NotFoundView.vue';
-
-// Helper to create tab routes with consistent configuration
-function createTabRoute(path: string, name: string, tab: TabType): RouteRecordRaw {
-  return {
-    path,
-    name,
-    component: HomeView,
-    meta: { layout: 'default', tab },
-  };
-}
-
-// Tab routes configuration
-const tabRoutes: RouteRecordRaw[] = [
-  createTabRoute('/', 'home', 'all'),
-  createTabRoute('/tools', 'tools', 'tool'),
-  createTabRoute('/reports', 'reports', 'report'),
-  createTabRoute('/external', 'external', 'external'),
-];
+import ToolsView from '@/views/ToolsView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    ...tabRoutes,
+    {
+      path: '/',
+      name: 'home',
+      component: HomeView,
+      meta: { tab: 'all', navGroup: 'home' },
+    },
+    {
+      path: '/tools',
+      name: 'tools',
+      component: ToolsView,
+      meta: { tab: 'tool', navGroup: 'tools' },
+    },
+    {
+      path: '/reports',
+      name: 'reports',
+      component: ToolsView,
+      meta: { tab: 'report', navGroup: 'tools' },
+    },
+    {
+      path: '/external',
+      name: 'external',
+      component: ToolsView,
+      meta: { tab: 'external', navGroup: 'tools' },
+    },
+    {
+      path: '/department',
+      name: 'department',
+      component: DepartmentView,
+      meta: { navGroup: 'department' },
+    },
     {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       component: NotFoundView,
-      meta: { layout: 'blank' },
     },
   ],
 
@@ -44,14 +54,13 @@ const router = createRouter({
   },
 });
 
-// Global navigation guard to handle tab changes
-router.beforeEach((to: RouteLocationNormalized, _from: RouteLocationNormalized, next: NavigationGuardNext) => {
-  const tab = to.meta.tab as TabType | undefined;
-  if (tab) {
-    const store = useUIStore();
-    store.setTab(tab);
+router.afterEach((to) => {
+  const store = useUIStore();
+  const nextTab = to.meta.tab;
+
+  if (nextTab === 'all' || nextTab === 'tool' || nextTab === 'report' || nextTab === 'external') {
+    store.setTab(nextTab);
   }
-  next();
 });
 
 export default router;

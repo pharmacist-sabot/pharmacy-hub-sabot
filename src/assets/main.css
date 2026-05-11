@@ -41,36 +41,66 @@
 }
 
 /* ─────────────────────────────────────────
-   Base
-───────────────────────────────────────── */
+   Base (เหมือน ElPatita)
+ ───────────────────────────────────────── */
+* {
+  font-family: var(--font-family-sans);
+  scroll-behavior: smooth;
+  scrollbar-width: auto;
+  scrollbar-color: #f0781f #ffffff;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 :root {
   font-family: var(--font-family-sans);
 }
 
 body {
-  background-color: var(--color-wise-canvas);
-  color: var(--color-wise-near-black);
+  background-color: #ffffff;
+  color: #0e0f0c;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'calt' 1;
+  transition: background-color 0.5s ease;
+}
+
+/* Focus indicators (เหมือน ElPatita) */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #f8dfce;
+  outline-offset: 2px;
 }
 
 /* ─────────────────────────────────────────
-   Scrollbar
-───────────────────────────────────────── */
+   Scrollbar (เหมือน ElPatita)
+ ───────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #ffffff;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(159, 232, 112, 0.35);
+  background: #f0781f;
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #9fe870;
+  background: #ec5228;
+}
+
+/* ─────────────────────────────────────────
+   Reduced motion support (เหมือน ElPatita)
+ ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ─────────────────────────────────────────
