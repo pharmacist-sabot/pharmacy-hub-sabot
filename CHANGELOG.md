@@ -1,3 +1,9 @@
+## [1.6.4](https://github.com/suradet-ps/pharmacy-hub-sabot/compare/v1.6.3...v1.6.4) (2026-05-11)
+
+### 📦 Dependency Updates
+
+* **deps:** update commitlint monorepo to v21 ([#26](https://github.com/suradet-ps/pharmacy-hub-sabot/issues/26)) ([94c25e8](https://github.com/suradet-ps/pharmacy-hub-sabot/commit/94c25e8e6583fdfb80ea3764019ef7540a073e38))
+
 ## [1.6.3](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/compare/v1.6.2...v1.6.3) (2026-04-21)
 
 ### 📦 Dependency Updates
