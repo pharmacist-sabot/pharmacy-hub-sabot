@@ -1,3 +1,15 @@
+## [1.6.5](https://github.com/suradet-ps/pharmacy-hub-sabot/compare/v1.6.4...v1.6.5) (2026-05-11)
+
+### 📦 Dependency Updates
+
+* remove BENTO-SLIDE.md and DESIGN.md as part of project restructuring ([99f4ccc](https://github.com/suradet-ps/pharmacy-hub-sabot/commit/99f4cccb78e0430b27a9af081d69336418b32392))
+* update BENTO-SLIDE.md and DESIGN.md for improved formatting and clarity ([40ddc52](https://github.com/suradet-ps/pharmacy-hub-sabot/commit/40ddc5282be2c3da75830cb9654fb46e5eac6cec))
+* update dependencies and add BENTO-SLIDE.md for Pharmacy Department website architecture ([c0bb72c](https://github.com/suradet-ps/pharmacy-hub-sabot/commit/c0bb72c9c626e86d7c1e41ca831c1efbf3315f3c))
+
+### ♻️ Refactoring
+
+* redesign to bento layout ([fde9bbd](https://github.com/suradet-ps/pharmacy-hub-sabot/commit/fde9bbd5aa7125e4ca7be30b0be56272aa3f4c57))
+
 ## [1.6.4](https://github.com/suradet-ps/pharmacy-hub-sabot/compare/v1.6.3...v1.6.4) (2026-05-11)
 
 ### 📦 Dependency Updates
