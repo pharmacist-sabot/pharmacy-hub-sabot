@@ -132,6 +132,8 @@ onMounted(() => {
 }
 
 .inicio-container {
+  position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -169,8 +171,109 @@ onMounted(() => {
 .marca,
 .gifs,
 .logo {
+  position: relative;
+  z-index: 1;
   border-radius: 20px;
   overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  background: transparent;
+  box-shadow: 0 10px 22px rgb(14 8 27 / 0.06);
+}
+
+.chicken-container::before,
+.img-alitas::before,
+.papas-container::before,
+.gif-brasas::before,
+.title::before,
+.action-link::before,
+.marca::before,
+.gifs::before,
+.logo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url('/images/home.png');
+  background-repeat: no-repeat;
+  background-size: var(--tile-bg-size, cover);
+  background-position: var(--tile-bg-position, center);
+  filter: saturate(1.02) brightness(1.04);
+}
+
+.chicken-container::after,
+.img-alitas::after,
+.papas-container::after,
+.gif-brasas::after,
+.title::after,
+.action-link::after,
+.marca::after,
+.gifs::after,
+.logo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(145deg, rgb(255 255 255 / 0.02), rgb(255 255 255 / 0.005));
+  backdrop-filter: blur(1px) saturate(102%);
+  -webkit-backdrop-filter: blur(1px) saturate(102%);
+}
+
+.chicken-container > *,
+.img-alitas > *,
+.papas-container > *,
+.gif-brasas > *,
+.title > *,
+.action-link > *,
+.marca > *,
+.gifs > *,
+.logo > * {
+  position: relative;
+  z-index: 1;
+}
+
+.chicken-container {
+  --tile-bg-size: 700% 300%;
+  --tile-bg-position: 0% 0%;
+}
+
+.marca {
+  --tile-bg-size: 350% 300%;
+  --tile-bg-position: 16.7% 0%;
+}
+
+.gifs {
+  --tile-bg-size: 350% 300%;
+  --tile-bg-position: 50% 0%;
+}
+
+.papas-container {
+  --tile-bg-size: 350% 100%;
+  --tile-bg-position: 100% 0%;
+}
+
+.logo {
+  --tile-bg-size: 700% 300%;
+  --tile-bg-position: 0% 50%;
+}
+
+.title {
+  --tile-bg-size: 175% 300%;
+  --tile-bg-position: 16.7% 50%;
+}
+
+.gif-brasas {
+  --tile-bg-size: 700% 300%;
+  --tile-bg-position: 0% 100%;
+}
+
+.img-alitas {
+  --tile-bg-size: 350% 300%;
+  --tile-bg-position: 16.7% 100%;
+}
+
+.action-link {
+  --tile-bg-size: 350% 300%;
+  --tile-bg-position: 50% 100%;
 }
 
 .chicken-container,
@@ -184,6 +287,8 @@ onMounted(() => {
   height: 100%;
   min-height: 100%;
   position: relative;
+  background-color: transparent;
+  z-index: 1;
 }
 
 .chicken-container .mock-visual,
@@ -198,13 +303,15 @@ onMounted(() => {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at top left, rgb(255 255 255 / 0.28), transparent 32%),
-    linear-gradient(135deg, rgb(255 255 255 / 0.12), transparent 55%);
+    radial-gradient(circle at top left, rgb(255 255 255 / 0.05), transparent 28%),
+    linear-gradient(135deg, rgb(255 255 255 / 0.02), transparent 50%);
   pointer-events: none;
 }
 
 .mock-visual--hero {
-  background: linear-gradient(135deg, #fff3ea 0%, #f8dfce 35%, #17c6d2 100%);
+  background:
+    linear-gradient(140deg, rgb(255 255 255 / 0.005), rgb(23 198 210 / 0.025)),
+    linear-gradient(135deg, rgb(255 243 234 / 0.03) 0%, rgb(248 223 206 / 0.015) 35%, rgb(23 198 210 / 0.025) 100%);
   min-height: 100%;
 }
 
@@ -215,8 +322,8 @@ onMounted(() => {
   z-index: 1;
   padding: 8px 12px;
   border-radius: 999px;
-  background-color: rgb(255 255 255 / 0.88);
-  color: var(--negro);
+  background-color: rgb(255 255 255 / 0.22);
+  color: var(--negro-puro);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -287,7 +394,6 @@ onMounted(() => {
   flex-wrap: wrap;
   flex-direction: row;
   gap: 20px;
-  background-color: var(--negro);
   padding: 20px 6%;
 }
 
@@ -296,7 +402,7 @@ onMounted(() => {
   width: 65px;
   height: 70px;
   border-radius: 22px;
-  background: linear-gradient(180deg, #ffffff 0%, #e1fbfd 100%);
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.28) 0%, rgb(225 251 253 / 0.12) 100%);
 }
 
 .brand-dot,
@@ -333,6 +439,7 @@ onMounted(() => {
 
 .marca p {
   color: var(--blanco-puro);
+  text-shadow: 0 6px 18px rgb(14 8 27 / 0.22);
   text-align: center;
   font-weight: 600;
   font-size: clamp(1.55em, 1.8vw, 2.1em);
@@ -345,7 +452,6 @@ onMounted(() => {
   flex-wrap: wrap;
   flex-direction: row;
   gap: 20px;
-  background-color: var(--naranja-fuerte);
   padding: 12px;
 }
 
@@ -374,17 +480,17 @@ onMounted(() => {
 }
 
 .media-pill--mint {
-  background-color: #e2f6d5;
+  background-color: rgb(226 246 213 / 0.22);
   color: #204400;
 }
 
 .media-pill--blue {
-  background-color: #d7f5ff;
+  background-color: rgb(215 245 255 / 0.22);
   color: #00454b;
 }
 
 .media-pill--cream {
-  background-color: #fff0e4;
+  background-color: rgb(255 240 228 / 0.22);
   color: #693100;
 }
 
@@ -393,15 +499,15 @@ onMounted(() => {
   grid-row: span 3 / span 3;
   grid-column-start: 6;
   position: relative;
-  background-color: var(--naranja);
 }
 
 .mock-visual--vertical {
   position: absolute;
   inset: 0;
-  opacity: 0.82;
+  opacity: 0.46;
   background:
-    linear-gradient(180deg, rgb(255 255 255 / 0.16), transparent 60%), linear-gradient(135deg, #f59a4b 0%, #d95e14 100%);
+    linear-gradient(180deg, rgb(255 255 255 / 0.015), transparent 60%),
+    linear-gradient(135deg, rgb(245 154 75 / 0.025) 0%, rgb(217 94 20 / 0.02) 100%);
 }
 
 .papas-container:hover .mock-visual--vertical,
@@ -455,7 +561,6 @@ onMounted(() => {
 
 .logo {
   grid-row-start: 2;
-  background-color: var(--celeste);
   padding: 20px 10px;
 }
 
@@ -464,7 +569,7 @@ onMounted(() => {
   width: 105px;
   height: 110px;
   border-radius: 30px;
-  background: linear-gradient(180deg, #ffffff 0%, #dff9fb 100%);
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.24) 0%, rgb(223 249 251 / 0.1) 100%);
 }
 
 .logo-badge span {
@@ -494,7 +599,6 @@ onMounted(() => {
   grid-row-start: 2;
   width: 100%;
   padding: 20px 6%;
-  background-color: var(--naranja-claro);
   text-align: center;
   display: grid;
   grid-template-rows: auto auto;
@@ -505,16 +609,21 @@ onMounted(() => {
 .title h1 {
   margin-bottom: 10px;
   font-size: 2.9em;
-  color: var(--negro-puro);
+  color: var(--blanco-puro);
+  text-shadow: 0 10px 22px rgb(10 24 45 / 0.2);
+}
+
+.title p {
+  color: rgb(255 255 255 / 0.92);
+  text-shadow: 0 6px 18px rgb(10 24 45 / 0.18);
 }
 
 .title span {
-  color: var(--naranja-fuerte);
+  color: #dff9fb;
 }
 
 .gif-brasas {
   grid-row-start: 3;
-  background-color: var(--negro);
 }
 
 .mock-video {
@@ -523,8 +632,8 @@ onMounted(() => {
   justify-content: center;
   overflow: hidden;
   background:
-    radial-gradient(circle at 20% 20%, rgb(255 255 255 / 0.08), transparent 30%),
-    linear-gradient(135deg, #242424 0%, #111111 100%);
+    radial-gradient(circle at 20% 20%, rgb(255 255 255 / 0.025), transparent 30%),
+    linear-gradient(135deg, rgb(36 36 36 / 0.05) 0%, rgb(17 17 17 / 0.02) 100%);
 }
 
 .signal {
@@ -558,6 +667,7 @@ onMounted(() => {
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.06em;
+  text-shadow: 0 6px 16px rgb(10 24 45 / 0.18);
 }
 
 .img-alitas {
@@ -566,7 +676,12 @@ onMounted(() => {
 }
 
 .mock-visual--secondary {
-  background: linear-gradient(135deg, #dff9fb 0%, #fff0e4 60%, #f59a4b 100%);
+  background: linear-gradient(
+    135deg,
+    rgb(223 249 251 / 0.02) 0%,
+    rgb(255 240 228 / 0.015) 60%,
+    rgb(245 154 75 / 0.025) 100%
+  );
 }
 
 .folder-stack {
@@ -607,7 +722,6 @@ onMounted(() => {
   grid-column: span 2 / span 2;
   grid-column-start: 4;
   grid-row-start: 3;
-  background-color: var(--naranja);
   padding: 28px 4%;
 }
 
@@ -620,10 +734,11 @@ onMounted(() => {
   overflow: hidden;
   border-color: transparent;
   border-radius: 30px;
-  background-color: var(--blanco-puro);
+  background-color: rgb(255 255 255 / 0.28);
   padding: 16px 36px;
   color: var(--negro-puro);
   text-decoration: none;
+  box-shadow: 0 10px 24px rgb(14 8 27 / 0.12);
   transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -803,12 +918,16 @@ onMounted(() => {
   }
 
   .chicken-container {
+    --tile-bg-size: 400% 300%;
+    --tile-bg-position: 0% 0%;
     grid-column: 1 / 1;
     grid-row: 1;
     height: auto;
   }
 
   .marca {
+    --tile-bg-size: 400% 300%;
+    --tile-bg-position: 33.33% 0%;
     grid-column: 2 / 3;
     grid-row: 1;
     gap: 10px;
@@ -819,17 +938,23 @@ onMounted(() => {
   }
 
   .gifs {
+    --tile-bg-size: 200% 300%;
+    --tile-bg-position: 100% 0%;
     grid-column: 3 / 5;
     grid-row: 1;
   }
 
   .logo {
+    --tile-bg-size: 400% 300%;
+    --tile-bg-position: 0% 50%;
     grid-column: 1;
     grid-row: 2;
     height: 200px;
   }
 
   .title {
+    --tile-bg-size: 200% 300%;
+    --tile-bg-position: 33.33% 50%;
     grid-column: 2 / 4;
     grid-row: 2;
   }
@@ -839,22 +964,30 @@ onMounted(() => {
   }
 
   .gif-brasas {
+    --tile-bg-size: 400% 300%;
+    --tile-bg-position: 0% 100%;
     grid-column: 1 / 2;
     grid-row: 3;
   }
 
   .img-alitas {
+    --tile-bg-size: 400% 300%;
+    --tile-bg-position: 33.33% 100%;
     grid-column: 2 / 3;
     grid-row: 3;
     height: 200px;
   }
 
   .action-link {
+    --tile-bg-size: 400% 300%;
+    --tile-bg-position: 66.66% 100%;
     grid-column: 3 / 4;
     grid-row: 3;
   }
 
   .papas-container {
+    --tile-bg-size: 400% 150%;
+    --tile-bg-position: 100% 100%;
     grid-column: 4 / 5;
     grid-row: 2 / span 2;
   }
@@ -884,6 +1017,8 @@ onMounted(() => {
   }
 
   .marca {
+    --tile-bg-size: 100% 800%;
+    --tile-bg-position: 0% 0%;
     grid-column: 1 / span 2;
     gap: 10px;
   }
@@ -893,12 +1028,16 @@ onMounted(() => {
   }
 
   .chicken-container {
+    --tile-bg-size: 200% 800%;
+    --tile-bg-position: 0% 14.28%;
     grid-column: 1;
     grid-row: 2;
     height: 116px;
   }
 
   .logo {
+    --tile-bg-size: 200% 800%;
+    --tile-bg-position: 100% 14.28%;
     grid-column: 2;
     grid-row: 2;
     height: 116px;
@@ -910,6 +1049,8 @@ onMounted(() => {
   }
 
   .title {
+    --tile-bg-size: 100% 800%;
+    --tile-bg-position: 0% 28.57%;
     grid-column: 1 / span 2;
     grid-row: 3;
   }
@@ -923,6 +1064,8 @@ onMounted(() => {
   }
 
   .gifs {
+    --tile-bg-size: 100% 800%;
+    --tile-bg-position: 0% 42.85%;
     grid-column: 1 / span 2;
     grid-row: 4;
     padding: 4px;
@@ -935,18 +1078,24 @@ onMounted(() => {
   }
 
   .gif-brasas {
+    --tile-bg-size: 200% 800%;
+    --tile-bg-position: 0% 57.14%;
     grid-column: 1;
     grid-row: 5;
     min-height: 116px;
   }
 
   .img-alitas {
+    --tile-bg-size: 200% 800%;
+    --tile-bg-position: 100% 57.14%;
     grid-column: 2;
     grid-row: 5;
     height: 116px;
   }
 
   .action-link {
+    --tile-bg-size: 100% 800%;
+    --tile-bg-position: 0% 71.42%;
     grid-column: 1 / span 2;
     grid-row: 6;
   }
@@ -956,6 +1105,8 @@ onMounted(() => {
   }
 
   .papas-container {
+    --tile-bg-size: 100% 800%;
+    --tile-bg-position: 0% 85.71%;
     grid-column: 1 / span 2;
     grid-row: 7;
     height: 160px;
