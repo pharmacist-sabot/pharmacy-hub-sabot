@@ -38,24 +38,28 @@ All screens are children of `#app`, stacked via `position: absolute; inset: 0`. 
 
 Each screen (home or subpage) exists in one of three states:
 
-| State | Transform | Opacity | Pointer events |
-|---|---|---|---|
-| `visible` | `translateX(0)` | 1 | auto |
-| `hidden-right` | `translateX(100%)` | 0 | none |
-| `hidden-left` | `translateX(-40%) scale(0.96)` | 0 | none |
+| State          | Transform                      | Opacity | Pointer events |
+| -------------- | ------------------------------ | ------- | -------------- |
+| `visible`      | `translateX(0)`                | 1       | auto           |
+| `hidden-right` | `translateX(100%)`             | 0       | none           |
+| `hidden-left`  | `translateX(-40%) scale(0.96)` | 0       | none           |
 
 **Navigating forward** (home → subpage):
+
 1. Home transitions to `hidden-left`.
 2. Target subpage transitions from `hidden-right` to `visible`.
 
 **Navigating back** (subpage → home):
+
 1. Current subpage transitions to `hidden-right`.
 2. Home transitions from `hidden-left` to `visible`.
 
 **Transition spec:**
+
 ```css
-transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-            opacity   0.35s cubic-bezier(0.4, 0, 0.2, 1);
+transition:
+  transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+  opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 will-change: transform, opacity;
 ```
 
@@ -102,24 +106,25 @@ Non-interactive cards (hero, stats): `cursor: default`, no scale transform.
 
 Define the following named slots. Column/row spans are the **desktop baseline** (see Responsive section for overrides).
 
-| Slot | `grid-column` | `grid-row` | Interactive | Links to |
-|---|---|---|---|---|
-| `card-hero` | span 8 | span 4 | No | — |
-| `card-stat-rx` | span 4 | span 2 | No | — |
-| `card-stat-staff` | span 4 | span 2 | No | — |
-| `card-service` | span 4 | span 3 | Yes | `page-service` |
-| `card-safety` | span 4 | span 3 | Yes | `page-ptc` |
-| `card-team` | span 4 | span 3 | Yes | `page-team` |
-| `card-documents` | span 4 | span 3 | Yes | `page-documents` |
-| `card-news` | span 8 | span 3 | Yes | `page-news` |
-| `card-team-preview` | span 4 | span 3 | Yes | `page-team` |
-| `card-quicklinks` | span 12 | span 3 | No (children are) | — |
+| Slot                | `grid-column` | `grid-row` | Interactive       | Links to         |
+| ------------------- | ------------- | ---------- | ----------------- | ---------------- |
+| `card-hero`         | span 8        | span 4     | No                | —                |
+| `card-stat-rx`      | span 4        | span 2     | No                | —                |
+| `card-stat-staff`   | span 4        | span 2     | No                | —                |
+| `card-service`      | span 4        | span 3     | Yes               | `page-service`   |
+| `card-safety`       | span 4        | span 3     | Yes               | `page-ptc`       |
+| `card-team`         | span 4        | span 3     | Yes               | `page-team`      |
+| `card-documents`    | span 4        | span 3     | Yes               | `page-documents` |
+| `card-news`         | span 8        | span 3     | Yes               | `page-news`      |
+| `card-team-preview` | span 4        | span 3     | Yes               | `page-team`      |
+| `card-quicklinks`   | span 12       | span 3     | No (children are) | —                |
 
 > The exact arrangement of these slots in the grid is left to the implementer, provided the total rows consumed equals 10 and no card overflows the 12-column track.
 
 ### Card Content Patterns
 
 #### `card-hero`
+
 - Dark navy background (`#1D3461` or closest token from `DESIGN.md` `{colors.canvas-dark}`).
 - Department name in `{typography.heading-2}`, `{colors.on-dark}`.
 - Hospital name + province in `{typography.body-sm}`, `{colors.on-dark-muted}`.
@@ -128,12 +133,14 @@ Define the following named slots. Column/row spans are the **desktop baseline** 
 - No click handler.
 
 #### `card-stat-*`
+
 - Label in `{typography.micro-uppercase}`, `{colors.steel}`.
 - Large numeral in 28–32px, weight 500, colored with a semantic accent (blue for prescriptions, teal for staff — reference `DESIGN.md` ramps).
 - Sub-label in `{typography.body-sm}`, `{colors.steel}`.
 - No click handler.
 
 #### Interactive section cards (`card-service`, `card-safety`, `card-team`, `card-documents`)
+
 - Small "view all →" label in `{typography.caption}`, `{colors.stone}`, positioned `top: 12px; right: 12px`.
 - Icon block: 32×32px rounded (`{rounded.md}`) container with tinted background + icon at 16px.
   - Service: blue tint.
@@ -146,6 +153,7 @@ Define the following named slots. Column/row spans are the **desktop baseline** 
 - Sub-description in `{typography.body-sm}`, `{colors.slate}`.
 
 #### `card-news`
+
 - Header row: label left (`{typography.micro-uppercase}`, `{colors.steel}`) + "view all →" right (`{typography.caption}`, `{colors.stone}`).
 - 3 news items, each:
   - Colored dot (5–6px circle): blue for announcements, teal for events, red for alerts.
@@ -154,12 +162,14 @@ Define the following named slots. Column/row spans are the **desktop baseline** 
   - Divider between items: `1px solid {colors.hairline-soft}`. No divider after last item.
 
 #### `card-team-preview`
+
 - Label in `{typography.micro-uppercase}`, `{colors.steel}`.
 - Avatar row: overlapping 28–32px circles, each showing initials. Colors drawn from brand ramps. Overlap with negative margin (`-6px`).
 - Status pill using `badge-discount` pattern adapted to green: "Open today".
 - Sub-text in `{typography.body-sm}`, `{colors.slate}`.
 
 #### `card-quicklinks`
+
 - Non-interactive container card.
 - Label "Quick links" in `{typography.micro-uppercase}`, `{colors.steel}`, left-aligned.
 - Row of pill tags, each: `border: 1px solid {colors.hairline}`, `border-radius: {rounded.full}`, `{typography.body-sm}`, `{colors.slate}`, icon at 13px left of label.
@@ -194,6 +204,7 @@ Every subpage shares this shell:
 ```
 
 Contents (left to right):
+
 1. **Back button** — `button-ghost` style, `← Home` label. Triggers back transition.
 2. **Section icon** — same icon used on the bento card, 16px, accent color.
 3. **Page title** — `{typography.heading-5}`, `{colors.ink}`.
@@ -219,6 +230,7 @@ Content cards inside subpages use `card-base` from `DESIGN.md`: `{colors.canvas}
 ### `page-service` — Pharmacy Services
 
 Cards to render (2-column grid):
+
 - **OPD Dispensing** — hours Mon–Fri, with key-value rows for time slots.
 - **IPD Dispensing** — morning and afternoon round times.
 - **DM/HT Clinic** — MTM service description, weekly schedule pill badge.
@@ -230,17 +242,20 @@ Schedule badge style: inline pill, `{rounded.full}`, tinted background + dark te
 ### `page-ptc` — Drug Safety (PTC / ADR / RDU)
 
 Cards:
+
 - **PTC Committee** (full-width) — meeting frequency, mandate summary.
 - **ADR Reporting** — report count key-value rows (total year, serious count).
 - **RDU Indicators** — key-value rows with semantic color on values: green for on-target, amber for improving, default ink for neutral.
 
 Key-value row pattern:
+
 ```
 display: flex
 justify-content: space-between
 padding: 6px 0
 border-bottom: 1px solid {colors.hairline-soft}
 ```
+
 Key: `{typography.body-sm}`, `{colors.slate}`. Value: `{typography.body-sm-medium}`, `{colors.ink}` (or semantic override).
 
 ### `page-team` — Staff Directory
@@ -249,6 +264,7 @@ Key: `{typography.body-sm}`, `{colors.slate}`. Value: `{typography.body-sm-mediu
 - Full-width card for pharmacy technicians: 3-column sub-grid of smaller avatar circles with name label below.
 
 Role badge colors:
+
 - Pharmacist: blue ramp (`{badge-type}` pattern with blue tint).
 - Senior/head: teal ramp.
 - Technician: stone/gray ramp.
@@ -256,6 +272,7 @@ Role badge colors:
 ### `page-documents` — Forms & Documents
 
 Single-column list layout (not grid). Each item is a `card-base` row:
+
 ```
 display: flex
 align-items: center
@@ -266,6 +283,7 @@ Left side: 32×32px icon block (colored per document category) + title (`{typogr
 Right side: download icon (`ti-download`, 15px, `{colors.steel}`).
 
 Document category tints (icon block background):
+
 - ADR forms → amber.
 - Patient guides → blue.
 - PTC / HA documents → purple.
@@ -275,6 +293,7 @@ Document category tints (icon block background):
 ### `page-news` — Announcements
 
 Single-column list layout. Each item is a `card-base` with:
+
 - Top row: category badge pill (left) + date (right, `{typography.caption}`, `{colors.stone}`).
 - Title: `{typography.body-sm-medium}`, `{colors.ink}`, margin-top 6px.
 - Body: `{typography.body-sm}`, `{colors.slate}`, margin-top 4px.
@@ -290,9 +309,11 @@ Category badge style matches `badge-required` pattern but with category-appropri
 ## Responsive Behavior
 
 ### Desktop (≥ 1024px)
+
 Full 12-column × 10-row bento grid as specified above.
 
 ### Tablet (768px – 1023px)
+
 - Grid reduces to 8 columns, 12 rows.
 - `card-hero`: span 8, span 3.
 - Stats stack 2-up (span 4, span 2 each) below hero.
@@ -302,6 +323,7 @@ Full 12-column × 10-row bento grid as specified above.
 - `gap: 10px`, `padding: 12px`.
 
 ### Mobile (< 768px)
+
 - Abandon the fixed-height bento constraint. Root becomes `overflow-y: auto`.
 - Grid: single column, auto rows.
 - Each card: full width, explicit `min-height` (hero 160px, stat 80px, section cards 120px).

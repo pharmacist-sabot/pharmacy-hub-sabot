@@ -28,7 +28,7 @@ export default antfu({
         kebabCase: true,
         pascalCase: true,
       },
-      ignore: ['README.md'],
+      ignore: ['README.md', 'BENTO-SLIDE.md'],
     }],
   },
 });
