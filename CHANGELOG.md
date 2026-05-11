@@ -1,3 +1,14 @@
+## [1.7.0](https://github.com/suradet-ps/pharmacy-hub-sabot/compare/v1.6.5...v1.7.0) (2026-05-11)
+
+### 🚀 New Features
+
+* add video content ([a111a20](https://github.com/suradet-ps/pharmacy-hub-sabot/commit/a111a2030e83f72310d04b5fe15c6e5142f30b9e))
+
+### 📦 Dependency Updates
+
+* add med-safety.png ([5d80e84](https://github.com/suradet-ps/pharmacy-hub-sabot/commit/5d80e8447965551d34052294bcf76587e3fafb52))
+* update home image for improved visual appeal ([2bd7df0](https://github.com/suradet-ps/pharmacy-hub-sabot/commit/2bd7df0d58d35546f539e53ecfceacca1406ce45))
+
 ## [1.6.5](https://github.com/suradet-ps/pharmacy-hub-sabot/compare/v1.6.4...v1.6.5) (2026-05-11)
 
 ### 📦 Dependency Updates
