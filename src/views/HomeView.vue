@@ -77,8 +77,10 @@ onMounted(() => {
       </section>
 
       <section class="title hover-shrink">
-        <h1>PHARMACY HUB</h1>
-        <p>ศูนย์รวมระบบงาน <span>กลุ่มงานเภสัชกรรม โรงพยาบาลสระโบสถ์</span></p>
+        <div class="title-content">
+          <h1>PHARMACY HUB</h1>
+          <p>ศูนย์รวมระบบงาน <span>กลุ่มงานเภสัชกรรม โรงพยาบาลสระโบสถ์</span></p>
+        </div>
       </section>
 
       <section class="gif-brasas hover-shrink">
@@ -103,12 +105,8 @@ onMounted(() => {
 
       <section class="action-link hover-shrink">
         <a href="/tools" class="animated-link" aria-label="ไปยังหน้ารวมเครื่องมือ">
-          <svg viewBox="0 0 24 24" class="arr-2" aria-hidden="true">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z" />
-          </svg>
           <span class="text">ดูเครื่องมือทั้งหมด</span>
-          <span class="circle" />
-          <svg viewBox="0 0 24 24" class="arr-1" aria-hidden="true">
+          <svg viewBox="0 0 24 24" class="cta-arrow" aria-hidden="true">
             <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z" />
           </svg>
         </a>
@@ -606,20 +604,41 @@ onMounted(() => {
   align-content: center;
 }
 
+.title-content {
+  display: grid;
+  gap: 10px;
+  max-width: min(100%, 720px);
+  padding: 22px 28px;
+  border: 1px solid rgb(255 255 255 / 0.18);
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgb(8 20 38 / 0.3), rgb(8 20 38 / 0.16));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 18px 40px rgb(8 20 38 / 0.16);
+}
+
 .title h1 {
-  margin-bottom: 10px;
+  margin-bottom: 0;
   font-size: 2.9em;
   color: var(--blanco-puro);
-  text-shadow: 0 10px 22px rgb(10 24 45 / 0.2);
+  line-height: 0.95;
+  letter-spacing: 0.04em;
+  text-shadow: 0 12px 24px rgb(10 24 45 / 0.3);
 }
 
 .title p {
-  color: rgb(255 255 255 / 0.92);
-  text-shadow: 0 6px 18px rgb(10 24 45 / 0.18);
+  max-width: 36ch;
+  color: rgb(255 255 255 / 0.98);
+  font-size: 1.02rem;
+  font-weight: 500;
+  line-height: 1.65;
+  text-wrap: balance;
+  text-shadow: 0 6px 18px rgb(10 24 45 / 0.24);
 }
 
 .title span {
-  color: #dff9fb;
+  color: #fff1cf;
+  font-weight: 700;
 }
 
 .gif-brasas {
@@ -722,83 +741,59 @@ onMounted(() => {
   grid-column: span 2 / span 2;
   grid-column-start: 4;
   grid-row-start: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 28px 4%;
 }
 
 .animated-link {
   position: relative;
+  width: fit-content;
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 12px;
   overflow: hidden;
-  border-color: transparent;
-  border-radius: 30px;
-  background-color: rgb(255 255 255 / 0.28);
-  padding: 16px 36px;
-  color: var(--negro-puro);
+  border: 1px solid rgb(255 255 255 / 0.32);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.26), rgb(255 255 255 / 0.14));
+  padding: 14px 22px;
+  color: var(--blanco-puro);
+  font-weight: 600;
+  letter-spacing: 0.01em;
   text-decoration: none;
-  box-shadow: 0 10px 24px rgb(14 8 27 / 0.12);
+  box-shadow: 0 14px 28px rgb(14 8 27 / 0.14);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .animated-link svg {
-  position: absolute;
-  z-index: 2;
-  width: 24px;
-  fill: var(--naranja);
+  z-index: 1;
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
   transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.animated-link .arr-1 {
-  right: 16px;
-}
-
-.animated-link .arr-2 {
-  left: -25%;
 }
 
 .text {
   position: relative;
   z-index: 1;
-  transform: translateX(-12px);
-  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.circle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background-color: var(--negro);
-  opacity: 0;
+  transform: none;
+  white-space: nowrap;
   transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .animated-link:hover {
-  color: var(--blanco-puro);
-  border-radius: 12px;
+  transform: translateY(-2px) scale(1.02);
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.34), rgb(255 255 255 / 0.18));
+  box-shadow: 0 18px 32px rgb(14 8 27 / 0.18);
 }
 
-.animated-link:hover .arr-1 {
-  right: -25%;
-}
-
-.animated-link:hover .arr-2 {
-  left: 16px;
-}
-
-.animated-link:hover .text {
-  transform: translateX(12px);
-}
-
-.animated-link:hover .circle {
-  width: 220px;
-  height: 220px;
-  opacity: 1;
+.animated-link:hover .cta-arrow {
+  transform: translateX(3px);
 }
 
 .loader-container {
@@ -963,6 +958,10 @@ onMounted(() => {
     font-size: 2em;
   }
 
+  .title-content {
+    padding: 18px 22px;
+  }
+
   .gif-brasas {
     --tile-bg-size: 400% 300%;
     --tile-bg-position: 0% 100%;
@@ -1007,6 +1006,10 @@ onMounted(() => {
   .title p,
   .text {
     font-size: 0.8em;
+  }
+
+  .animated-link {
+    padding: 12px 18px;
   }
 }
 
@@ -1101,7 +1104,8 @@ onMounted(() => {
   }
 
   .animated-link svg {
-    width: 20px;
+    width: 16px;
+    height: 16px;
   }
 
   .papas-container {
