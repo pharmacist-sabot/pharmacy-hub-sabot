@@ -145,19 +145,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.home-view {
-  --naranja-fuerte: #ec5228;
-  --naranja: #f0781f;
-  --naranja-claro: #f8dfce;
-  --celeste: #17c6d2;
-  --celeste-oscuro: #31acb5;
-  --blanco: #f4f6f5;
-  --blanco-puro: #ffffff;
-  --negro-puro: #0e081b;
-  --negro: #3b3b3b;
-  --gris-claro: #d9d9d9;
-}
-
 .inicio-container {
   position: relative;
   isolation: isolate;
@@ -165,8 +152,8 @@ onMounted(() => {
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 12px;
-  min-height: calc(100vh - 160px);
-  padding: 6.5dvh 10%;
+  height: calc(100vh - 90px);
+  padding: 12px 10%;
   animation: fadeIn 0.8s ease-in-out;
 }
 
@@ -352,7 +339,7 @@ onMounted(() => {
   padding: 8px 12px;
   border-radius: 999px;
   background-color: rgb(255 255 255 / 0.22);
-  color: var(--negro-puro);
+  color: var(--color-negro-puro);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -361,7 +348,7 @@ onMounted(() => {
 .capsule {
   position: absolute;
   border-radius: 999px;
-  background: linear-gradient(180deg, #ffffff 0%, #dff4f6 100%);
+  background: linear-gradient(180deg, var(--color-white) 0%, #dff4f6 100%);
   box-shadow: 0 10px 24px rgb(14 8 27 / 0.12);
 }
 
@@ -379,7 +366,7 @@ onMounted(() => {
   top: 18%;
   right: 14%;
   transform: rotate(22deg);
-  background: linear-gradient(180deg, #ffffff 0%, #ffe0cc 100%);
+  background: linear-gradient(180deg, var(--color-white) 0%, #ffe0cc 100%);
 }
 
 .capsule--three {
@@ -388,7 +375,7 @@ onMounted(() => {
   bottom: 20%;
   right: 18%;
   border-radius: 18px;
-  background: linear-gradient(180deg, #ffffff 0%, #ffe8db 100%);
+  background: linear-gradient(180deg, var(--color-white) 0%, #ffe8db 100%);
 }
 
 .mock-cross {
@@ -404,7 +391,7 @@ onMounted(() => {
   position: absolute;
   inset: 0;
   margin: auto;
-  background-color: var(--naranja-fuerte);
+  background-color: var(--color-orange-fuerte);
   border-radius: 16px;
 }
 
@@ -443,7 +430,7 @@ onMounted(() => {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background-color: var(--naranja);
+  background-color: var(--color-orange);
   top: 15px;
   left: 15px;
 }
@@ -451,7 +438,7 @@ onMounted(() => {
 .brand-dot--small {
   width: 12px;
   height: 12px;
-  background-color: var(--celeste);
+  background-color: var(--color-teal);
   top: 18px;
   right: 14px;
   left: auto;
@@ -461,13 +448,13 @@ onMounted(() => {
   width: 34px;
   height: 10px;
   border-radius: 999px;
-  background-color: var(--negro);
+  background-color: var(--color-negro);
   left: 15px;
   bottom: 16px;
 }
 
 .marca p {
-  color: var(--blanco-puro);
+  color: var(--color-white);
   text-shadow: 0 6px 18px rgb(14 8 27 / 0.22);
   text-align: center;
   font-weight: 600;
@@ -510,17 +497,17 @@ onMounted(() => {
 
 .media-pill--mint {
   background-color: rgb(226 246 213 / 0.22);
-  color: #204400;
+  color: var(--color-green-dark);
 }
 
 .media-pill--blue {
   background-color: rgb(215 245 255 / 0.22);
-  color: #00454b;
+  color: var(--color-teal-oscuro);
 }
 
 .media-pill--cream {
   background-color: rgb(255 240 228 / 0.22);
-  color: #693100;
+  color: var(--color-orange-fuerte);
 }
 
 .papas-container {
@@ -604,7 +591,7 @@ onMounted(() => {
   transform: translate(-50%, -50%);
   writing-mode: vertical-lr;
   text-orientation: upright;
-  color: var(--blanco-puro);
+  color: var(--color-white);
   font-weight: 700;
   font-size: clamp(1.6em, 2.5vw, 3.2em);
   z-index: 1;
@@ -629,7 +616,7 @@ onMounted(() => {
   position: absolute;
   inset: 0;
   margin: auto;
-  background-color: var(--naranja);
+  background-color: var(--color-orange);
   border-radius: 18px;
 }
 
@@ -675,7 +662,7 @@ onMounted(() => {
 .title h1 {
   margin-bottom: 0;
   font-size: 2.9em;
-  color: var(--blanco-puro);
+  color: var(--color-white);
   line-height: 0.95;
   letter-spacing: 0.04em;
   text-shadow: 0 12px 24px rgb(10 24 45 / 0.3);
@@ -692,7 +679,7 @@ onMounted(() => {
 }
 
 .title span {
-  color: #fff1cf;
+  color: var(--color-orange-claro);
   font-weight: 700;
 }
 
@@ -715,7 +702,7 @@ onMounted(() => {
   bottom: 18px;
   width: 18px;
   border-radius: 999px 999px 4px 4px;
-  background: linear-gradient(180deg, #9fe870 0%, #31acb5 100%);
+  background: linear-gradient(180deg, var(--color-green) 0%, var(--color-teal-oscuro) 100%);
   animation: pulseBars 1.6s ease-in-out infinite;
 }
 
@@ -737,7 +724,7 @@ onMounted(() => {
 }
 
 .mock-video p {
-  color: var(--blanco-puro);
+  color: var(--color-white);
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -823,7 +810,7 @@ onMounted(() => {
   border-radius: 999px;
   background: linear-gradient(180deg, rgb(255 255 255 / 0.26), rgb(255 255 255 / 0.14));
   padding: 14px 22px;
-  color: var(--blanco-puro);
+  color: var(--color-white);
   font-weight: 600;
   letter-spacing: 0.01em;
   text-decoration: none;
@@ -869,7 +856,7 @@ onMounted(() => {
   justify-content: center;
   width: 100%;
   height: 100%;
-  background-color: var(--blanco-puro);
+  background-color: var(--color-white);
 }
 
 .loader {
@@ -889,24 +876,24 @@ onMounted(() => {
 }
 
 .loader .stripe:nth-child(1) {
-  background-color: var(--celeste);
+  background-color: var(--color-teal);
   animation-delay: 0.15s;
 }
 
 .loader .stripe:nth-child(2) {
   margin-bottom: 12px;
-  background-color: var(--naranja-fuerte);
+  background-color: var(--color-orange-fuerte);
   animation-delay: 0.3s;
 }
 
 .loader .stripe:nth-child(3) {
-  background-color: var(--naranja-claro);
+  background-color: var(--color-orange-claro);
   animation-delay: 0.45s;
 }
 
 .loader .stripe:nth-child(4) {
   margin-bottom: 12px;
-  background-color: var(--naranja);
+  background-color: var(--color-orange);
   animation-delay: 0.6s;
 }
 
@@ -945,13 +932,13 @@ onMounted(() => {
 
 @media only screen and (max-width: 1440px) {
   .inicio-container {
-    padding: 6dvh 4%;
+    padding: 12px 4%;
   }
 }
 
 @media only screen and (max-width: 1280px) {
   .inicio-container {
-    padding: 10dvh 2%;
+    padding: 12px 2%;
   }
 
   .marca p {

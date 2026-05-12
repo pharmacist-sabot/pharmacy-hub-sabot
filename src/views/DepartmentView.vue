@@ -94,7 +94,9 @@ const faqItems = [
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(4, 1fr);
   gap: 12px;
-  padding: 6.5dvh 10%;
+  height: calc(100vh - 90px);
+  padding: 12px 10%;
+  overflow: hidden;
   animation: fadeIn 0.8s ease-in-out;
 }
 
@@ -113,8 +115,8 @@ const faqItems = [
 }
 
 .local-title {
-  background-color: #f8dfce;
-  color: #ec5228;
+  background-color: var(--color-orange-claro);
+  color: var(--color-orange-fuerte);
 }
 
 .local-title h2,
@@ -131,8 +133,8 @@ const faqItems = [
 }
 
 .local-msg {
-  background-color: #17c6d2;
-  color: #ffffff;
+  background-color: var(--color-teal);
+  color: var(--color-white);
 }
 
 .local-msg-icon {
@@ -149,8 +151,8 @@ const faqItems = [
   gap: 15px;
   padding: 16px 5%;
   border-radius: 20px;
-  background-color: #3b3b3b;
-  color: #ffffff;
+  background-color: var(--color-negro);
+  color: var(--color-white);
   transition: transform 0.3s ease;
 }
 
@@ -195,15 +197,15 @@ const faqItems = [
 }
 
 .contact-hours h3 {
-  color: #f0781f;
+  color: var(--color-orange);
 }
 
 .contact-address h3 {
-  color: #17c6d2;
+  color: var(--color-teal);
 }
 
 .contact-phone h3 {
-  color: #7eed4f;
+  color: var(--color-green);
 }
 
 .contact-phone a {
@@ -213,7 +215,7 @@ const faqItems = [
 
 .contact-phone a:hover {
   text-decoration: underline;
-  text-decoration-color: #ffffff;
+  text-decoration-color: var(--color-white);
 }
 
 .img-huanchaco {
@@ -222,7 +224,7 @@ const faqItems = [
   grid-row: span 2 / span 2;
   grid-row-start: 1;
   border-radius: 20px;
-  background-color: #3b3b3b;
+  background-color: var(--color-negro);
   overflow: hidden;
   transition: transform 0.3s ease;
 }
@@ -233,7 +235,7 @@ const faqItems = [
   height: 100%;
   min-height: 100%;
   overflow: hidden;
-  background: linear-gradient(180deg, #dff9fb 0%, #fef2e6 58%, #f0781f 100%);
+  background: linear-gradient(180deg, #dff9fb 0%, #fef2e6 58%, var(--color-orange) 100%);
 }
 
 .photo-chip {
@@ -244,7 +246,7 @@ const faqItems = [
   padding: 8px 12px;
   border-radius: 999px;
   background-color: rgba(255, 255, 255, 0.88);
-  color: #3b3b3b;
+  color: var(--color-negro);
   font-size: 0.8rem;
   font-weight: 700;
 }
@@ -293,7 +295,7 @@ const faqItems = [
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #ffffff;
+  color: var(--color-white);
   font-size: 1.4rem;
   font-weight: 600;
   text-shadow: 0 8px 16px rgba(14, 8, 27, 0.18);
@@ -353,7 +355,7 @@ const faqItems = [
   height: 46px;
   border-radius: 50% 50% 50% 0;
   transform: rotate(-45deg);
-  background-color: #ec5228;
+  background-color: var(--color-orange-fuerte);
   box-shadow: 0 12px 24px rgba(236, 82, 40, 0.25);
 }
 
@@ -365,14 +367,14 @@ const faqItems = [
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: #ffffff;
+  background-color: var(--color-white);
 }
 
 .map-placeholder strong {
   position: absolute;
   right: 18px;
   bottom: 18px;
-  color: #3b3b3b;
+  color: var(--color-negro);
   font-size: 0.9rem;
 }
 
@@ -380,14 +382,14 @@ const faqItems = [
   grid-column: span 2 / span 2;
   grid-column-start: 5;
   grid-row-start: 1;
-  background-color: #ec5228;
-  color: #ffffff;
+  background-color: var(--color-orange-fuerte);
+  color: var(--color-white);
 }
 
 .f-items {
   width: 100%;
   border-radius: 20px;
-  background-color: #f8dfce;
+  background-color: var(--color-orange-claro);
   transition: transform 0.3s ease;
 }
 
@@ -413,16 +415,16 @@ details {
   width: 100%;
   height: 100%;
   padding: clamp(12px, 1.5vw, 16px);
-  color: #3b3b3b;
+  color: var(--color-negro);
   font-size: clamp(0.75em, 1.5vw, 0.9em);
   transition: all 0.4s ease;
 }
 
 details[open] {
   display: block;
-  border-left: 10px solid #ec5228;
+  border-left: 10px solid var(--color-orange-fuerte);
   border-radius: 20px;
-  background-color: #ffffff;
+  background-color: var(--color-white);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
@@ -444,8 +446,8 @@ details summary::before {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #ec5228;
-  color: #ffffff;
+  background-color: var(--color-orange-fuerte);
+  color: var(--color-white);
   font-size: 1.15em;
   transition: transform 0.4s ease;
 }
@@ -474,13 +476,13 @@ details[open] summary::before {
 
 @media only screen and (max-width: 1440px) {
   .local-container {
-    padding: 6dvh 4%;
+    padding: 12px 4%;
   }
 }
 
 @media only screen and (max-width: 1280px) {
   .local-container {
-    padding: 10dvh 2%;
+    padding: 12px 2%;
   }
 
   .local-title p,
@@ -492,7 +494,7 @@ details[open] summary::before {
 @media screen and (max-width: 1024px) {
   .local-container {
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(6, auto);
+    grid-template-rows: repeat(4, minmax(120px, 1fr));
     gap: 10px;
   }
 

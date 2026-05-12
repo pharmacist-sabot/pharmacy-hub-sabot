@@ -124,7 +124,7 @@ function navigateToTab(path: string) {
 
 <style scoped>
 .carta-container {
-  padding: 6.5dvh 10%;
+  padding: 12px 10%;
   animation: fadeIn 0.5s ease-in-out;
   content-visibility: auto;
   contain-intrinsic-size: 1px 5000px;
@@ -165,18 +165,18 @@ function navigateToTab(path: string) {
 }
 
 .cart-title--tools {
-  background: #f8dfce;
-  color: #ec5228;
+  background: var(--color-purple-claro);
+  color: var(--color-purple);
 }
 
 .cart-title--reports {
-  background: #d7f5ff;
-  color: #00616b;
+  background: var(--color-teal-claro);
+  color: var(--color-teal-oscuro);
 }
 
 .cart-title--external {
-  background: #2b252d;
-  color: #f4f6f5;
+  background: var(--color-negro-puro);
+  color: var(--color-white-puro);
 }
 
 .cart-nav {
@@ -188,15 +188,15 @@ function navigateToTab(path: string) {
 }
 
 .cart-nav--tools {
-  background-color: #f0781f;
+  background-color: var(--color-purple);
 }
 
 .cart-nav--reports {
-  background-color: #17c6d2;
+  background-color: var(--color-teal);
 }
 
 .cart-nav--external {
-  background-color: #3b3b3b;
+  background-color: var(--color-negro);
 }
 
 .cart-nav ul {
@@ -213,7 +213,7 @@ function navigateToTab(path: string) {
   border-radius: 30px;
   background: transparent;
   padding: 12px 20px;
-  color: #ffffff;
+  color: var(--color-white);
   font-size: clamp(0.9em, 1.5vw, 1.1em);
   cursor: pointer;
   transition:
@@ -224,8 +224,8 @@ function navigateToTab(path: string) {
 
 .cart-tab:hover,
 .cart-tab.active {
-  background-color: #ffffff;
-  color: #0e081b;
+  background-color: var(--color-white);
+  color: var(--color-negro-puro);
   box-shadow: 0 5px 12px rgb(0 0 0 / 0.2);
 }
 
@@ -252,7 +252,7 @@ function navigateToTab(path: string) {
   gap: 12px;
   padding: 16px;
   border-radius: 20px;
-  background: #ffffff;
+  background: var(--color-white);
 }
 
 .skeleton-card,
@@ -293,8 +293,8 @@ function navigateToTab(path: string) {
 }
 
 .empty-state {
-  background: #fff6ee;
-  color: #7f4a00;
+  background: var(--color-orange-claro);
+  color: var(--color-orange-fuerte);
 }
 
 .empty-state h3 {
@@ -302,8 +302,8 @@ function navigateToTab(path: string) {
 }
 
 .error-message {
-  background: #fff0f0;
-  color: #d03238;
+  background: var(--color-white);
+  color: var(--color-orange-fuerte);
 }
 
 .hover-shrink:hover {

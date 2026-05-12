@@ -91,7 +91,7 @@ const activeCategory = 'ทั้งหมด';
 }
 
 .cart-title {
-  background: linear-gradient(135deg, #8b5cf6 0%, #e8e2f6 100%);
+  background: linear-gradient(135deg, var(--color-orange-fuerte) 0%, var(--color-orange-claro) 100%);
   padding: 20px 6%;
   border-radius: 20px;
   display: flex;
@@ -102,13 +102,13 @@ const activeCategory = 'ทั้งหมด';
 .cart-title h2 {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--color-white);
   margin: 0;
 }
 
 .cart-nav {
   grid-column: span 3;
-  background: #8b5cf6;
+  background: var(--color-orange);
   border-radius: 20px;
   padding: 20px 6%;
   display: flex;
@@ -125,7 +125,7 @@ const activeCategory = 'ทั้งหมด';
 
 .cart-nav a {
   padding: 10px 18px;
-  color: #ffffff;
+  color: var(--color-white);
   text-decoration: none;
   border-radius: 30px;
   font-weight: 600;
@@ -137,8 +137,8 @@ const activeCategory = 'ทั้งหมด';
 
 .cart-nav a:hover,
 .cart-nav a.active {
-  background: #ffffff;
-  color: #3b3b3b;
+  background: var(--color-white);
+  color: var(--color-negro);
   box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -164,8 +164,8 @@ const activeCategory = 'ทั้งหมด';
 
 .error-message {
   padding: 20px;
-  background: #fff0f0;
-  color: #d03238;
+  background: var(--color-white);
+  color: var(--color-orange-fuerte);
   border-radius: 16px;
   text-align: center;
   margin-top: 20px;

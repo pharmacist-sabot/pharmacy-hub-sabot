@@ -66,7 +66,7 @@ function navigateTo(path: string) {
 <style scoped>
 .elpatita-layout {
   min-height: 100vh;
-  background: #f4f6f5;
+  background: var(--color-bg);
   padding-bottom: 90px;
 }
 
@@ -87,10 +87,10 @@ function navigateTo(path: string) {
   align-items: center;
   gap: 10px;
   padding: 10px 20px;
-  background: #ffffff;
+  background: var(--color-bg-card);
   border-radius: 30px;
-  border: 2px solid #f0781f;
-  box-shadow: 0 8px 32px -8px rgba(22, 51, 0, 0.2);
+  border: 2px solid var(--color-orange);
+  box-shadow: var(--shadow-float);
 }
 
 .elpatita-brand {
@@ -111,16 +111,16 @@ function navigateTo(path: string) {
   width: 34px;
   height: 34px;
   border-radius: 14px;
-  background: linear-gradient(180deg, #ffffff 0%, #dff9fb 100%);
-  box-shadow: 0 3px 12px rgba(22, 51, 0, 0.12);
+  background: linear-gradient(180deg, var(--color-white) 0%, #dff9fb 100%);
+  box-shadow: var(--shadow-soft);
 }
 
 .elpatita-brand-mark span {
   position: absolute;
   inset: 0;
   margin: auto;
-  background: #f0781f;
-  border-radius: 999px;
+  background: var(--color-orange);
+  border-radius: var(--radius-pill);
 }
 
 .elpatita-brand-mark span:first-child {
@@ -158,13 +158,13 @@ function navigateTo(path: string) {
   border-radius: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: #868685;
+  color: var(--color-gris);
   position: relative;
 }
 
 .elpatita-nav-item:hover {
-  background: #f8dfce;
-  color: #ec5228;
+  background: var(--color-orange-claro);
+  color: var(--color-orange-fuerte);
 }
 
 .elpatita-nav-item:hover .elpatita-nav-icon {
@@ -178,8 +178,8 @@ function navigateTo(path: string) {
 }
 
 .elpatita-nav-item--active {
-  background: #f0781f;
-  color: #ffffff;
+  background: var(--color-orange);
+  color: var(--color-white);
 }
 
 .elpatita-nav-item--active::after {
@@ -188,7 +188,7 @@ function navigateTo(path: string) {
   bottom: 2px;
   width: 18px;
   height: 3px;
-  background: #ffffff;
+  background: var(--color-white);
   border-radius: 3px;
 }
 

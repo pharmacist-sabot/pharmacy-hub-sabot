@@ -4,50 +4,67 @@
   /* Font Family: Prompt */
   --font-family-sans: 'Prompt', ui-sans-serif, system-ui, sans-serif;
 
-  /* ── Wise Design Tokens ── */
-  --color-wise-green: #9fe870;
-  --color-wise-dark-green: #163300;
-  --color-wise-near-black: #0e0f0c;
-  --color-wise-mint: #e2f6d5;
-  --color-wise-pastel: #cdffad;
-  --color-wise-gray: #868685;
-  --color-wise-warm-dark: #454745;
-  --color-wise-surface: #f7faf4;
-  --color-wise-canvas: #f0f4eb;
+  /* ── Brand: Orange ── */
+  --color-orange-fuerte: #ec5228;
+  --color-orange: #f0781f;
+  --color-orange-claro: #f8dfce;
 
-  /* ── Sabot brand scale (kept for compatibility) ── */
-  --color-sabot-50: #f7f9f2;
-  --color-sabot-100: #eeefe0;
-  --color-sabot-200: #d4e3b5;
-  --color-sabot-300: #a9c46c;
-  --color-sabot-400: #95b054;
-  --color-sabot-500: #809d3c;
-  --color-sabot-600: #5d8736;
-  --color-sabot-700: #4a6b29;
-  --color-sabot-800: #3b5621;
-  --color-sabot-900: #2d4119;
-  --color-sabot-950: #1a260f;
+  /* ── Brand: Teal ── */
+  --color-teal: #17c6d2;
+  --color-teal-oscuro: #31acb5;
+  --color-teal-claro: #d5f0f2;
 
-  /* ── Semantic aliases ── */
-  --color-sabot-bg: var(--color-wise-canvas);
-  --color-sabot-primary: var(--color-wise-green);
-  --color-sabot-text: var(--color-wise-near-black);
+  /* ── Brand: Purple ── */
+  --color-purple: #8b5cf6;
+  --color-purple-claro: #f0e6ff;
+
+  /* ── Brand: Green ── */
+  --color-green: #9fe870;
+  --color-green-dark: #163300;
+
+  /* ── Neutrals ── */
+  --color-white-puro: #f4f6f5;
+  --color-white: #ffffff;
+  --color-negro-puro: #0e081b;
+  --color-negro: #3b3b3b;
+  --color-gris-claro: #d9d9d9;
+  --color-gris: #868685;
+
+  /* ── Semantic: Background ── */
+  --color-bg: #f8dfce;
+  --color-bg-card: #ffffff;
+  --color-bg-surface: #f7faf4;
+
+  /* ── Semantic: Text ── */
+  --color-text: #0e0f0c;
+  --color-text-inverse: #f4f6f5;
 
   /* ── Shadows ── */
   --shadow-ring: rgba(14, 15, 12, 0.1) 0px 0px 0px 1px;
   --shadow-soft: 0 2px 16px -4px rgba(14, 15, 12, 0.1);
   --shadow-card: 0 4px 32px -8px rgba(22, 51, 0, 0.1);
   --shadow-float: 0 8px 40px -8px rgba(22, 51, 0, 0.14);
+  --shadow-btn-green: 0 4px 12px -2px rgba(159, 232, 112, 0.4);
+  --shadow-btn-teal: 0 4px 12px -2px rgba(23, 198, 210, 0.4);
+  --shadow-btn-purple: 0 4px 12px -2px rgba(139, 92, 246, 0.4);
+  --shadow-btn-orange: 0 4px 12px -2px rgba(240, 120, 31, 0.4);
+
+  /* ── Border radius ── */
+  --radius-sm: 6px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --radius-pill: 9999px;
 }
 
 /* ─────────────────────────────────────────
-   Base (เหมือน ElPatita)
- ───────────────────────────────────────── */
+   Base
+───────────────────────────────────────── */
 * {
   font-family: var(--font-family-sans);
   scroll-behavior: smooth;
   scrollbar-width: auto;
-  scrollbar-color: #f0781f #ffffff;
+  scrollbar-color: var(--color-orange) var(--color-white);
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -58,42 +75,41 @@
 }
 
 body {
-  background-color: #ffffff;
-  color: #0e0f0c;
+  background-color: var(--color-white);
+  color: var(--color-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'calt' 1;
   transition: background-color 0.5s ease;
 }
 
-/* Focus indicators (เหมือน ElPatita) */
 a:focus-visible,
 button:focus-visible {
-  outline: 3px solid #f8dfce;
+  outline: 3px solid var(--color-orange-claro);
   outline-offset: 2px;
 }
 
 /* ─────────────────────────────────────────
-   Scrollbar (เหมือน ElPatita)
- ───────────────────────────────────────── */
+   Scrollbar
+───────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: var(--color-white);
 }
 ::-webkit-scrollbar-thumb {
-  background: #f0781f;
-  border-radius: 999px;
+  background: var(--color-orange);
+  border-radius: var(--radius-pill);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #ec5228;
+  background: var(--color-orange-fuerte);
 }
 
 /* ─────────────────────────────────────────
-   Reduced motion support (เหมือน ElPatita)
- ───────────────────────────────────────── */
+   Reduced motion support
+───────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -113,9 +129,9 @@ button:focus-visible {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1.25rem;
-  border-radius: 9999px;
-  background-color: #9fe870;
-  color: #163300;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-green);
+  color: var(--color-green-dark);
   font-weight: 600;
   font-size: 0.9rem;
   line-height: 1;
@@ -131,7 +147,7 @@ button:focus-visible {
 }
 .btn-primary:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 20px -2px rgba(159, 232, 112, 0.5);
+  box-shadow: var(--shadow-btn-green);
 }
 .btn-primary:active {
   transform: scale(0.95);
@@ -146,9 +162,9 @@ button:focus-visible {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1.25rem;
-  border-radius: 9999px;
+  border-radius: var(--radius-pill);
   background-color: rgba(22, 51, 0, 0.06);
-  color: #0e0f0c;
+  color: var(--color-text);
   font-weight: 600;
   font-size: 0.9rem;
   line-height: 1;
@@ -200,11 +216,10 @@ button:focus-visible {
 
 /* ─────────────────────────────────────────
    Sidebar nav item hover (via JS events)
-   — applied inline; defined here for ref
 ───────────────────────────────────────── */
 .nav-item-active {
-  background-color: #9fe870;
-  color: #163300;
+  background-color: var(--color-green);
+  color: var(--color-green-dark);
 }
 .nav-item-hover {
   background-color: rgba(211, 242, 192, 0.45);
@@ -261,24 +276,12 @@ button:focus-visible {
 }
 
 /* Staggered card entrance */
-.animate-fade-in-up:nth-child(1) {
-  animation-delay: 0.04s;
-}
-.animate-fade-in-up:nth-child(2) {
-  animation-delay: 0.08s;
-}
-.animate-fade-in-up:nth-child(3) {
-  animation-delay: 0.12s;
-}
-.animate-fade-in-up:nth-child(4) {
-  animation-delay: 0.16s;
-}
-.animate-fade-in-up:nth-child(5) {
-  animation-delay: 0.2s;
-}
-.animate-fade-in-up:nth-child(6) {
-  animation-delay: 0.24s;
-}
+.animate-fade-in-up:nth-child(1) { animation-delay: 0.04s; }
+.animate-fade-in-up:nth-child(2) { animation-delay: 0.08s; }
+.animate-fade-in-up:nth-child(3) { animation-delay: 0.12s; }
+.animate-fade-in-up:nth-child(4) { animation-delay: 0.16s; }
+.animate-fade-in-up:nth-child(5) { animation-delay: 0.2s; }
+.animate-fade-in-up:nth-child(6) { animation-delay: 0.24s; }
 
 /* Skeleton shimmer */
 .skeleton {

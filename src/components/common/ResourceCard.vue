@@ -9,10 +9,28 @@ const props = defineProps<{
 
 const gradients = [
   'linear-gradient(135deg, #e2f6d5 0%, #f0fbea 100%)',
-  'linear-gradient(135deg, #d5f0f2 0%, #eaf9fa 100%)',
-  'linear-gradient(135deg, #f8dfce 0%, #fff5ee 100%)',
-  'linear-gradient(135deg, #e8e2f6 0%, #f5f2fa 100%)',
+  'linear-gradient(135deg, var(--color-teal-claro) 0%, #eaf9fa 100%)',
+  'linear-gradient(135deg, var(--color-orange-claro) 0%, #fff5ee 100%)',
+  'linear-gradient(135deg, var(--color-purple-claro) 0%, #f5f2fa 100%)',
 ];
+
+const ctaStyles = {
+  tool: {
+    background: 'var(--color-purple)',
+    color: 'var(--color-white)',
+    hoverShadow: 'rgba(139, 92, 246, 0.4)',
+  },
+  report: {
+    background: 'var(--color-teal)',
+    color: 'var(--color-green-dark)',
+    hoverShadow: 'rgba(23, 198, 210, 0.4)',
+  },
+  external: {
+    background: 'var(--color-orange)',
+    color: 'var(--color-white)',
+    hoverShadow: 'rgba(240, 120, 31, 0.4)',
+  },
+};
 
 const categoryLabel = computed(() => {
   if (props.item.type === 'tool')
@@ -26,6 +44,8 @@ const gradient = computed(() => {
   const index = props.item.title.charCodeAt(0) % gradients.length;
   return gradients[index];
 });
+
+const ctaStyle = computed(() => ctaStyles[props.item.type]);
 
 const imageUrl = computed(() => {
   return `/images/${props.item.id}.png`;
@@ -76,6 +96,11 @@ const imageLoaded = ref(true);
         :href="item.url"
         target="_blank"
         class="combo-cta"
+        :style="{
+          'background': ctaStyle.background,
+          'color': ctaStyle.color,
+          '--hover-shadow': ctaStyle.hoverShadow,
+        }"
       >
         เปิดใช้งาน
       </a>
@@ -95,7 +120,7 @@ const imageLoaded = ref(true);
   gap: 16px;
   position: relative;
   z-index: 1;
-  background: #ffffff;
+  background: var(--color-white);
   transition: transform 0.4s ease;
   scroll-snap-align: start;
   width: 280px;
@@ -106,7 +131,7 @@ const imageLoaded = ref(true);
   content: '';
   position: absolute;
   inset: -3px;
-  background: linear-gradient(90deg, #9fe870, #e2f6d5, #17c6d2);
+  background: linear-gradient(90deg, var(--color-purple), var(--color-purple-claro), var(--color-green));
   border-radius: 23px;
   z-index: -1;
   opacity: 0;
@@ -121,7 +146,7 @@ const imageLoaded = ref(true);
   content: '';
   position: absolute;
   inset: 0;
-  background: #ffffff;
+  background: var(--color-white);
   border-radius: 20px;
   z-index: -1;
   transition: background-color 0.4s ease;
@@ -179,8 +204,8 @@ const imageLoaded = ref(true);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #868685;
-  background: #d9d9d9;
+  color: var(--color-gris);
+  background: var(--color-gris-claro);
   padding: 8px 12px;
   border-radius: 30px;
   transition: transform 0.4s ease;
@@ -193,14 +218,14 @@ const imageLoaded = ref(true);
 .combo-title {
   font-size: clamp(1.1rem, 1.3vw, 1.3rem);
   font-weight: 700;
-  color: #0e0f0c;
+  color: var(--color-text);
   margin: 0;
   line-height: 1.3;
 }
 
 .combo-desc {
   font-size: clamp(0.75rem, 0.9vw, 0.85rem);
-  color: #868685;
+  color: var(--color-gris);
   margin: 0;
   line-height: 1.3;
   text-align: center;
@@ -214,11 +239,9 @@ const imageLoaded = ref(true);
 .combo-cta {
   display: inline-flex;
   padding: 10px 20px;
-  background: #9fe870;
   border-radius: 30px;
   font-size: 0.8rem;
   font-weight: 600;
-  color: #163300;
   text-decoration: none;
   transition: all 0.3s ease;
   margin-top: 4px;
@@ -226,12 +249,12 @@ const imageLoaded = ref(true);
 
 .combo-cta:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 12px -2px rgba(159, 232, 112, 0.4);
+  box-shadow: 0 4px 12px -2px var(--hover-shadow);
 }
 
 .combo-cta--inactive {
   background: rgba(14, 15, 12, 0.08);
-  color: #868685;
+  color: var(--color-gris);
   cursor: default;
 }
 
