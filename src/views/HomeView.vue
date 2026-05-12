@@ -1,26 +1,8 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-
-const showLoader = ref(true);
-
-onMounted(() => {
-  window.setTimeout(() => {
-    showLoader.value = false;
-  }, 200);
-});
 </script>
 
 <template>
   <div class="home-view">
-    <div v-if="showLoader" class="loader-container" aria-hidden="true">
-      <div class="loader">
-        <div class="stripe" />
-        <div class="stripe" />
-        <div class="stripe" />
-        <div class="stripe" />
-      </div>
-    </div>
-
     <article id="inicio" class="inicio-container">
       <section class="chicken-container hover-shrink">
         <div class="mock-visual mock-visual--hero" aria-label="พื้นที่ภาพตัวอย่างหน้าแรก">
@@ -846,57 +828,6 @@ onMounted(() => {
   transform: translateX(3px);
 }
 
-.loader-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 90;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  background-color: var(--color-white);
-}
-
-.loader {
-  max-width: 70px;
-  max-height: 70px;
-  transform: rotate(80deg);
-}
-
-.loader .stripe {
-  display: inline-block;
-  width: 8px;
-  height: 70px;
-  margin-bottom: -12px;
-  border-radius: 30px;
-  outline: 1px solid transparent;
-  animation: loader 1s ease-in-out infinite;
-}
-
-.loader .stripe:nth-child(1) {
-  background-color: var(--color-teal);
-  animation-delay: 0.15s;
-}
-
-.loader .stripe:nth-child(2) {
-  margin-bottom: 12px;
-  background-color: var(--color-orange-fuerte);
-  animation-delay: 0.3s;
-}
-
-.loader .stripe:nth-child(3) {
-  background-color: var(--color-orange-claro);
-  animation-delay: 0.45s;
-}
-
-.loader .stripe:nth-child(4) {
-  margin-bottom: 12px;
-  background-color: var(--color-orange);
-  animation-delay: 0.6s;
-}
-
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -905,16 +836,6 @@ onMounted(() => {
 
   100% {
     opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes loader {
-  20% {
-    transform: scale(1, 2.2);
-  }
-
-  40% {
     transform: scale(1);
   }
 }

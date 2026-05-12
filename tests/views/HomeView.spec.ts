@@ -1,13 +1,8 @@
 import { mount } from '@vue/test-utils';
-import { afterEach, describe, expect, it, vi } from 'vitest';
-import { nextTick } from 'vue';
+import { describe, expect, it } from 'vitest';
 import HomeView from '@/views/HomeView.vue';
 
 describe('homeView', () => {
-  afterEach(() => {
-    vi.useRealTimers();
-  });
-
   it('renders the ElPatita-inspired landing grid structure', () => {
     const wrapper = mount(HomeView);
 
@@ -33,17 +28,5 @@ describe('homeView', () => {
 
     expect(cta.attributes('href')).toBe('/tools');
     expect(cta.text()).toContain('ดูเครื่องมือทั้งหมด');
-  });
-
-  it('shows the loader briefly on mount', async () => {
-    vi.useFakeTimers();
-    const wrapper = mount(HomeView);
-
-    expect(wrapper.find('.loader-container').exists()).toBe(true);
-
-    vi.advanceTimersByTime(200);
-    await nextTick();
-
-    expect(wrapper.find('.loader-container').exists()).toBe(false);
   });
 });
