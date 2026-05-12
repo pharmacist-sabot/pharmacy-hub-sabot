@@ -1,3 +1,13 @@
+## [1.7.1](https://github.com/suradet-ps/pharmacy-hub-sabot/compare/v1.7.0...v1.7.1) (2026-05-12)
+
+### 📦 Dependency Updates
+
+* update TypeScript to version 6.0.3 and adjust tsconfig paths ([83dd1b7](https://github.com/suradet-ps/pharmacy-hub-sabot/commit/83dd1b7eb87c613052471d9c37d892cca3803681))
+
+### ♻️ Refactoring
+
+* remove loader implementation from HomeView and related tests ([aa6f4b6](https://github.com/suradet-ps/pharmacy-hub-sabot/commit/aa6f4b68c9537f79166a111a88ef0af2ddf48591))
+
 ## [1.7.0](https://github.com/suradet-ps/pharmacy-hub-sabot/compare/v1.6.5...v1.7.0) (2026-05-11)
 
 ### 🚀 New Features
