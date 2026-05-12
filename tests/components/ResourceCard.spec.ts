@@ -27,15 +27,16 @@ describe('resourceCard', () => {
     const wrapper = mount(ResourceCard, {
       props: { item: { ...mockItem, isActive: true } },
     });
-    expect(wrapper.text()).toContain('ONLINE');
+    expect(wrapper.text()).toContain('TOOL');
+    expect(wrapper.text()).toContain('เปิดใช้งาน');
   });
 
   it('shows MAINTENANCE badge and disables link when isActive is false', () => {
     const wrapper = mount(ResourceCard, {
       props: { item: { ...mockItem, isActive: false } },
     });
-    expect(wrapper.text()).toContain('MAINTENANCE');
-    expect(wrapper.find('a').attributes('href')).toBeUndefined();
+    expect(wrapper.text()).toContain('Coming Soon');
+    expect(wrapper.find('a').exists()).toBe(false);
   });
 
   it('renders correct link when isActive is true', () => {

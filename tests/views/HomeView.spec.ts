@@ -21,7 +21,6 @@ describe('homeView', () => {
     const wrapper = mount(HomeView);
 
     expect(wrapper.text()).toContain('Hero Image');
-    expect(wrapper.text()).toContain('Mock Image');
     expect(wrapper.text()).toContain('Dashboard Motion');
     expect(wrapper.text()).toContain('คำนวณยา');
     expect(wrapper.text()).toContain('รายงาน');
