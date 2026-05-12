@@ -18,14 +18,13 @@ describe('defaultLayout', () => {
     route.meta = { navGroup: 'home' };
   });
 
-  it('renders slot content with logo and the reduced bottom navigation', () => {
+  it('renders slot content with the reduced bottom navigation', () => {
     const wrapper = mount(DefaultLayout, {
       slots: {
         default: '<div class="test-content">Content</div>',
       },
     });
 
-    expect(wrapper.find('.elpatita-brand').exists()).toBe(true);
     expect(wrapper.findAll('.elpatita-nav-item')).toHaveLength(3);
     expect(wrapper.text()).toContain('หน้าแรก');
     expect(wrapper.text()).toContain('เครื่องมือ');
