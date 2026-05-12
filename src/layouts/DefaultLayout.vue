@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { House, MapPinned, Stethoscope } from 'lucide-vue-next';
+import { Building2, House, Wrench } from 'lucide-vue-next';
 import { useRoute, useRouter } from 'vue-router';
 
 const router = useRouter();
@@ -15,8 +15,8 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   { key: 'home', label: 'หน้าแรก', icon: House, path: '/', group: 'home' },
-  { key: 'tools', label: 'เครื่องมือ', icon: Stethoscope, path: '/tools' },
-  { key: 'department', label: 'กลุ่มงาน', icon: MapPinned, path: '/department', group: 'department' },
+  { key: 'tools', label: 'เครื่องมือ', icon: Wrench, path: '/tools' },
+  { key: 'department', label: 'กลุ่มงาน', icon: Building2, path: '/department', group: 'department' },
 ] as const;
 
 function isActive(path: string): boolean {
@@ -85,10 +85,10 @@ function navigateTo(path: string) {
 .elpatita-nav-inner {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 20px;
+  gap: 4px;
+  padding: 6px 10px;
   background: var(--color-bg-card);
-  border-radius: 30px;
+  border-radius: 20px;
   border: 2px solid var(--color-orange);
   box-shadow: var(--shadow-float);
 }
@@ -204,57 +204,57 @@ function navigateTo(path: string) {
 
 @media (max-width: 768px) {
   .elpatita-nav-inner {
-    padding: 8px 10px;
-    gap: 6px;
+    padding: 5px 8px;
+    gap: 3px;
   }
 
   .elpatita-nav-item {
-    padding: 8px 10px;
+    padding: 6px 8px;
   }
 
   .elpatita-brand {
-    width: 40px;
-    height: 40px;
+    width: 34px;
+    height: 34px;
   }
 
   .elpatita-brand-mark {
-    width: 30px;
-    height: 30px;
+    width: 26px;
+    height: 26px;
   }
 
   .elpatita-nav-icon {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
   }
 
   .elpatita-nav-label {
-    font-size: 0.55rem;
+    font-size: 0.5rem;
   }
 }
 
 @media (max-width: 480px) {
   .elpatita-nav-inner {
     gap: 2px;
-    padding: 6px 8px;
+    padding: 4px 6px;
   }
 
   .elpatita-brand {
-    width: 36px;
-    height: 36px;
+    width: 30px;
+    height: 30px;
   }
 
   .elpatita-brand-mark {
-    width: 28px;
-    height: 28px;
+    width: 22px;
+    height: 22px;
   }
 
   .elpatita-nav-item {
-    padding: 6px 8px;
+    padding: 5px 6px;
   }
 
   .elpatita-nav-icon {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
   }
 }
 </style>
