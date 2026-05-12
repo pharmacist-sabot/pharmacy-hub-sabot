@@ -14,6 +14,10 @@
   --color-teal-oscuro: #31acb5;
   --color-teal-claro: #d5f0f2;
 
+  /* ── Brand: Pink ── */
+  --color-pink: #f06292;
+  --color-pink-claro: #fce4ec;
+
   /* ── Brand: Purple ── */
   --color-purple: #8b5cf6;
   --color-purple-claro: #f0e6ff;
@@ -31,7 +35,7 @@
   --color-gris: #868685;
 
   /* ── Semantic: Background ── */
-  --color-bg: #f8dfce;
+  --color-bg: #fef7f1;
   --color-bg-card: #ffffff;
   --color-bg-surface: #f7faf4;
 
@@ -48,6 +52,7 @@
   --shadow-btn-teal: 0 4px 12px -2px rgba(23, 198, 210, 0.4);
   --shadow-btn-purple: 0 4px 12px -2px rgba(139, 92, 246, 0.4);
   --shadow-btn-orange: 0 4px 12px -2px rgba(240, 120, 31, 0.4);
+  --shadow-btn-pink: 0 4px 12px -2px rgba(240, 98, 146, 0.4);
 
   /* ── Border radius ── */
   --radius-sm: 6px;

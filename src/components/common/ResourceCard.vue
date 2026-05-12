@@ -16,19 +16,19 @@ const gradients = [
 
 const ctaStyles = {
   tool: {
+    background: 'var(--color-teal)',
+    color: 'var(--color-white)',
+    hoverShadow: 'rgba(23, 198, 210, 0.4)',
+  },
+  report: {
+    background: 'var(--color-pink)',
+    color: 'var(--color-white)',
+    hoverShadow: 'rgba(240, 98, 146, 0.4)',
+  },
+  external: {
     background: 'var(--color-purple)',
     color: 'var(--color-white)',
     hoverShadow: 'rgba(139, 92, 246, 0.4)',
-  },
-  report: {
-    background: 'var(--color-teal)',
-    color: 'var(--color-green-dark)',
-    hoverShadow: 'rgba(23, 198, 210, 0.4)',
-  },
-  external: {
-    background: 'var(--color-orange)',
-    color: 'var(--color-white)',
-    hoverShadow: 'rgba(240, 120, 31, 0.4)',
   },
 };
 

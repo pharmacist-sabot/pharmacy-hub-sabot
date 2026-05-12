@@ -165,18 +165,18 @@ function navigateToTab(path: string) {
 }
 
 .cart-title--tools {
-  background: var(--color-purple-claro);
-  color: var(--color-purple);
-}
-
-.cart-title--reports {
   background: var(--color-teal-claro);
   color: var(--color-teal-oscuro);
 }
 
+.cart-title--reports {
+  background: var(--color-pink-claro);
+  color: var(--color-pink);
+}
+
 .cart-title--external {
-  background: var(--color-negro-puro);
-  color: var(--color-white-puro);
+  background: var(--color-purple-claro);
+  color: var(--color-purple);
 }
 
 .cart-nav {
@@ -188,15 +188,15 @@ function navigateToTab(path: string) {
 }
 
 .cart-nav--tools {
-  background-color: var(--color-purple);
-}
-
-.cart-nav--reports {
   background-color: var(--color-teal);
 }
 
+.cart-nav--reports {
+  background-color: var(--color-pink);
+}
+
 .cart-nav--external {
-  background-color: var(--color-negro);
+  background-color: var(--color-purple);
 }
 
 .cart-nav ul {
