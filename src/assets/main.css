@@ -276,12 +276,24 @@ button:focus-visible {
 }
 
 /* Staggered card entrance */
-.animate-fade-in-up:nth-child(1) { animation-delay: 0.04s; }
-.animate-fade-in-up:nth-child(2) { animation-delay: 0.08s; }
-.animate-fade-in-up:nth-child(3) { animation-delay: 0.12s; }
-.animate-fade-in-up:nth-child(4) { animation-delay: 0.16s; }
-.animate-fade-in-up:nth-child(5) { animation-delay: 0.2s; }
-.animate-fade-in-up:nth-child(6) { animation-delay: 0.24s; }
+.animate-fade-in-up:nth-child(1) {
+  animation-delay: 0.04s;
+}
+.animate-fade-in-up:nth-child(2) {
+  animation-delay: 0.08s;
+}
+.animate-fade-in-up:nth-child(3) {
+  animation-delay: 0.12s;
+}
+.animate-fade-in-up:nth-child(4) {
+  animation-delay: 0.16s;
+}
+.animate-fade-in-up:nth-child(5) {
+  animation-delay: 0.2s;
+}
+.animate-fade-in-up:nth-child(6) {
+  animation-delay: 0.24s;
+}
 
 /* Skeleton shimmer */
 .skeleton {
