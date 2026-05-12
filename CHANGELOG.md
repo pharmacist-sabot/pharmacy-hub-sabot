@@ -1,3 +1,11 @@
+## [1.7.2](https://github.com/suradet-ps/pharmacy-hub-sabot/compare/v1.7.1...v1.7.2) (2026-05-12)
+
+### ♻️ Refactoring
+
+* remove brand button and replace with SVG logo in HomeView ([51be0bf](https://github.com/suradet-ps/pharmacy-hub-sabot/commit/51be0bf518aca6798917ef43cf4e416c92c1b80c))
+* remove unused components and dependencies ([fab09fc](https://github.com/suradet-ps/pharmacy-hub-sabot/commit/fab09fcc743d716c46ce22068adea92573180101))
+* update navigation icons and adjust styles for responsiveness ([fd532a4](https://github.com/suradet-ps/pharmacy-hub-sabot/commit/fd532a45ccfc8abcf27cfb881b3d1724efa7a369))
+
 ## [1.7.1](https://github.com/suradet-ps/pharmacy-hub-sabot/compare/v1.7.0...v1.7.1) (2026-05-12)
 
 ### 📦 Dependency Updates
