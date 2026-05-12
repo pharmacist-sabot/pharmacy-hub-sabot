@@ -1,3 +1,9 @@
+## [1.7.3](https://github.com/suradet-ps/pharmacy-hub-sabot/compare/v1.7.2...v1.7.3) (2026-05-12)
+
+### 🐛 Bug Fixes
+
+* **test:** update test description and remove brand logo ([43239f5](https://github.com/suradet-ps/pharmacy-hub-sabot/commit/43239f5d4ba74b0d67b0f9b17db4e5efd2f59a69))
+
 ## [1.7.2](https://github.com/suradet-ps/pharmacy-hub-sabot/compare/v1.7.1...v1.7.2) (2026-05-12)
 
 ### ♻️ Refactoring
