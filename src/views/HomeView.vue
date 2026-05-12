@@ -79,8 +79,11 @@
 
       <section class="logo flex-center hover-shrink">
         <div class="logo-badge" aria-hidden="true">
-          <span />
-          <span />
+          <svg class="shield-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L4 5V11C4 16.5 12 21 12 21C12 21 20 16.5 20 11V5L12 2Z" stroke="#F97316" stroke-width="1.8" stroke-linejoin="round" />
+            <rect x="8" y="9" width="3.5" height="4" rx="1.8" fill="#F97316" />
+            <rect x="12.5" y="9" width="3.5" height="4" rx="1.8" fill="#F97316" />
+          </svg>
         </div>
       </section>
 
@@ -588,32 +591,47 @@
 
 .logo-badge {
   position: relative;
-  width: 105px;
-  height: 110px;
+  width: 130px;
+  height: 135px;
   border-radius: 30px;
   background: linear-gradient(180deg, rgb(255 255 255 / 0.24) 0%, rgb(223 249 251 / 0.1) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.logo-badge span {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  background-color: var(--color-orange);
-  border-radius: 18px;
+.shield-logo {
+  width: 76px;
+  height: 76px;
+  animation: shieldGlow 2.6s ease-in-out infinite;
 }
 
-.logo-badge span:first-child {
-  width: 58px;
-  height: 18px;
+@keyframes shieldGlow {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 4px rgb(249 115 22 / 0.3));
+  }
+  50% {
+    transform: scale(1.06) rotate(6deg);
+    filter: drop-shadow(0 0 16px rgb(249 115 22 / 0.6));
+  }
 }
 
-.logo-badge span:last-child {
-  width: 18px;
-  height: 58px;
+.logo:hover .shield-logo {
+  animation: shieldHover 0.6s ease-in-out forwards;
 }
 
-.logo:hover .logo-badge {
-  transform: scale(1.1) rotate(18deg);
+@keyframes shieldHover {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.15) rotate(-8deg);
+  }
+  100% {
+    transform: scale(1.1) rotate(6deg);
+  }
 }
 
 .title {
@@ -867,8 +885,13 @@
   }
 
   .logo-badge {
-    width: 85px;
-    height: 90px;
+    width: 100px;
+    height: 105px;
+  }
+
+  .shield-logo {
+    width: 60px;
+    height: 60px;
   }
 
   .title h1 {
@@ -1018,8 +1041,13 @@
   }
 
   .logo-badge {
-    width: 65px;
-    height: 68px;
+    width: 80px;
+    height: 85px;
+  }
+
+  .shield-logo {
+    width: 48px;
+    height: 48px;
   }
 
   .title {

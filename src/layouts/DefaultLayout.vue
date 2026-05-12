@@ -40,13 +40,6 @@ function navigateTo(path: string) {
 
     <nav class="elpatita-nav">
       <div class="elpatita-nav-inner">
-        <button class="elpatita-brand" aria-label="กลับไปหน้าแรก" @click="navigateTo('/')">
-          <span class="elpatita-brand-mark">
-            <span />
-            <span />
-          </span>
-        </button>
-
         <button
           v-for="item in navItems"
           :key="item.key"
@@ -91,60 +84,6 @@ function navigateTo(path: string) {
   border-radius: 20px;
   border: 2px solid var(--color-orange);
   box-shadow: var(--shadow-float);
-}
-
-.elpatita-brand {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 46px;
-  height: 46px;
-  padding: 0;
-  border: none;
-  border-radius: 50%;
-  background: transparent;
-  cursor: pointer;
-}
-
-.elpatita-brand-mark {
-  position: relative;
-  width: 34px;
-  height: 34px;
-  border-radius: 14px;
-  background: linear-gradient(180deg, var(--color-white) 0%, #dff9fb 100%);
-  box-shadow: var(--shadow-soft);
-}
-
-.elpatita-brand-mark span {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  background: var(--color-orange);
-  border-radius: var(--radius-pill);
-}
-
-.elpatita-brand-mark span:first-child {
-  width: 18px;
-  height: 18px;
-}
-
-.elpatita-brand-mark span:last-child {
-  width: 18px;
-  height: 18px;
-  clip-path: polygon(
-    0 43%,
-    43% 43%,
-    43% 0,
-    57% 0,
-    57% 43%,
-    100% 43%,
-    100% 57%,
-    57% 57%,
-    57% 100%,
-    43% 100%,
-    43% 57%,
-    0 57%
-  );
 }
 
 .elpatita-nav-item {
@@ -212,16 +151,6 @@ function navigateTo(path: string) {
     padding: 6px 8px;
   }
 
-  .elpatita-brand {
-    width: 34px;
-    height: 34px;
-  }
-
-  .elpatita-brand-mark {
-    width: 26px;
-    height: 26px;
-  }
-
   .elpatita-nav-icon {
     width: 18px;
     height: 18px;
@@ -236,16 +165,6 @@ function navigateTo(path: string) {
   .elpatita-nav-inner {
     gap: 2px;
     padding: 4px 6px;
-  }
-
-  .elpatita-brand {
-    width: 30px;
-    height: 30px;
-  }
-
-  .elpatita-brand-mark {
-    width: 22px;
-    height: 22px;
   }
 
   .elpatita-nav-item {
