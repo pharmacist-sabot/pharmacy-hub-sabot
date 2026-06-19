@@ -1,3 +1,9 @@
+## [1.7.4](https://github.com/suradet-ps/pharmacy-hub-sabot/compare/v1.7.3...v1.7.4) (2026-06-19)
+
+### 📦 Dependency Updates
+
+* **deps:** update dependency lint-staged to v17 ([f24a941](https://github.com/suradet-ps/pharmacy-hub-sabot/commit/f24a9416163568f2536f063c3db36c12bebb7edc))
+
 ## [1.7.3](https://github.com/suradet-ps/pharmacy-hub-sabot/compare/v1.7.2...v1.7.3) (2026-05-12)
 
 ### 🐛 Bug Fixes
