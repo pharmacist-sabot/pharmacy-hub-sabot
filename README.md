@@ -1,10 +1,10 @@
 <div align="center">
 
-# Pharmacy Hub Sabot
+# Rx Room
 
 > A centralized, high-performance web platform engineered for the Pharmacy Department at Sabot Hospital.
 
-[![CI Quality](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/pharmacist-sabot/pharmacy-hub-sabot/actions/workflows/ci.yml)
+[![CI Quality](https://github.com/suradet-ps/rx-room/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/suradet-ps/rx-room/actions/workflows/ci.yml)
 ![Vue.js](https://img.shields.io/badge/Vue.js-3.5-4FC08D?logo=vue.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1-38B2AC?logo=tailwindcss&logoColor=white)
@@ -14,7 +14,7 @@
 
 ## Overview
 
-**Pharmacy Hub Sabot** is a modern Single Page Application (SPA) designed to unify access to clinical tools, calculators, and reporting dashboards. Built with a focus on type safety and developer experience, it leverages the latest web technologies to streamline daily pharmacy operations and improve workflow efficiency.
+**Rx Room** is a modern Single Page Application (SPA) designed to unify access to clinical tools, calculators, and reporting dashboards. Built with a focus on type safety and developer experience, it leverages the latest web technologies to streamline daily pharmacy operations and improve workflow efficiency.
 
 ### Key Architecture Highlights
 
@@ -95,7 +95,7 @@ This project adheres to modern frontend best practices and a robust toolchain.
 The project follows a modular architecture, separating concerns into layouts, components, data stores, and views.
 
 ```
-pharmacy-hub-sabot/
+rx-room/
 ├── .github/workflows/     # CI/CD pipelines (Lint, Test, Release)
 ├── .husky/                # Git hooks
 ├── public/                # Static assets
@@ -127,8 +127,8 @@ pharmacy-hub-sabot/
 1.  **Clone the repository**
 
     ```bash
-    git clone https://github.com/pharmacist-sabot/pharmacy-hub-sabot.git
-    cd pharmacy-hub-sabot
+    git clone https://github.com/suradet-ps/rx-room.git
+    cd rx-room
     ```
 
 2.  **Install dependencies**

@@ -7,7 +7,7 @@ describe('homeView', () => {
     const wrapper = mount(HomeView);
 
     expect(wrapper.findAll('.inicio-container > section')).toHaveLength(9);
-    expect(wrapper.text()).toContain('PHARMACY HUB');
+    expect(wrapper.text()).toContain('RX ROOM');
     expect(wrapper.text()).toContain('ศูนย์รวมระบบงาน');
     expect(wrapper.text()).toContain('กลุ่มงานเภสัชกรรม โรงพยาบาลสระโบสถ์');
   });

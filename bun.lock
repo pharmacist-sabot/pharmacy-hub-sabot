@@ -3,7 +3,7 @@
   "configVersion": 0,
   "workspaces": {
     "": {
-      "name": "pharmacy-hub-sabot",
+      "name": "rx-room",
       "dependencies": {
         "lucide-vue-next": "^1.0.0",
         "pinia": "^3.0.4",

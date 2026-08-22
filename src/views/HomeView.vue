@@ -23,7 +23,7 @@
           <span class="brand-dot brand-dot--small" />
           <span class="brand-line" />
         </div>
-        <p>PHARMACY HUB</p>
+        <p>RX ROOM</p>
       </section>
 
       <section class="gifs flex-center hover-shrink" aria-label="ฟีเจอร์เด่น">
@@ -89,7 +89,7 @@
 
       <section class="title hover-shrink">
         <div class="title-content">
-          <h1>PHARMACY HUB</h1>
+          <h1>RX ROOM</h1>
           <p>ศูนย์รวมระบบงาน <span>กลุ่มงานเภสัชกรรม โรงพยาบาลสระโบสถ์</span></p>
         </div>
       </section>
