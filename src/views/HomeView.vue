@@ -215,7 +215,25 @@ onBeforeUnmount(() => observer?.disconnect());
 </template>
 
 <style scoped>
+.home-view {
+  position: relative;
+}
+
+/* Subtle film-grain overlay to reduce banding and add texture */
+.home-view::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 .inicio-container {
+  --tile-border: rgba(255, 255, 255, 0.16);
+  --tile-blur: 8px;
   position: relative;
   isolation: isolate;
   display: grid;
@@ -293,7 +311,7 @@ onBeforeUnmount(() => observer?.disconnect());
   z-index: 1;
   border-radius: 20px;
   overflow: hidden;
-  border: 1px solid rgb(255 255 255 / 0.1);
+  border: 1px solid var(--tile-border);
   background: transparent;
   box-shadow: 0 10px 22px rgb(14 8 27 / 0.06);
 }
@@ -331,9 +349,9 @@ onBeforeUnmount(() => observer?.disconnect());
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: linear-gradient(145deg, rgb(255 255 255 / 0.02), rgb(255 255 255 / 0.005));
-  backdrop-filter: blur(1px) saturate(102%);
-  -webkit-backdrop-filter: blur(1px) saturate(102%);
+  background: linear-gradient(145deg, rgb(255 255 255 / 0.03), rgb(255 255 255 / 0.008));
+  backdrop-filter: blur(var(--tile-blur)) saturate(108%);
+  -webkit-backdrop-filter: blur(var(--tile-blur)) saturate(108%);
 }
 
 .chicken-container > *,
@@ -770,11 +788,11 @@ onBeforeUnmount(() => observer?.disconnect());
   gap: 10px;
   max-width: min(100%, 720px);
   padding: 22px 28px;
-  border: 1px solid rgb(255 255 255 / 0.18);
-  border-radius: 24px;
+  border: 1px solid var(--tile-border);
+  border-radius: var(--radius-xl);
   background: linear-gradient(180deg, rgb(8 20 38 / 0.3), rgb(8 20 38 / 0.16));
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(var(--tile-blur));
+  -webkit-backdrop-filter: blur(var(--tile-blur));
   box-shadow: 0 18px 40px rgb(8 20 38 / 0.16);
 }
 
