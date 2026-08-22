@@ -96,7 +96,7 @@ The project follows a modular architecture, separating concerns into layouts, co
 
 ```
 rx-room/
-├── .github/workflows/     # CI/CD pipelines (Lint, Test, Release)
+├── .github/workflows/     # CI/CD pipelines (Lint, Test)
 ├── .husky/                # Git hooks
 ├── public/                # Static assets
 ├── src/
@@ -183,8 +183,6 @@ The **CI Quality Workflow** runs on every pull request and push to `main`:
 2.  **Type Checking:** Validates TypeScript strict mode compliance.
 3.  **Testing:** Executes the unit test suite.
 4.  **Build Verification:** Ensures the production bundle builds successfully.
-
-The **Release Workflow** automates versioning and publishing via Semantic Release.
 
 ## Deployment
 
