@@ -171,6 +171,11 @@ onBeforeUnmount(() => observer?.disconnect());
         <div class="title-content">
           <h1>RX ROOM</h1>
           <p>ศูนย์รวมระบบงาน <span>กลุ่มงานเภสัชกรรม โรงพยาบาลสระโบสถ์</span></p>
+          <div class="title-meta" role="list" aria-label="ภาพรวมทรัพยากร">
+            <span role="listitem">เครื่องมือ 9</span>
+            <span role="listitem">รายงาน 5</span>
+            <span role="listitem">เชื่อมต่อภายนอก 1</span>
+          </div>
         </div>
       </section>
 
@@ -775,21 +780,44 @@ onBeforeUnmount(() => observer?.disconnect());
 
 .title h1 {
   margin-bottom: 0;
-  font-size: 2.9em;
-  color: var(--color-white);
+  font-size: clamp(2.6em, 3.6vw, 3.6em);
   line-height: 0.95;
-  letter-spacing: 0.04em;
-  text-shadow: 0 12px 24px rgb(10 24 45 / 0.3);
+  letter-spacing: 0.06em;
+  background: linear-gradient(95deg, #fff 12%, #ffd9bd 48%, #a9ecf4 88%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .title p {
   max-width: 36ch;
-  color: rgb(255 255 255 / 0.98);
+  color: rgb(255 255 255 / 0.86);
   font-size: 1.02rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.65;
+  letter-spacing: 0.01em;
   text-wrap: balance;
-  text-shadow: 0 6px 18px rgb(10 24 45 / 0.24);
+}
+
+.title-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.title-meta span {
+  padding: 5px 14px;
+  border: 1px solid rgb(255 255 255 / 0.28);
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 0.12);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .title span {
