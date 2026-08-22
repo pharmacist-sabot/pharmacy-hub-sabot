@@ -4,6 +4,38 @@ import { onBeforeUnmount } from 'vue';
 const REDUCED_MOTION = '(prefers-reduced-motion: reduce)';
 
 let observer: IntersectionObserver | null = null;
+let hoveredTile: HTMLElement | null = null;
+
+function clearTilt(tile: HTMLElement | null) {
+  if (!tile)
+    return;
+  tile.style.setProperty('--tilt-x', '0deg');
+  tile.style.setProperty('--tilt-y', '0deg');
+}
+
+function onGridPointerMove(event: PointerEvent) {
+  if (event.pointerType !== 'mouse')
+    return;
+
+  const tile = (event.target as HTMLElement).closest<HTMLElement>('.hover-shrink');
+  if (tile !== hoveredTile) {
+    clearTilt(hoveredTile);
+    hoveredTile = tile;
+  }
+  if (!tile)
+    return;
+
+  const rect = tile.getBoundingClientRect();
+  const x = (event.clientX - rect.left) / rect.width - 0.5;
+  const y = (event.clientY - rect.top) / rect.height - 0.5;
+  tile.style.setProperty('--tilt-x', `${(-y * 2.6).toFixed(2)}deg`);
+  tile.style.setProperty('--tilt-y', `${(x * 2.6).toFixed(2)}deg`);
+}
+
+function onGridPointerLeave() {
+  clearTilt(hoveredTile);
+  hoveredTile = null;
+}
 
 const vRevealGroup = {
   mounted(container: HTMLElement) {
@@ -45,7 +77,13 @@ onBeforeUnmount(() => observer?.disconnect());
 
 <template>
   <div class="home-view">
-    <article id="inicio" v-reveal-group class="inicio-container">
+    <article
+      id="inicio"
+      v-reveal-group
+      class="inicio-container"
+      @pointermove="onGridPointerMove"
+      @pointerleave="onGridPointerLeave"
+    >
       <section class="chicken-container hover-shrink">
         <div class="mock-visual mock-visual--hero" aria-label="พื้นที่ภาพตัวอย่างหน้าแรก">
           <span class="mock-chip">Hero Image</span>
@@ -201,6 +239,25 @@ onBeforeUnmount(() => observer?.disconnect());
 
 .hover-shrink:hover {
   transform: scale(0.97);
+}
+
+/* ── Pointer tilt ── */
+.hover-shrink {
+  transform: perspective(1200px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) scale(var(--tile-scale, 1));
+  transition: transform 0.25s ease-out;
+  will-change: transform;
+}
+
+@media (hover: hover) {
+  .hover-shrink:hover {
+    --tile-scale: 0.975;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hover-shrink {
+    transform: none;
+  }
 }
 
 /* ── Staggered entrance reveal ── */
