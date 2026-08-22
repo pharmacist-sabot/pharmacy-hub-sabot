@@ -34,6 +34,9 @@ jobs:
       - name: Install Dependencies
         run: bun install --frozen-lockfile
 
+      - name: Security Audit
+        run: bun audit
+
       - name: Linting & Formatting
         run: bun run lint
 
