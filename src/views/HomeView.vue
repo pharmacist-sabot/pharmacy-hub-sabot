@@ -1,9 +1,51 @@
 <script setup lang="ts">
+import { onBeforeUnmount } from 'vue';
+
+const REDUCED_MOTION = '(prefers-reduced-motion: reduce)';
+
+let observer: IntersectionObserver | null = null;
+
+const vRevealGroup = {
+  mounted(container: HTMLElement) {
+    const reducedMotion
+      = typeof window.matchMedia === 'function'
+        && window.matchMedia(REDUCED_MOTION).matches;
+
+    if (reducedMotion || typeof IntersectionObserver === 'undefined')
+      return;
+
+    const tiles = Array.from(container.children) as HTMLElement[];
+    if (!tiles.length)
+      return;
+
+    tiles.forEach((tile, index) => {
+      tile.style.setProperty('--tile-order', String(index));
+      tile.classList.add('tile-pending');
+    });
+
+    observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting)
+            continue;
+          entry.target.classList.remove('tile-pending');
+          entry.target.classList.add('tile-shown');
+          observer?.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.12 },
+    );
+
+    tiles.forEach(tile => observer?.observe(tile));
+  },
+};
+
+onBeforeUnmount(() => observer?.disconnect());
 </script>
 
 <template>
   <div class="home-view">
-    <article id="inicio" class="inicio-container">
+    <article id="inicio" v-reveal-group class="inicio-container">
       <section class="chicken-container hover-shrink">
         <div class="mock-visual mock-visual--hero" aria-label="พื้นที่ภาพตัวอย่างหน้าแรก">
           <span class="mock-chip">Hero Image</span>
@@ -159,6 +201,21 @@
 
 .hover-shrink:hover {
   transform: scale(0.97);
+}
+
+/* ── Staggered entrance reveal ── */
+.inicio-container > section {
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    translate 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(min(var(--tile-order, 0), 4) * 70ms);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .inicio-container > section.tile-pending {
+    opacity: 0;
+    translate: 0 24px;
+  }
 }
 
 .chicken-container,
