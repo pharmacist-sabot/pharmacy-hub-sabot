@@ -3,6 +3,8 @@ import { onBeforeUnmount } from 'vue';
 
 const REDUCED_MOTION = '(prefers-reduced-motion: reduce)';
 
+const HERO_PHOTO_SRC = '/images/home-hero.jpg';
+
 let observer: IntersectionObserver | null = null;
 let hoveredTile: HTMLElement | null = null;
 
@@ -35,6 +37,10 @@ function onGridPointerMove(event: PointerEvent) {
 function onGridPointerLeave() {
   clearTilt(hoveredTile);
   hoveredTile = null;
+}
+
+function onHeroPhotoError(event: Event) {
+  (event.target as HTMLImageElement).style.display = 'none';
 }
 
 const vRevealGroup = {
@@ -85,15 +91,14 @@ onBeforeUnmount(() => observer?.disconnect());
       @pointerleave="onGridPointerLeave"
     >
       <section class="chicken-container hover-shrink">
-        <div class="mock-visual mock-visual--hero" aria-label="พื้นที่ภาพตัวอย่างหน้าแรก">
-          <span class="mock-chip">Hero Image</span>
-          <div class="capsule capsule--one" />
-          <div class="capsule capsule--two" />
-          <div class="capsule capsule--three" />
-          <div class="mock-cross">
-            <span />
-            <span />
-          </div>
+        <div class="mock-visual mock-visual--hero" aria-label="ภาพบรรยากาศกลุ่มงานเภสัชกรรม">
+          <img
+            class="tile-photo"
+            :src="HERO_PHOTO_SRC"
+            alt="ภาพบรรยากาศกลุ่มงานเภสัชกรรม โรงพยาบาลสระโบสถ์"
+            decoding="async"
+            @error="onHeroPhotoError"
+          >
         </div>
       </section>
 
@@ -453,78 +458,13 @@ onBeforeUnmount(() => observer?.disconnect());
   min-height: 100%;
 }
 
-.mock-chip {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  z-index: 1;
-  padding: 8px 12px;
-  border-radius: 999px;
-  background-color: rgb(255 255 255 / 0.22);
-  color: var(--color-negro-puro);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
-
-.capsule {
-  position: absolute;
-  border-radius: 999px;
-  background: linear-gradient(180deg, var(--color-white) 0%, #dff4f6 100%);
-  box-shadow: 0 10px 24px rgb(14 8 27 / 0.12);
-}
-
-.capsule--one {
-  width: 40%;
-  height: 20%;
-  bottom: 18%;
-  left: 14%;
-  transform: rotate(-18deg);
-}
-
-.capsule--two {
-  width: 34%;
-  height: 17%;
-  top: 18%;
-  right: 14%;
-  transform: rotate(22deg);
-  background: linear-gradient(180deg, var(--color-white) 0%, #ffe0cc 100%);
-}
-
-.capsule--three {
-  width: 18%;
-  height: 18%;
-  bottom: 20%;
-  right: 18%;
-  border-radius: 18px;
-  background: linear-gradient(180deg, var(--color-white) 0%, #ffe8db 100%);
-}
-
-.mock-cross {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 92px;
-  height: 92px;
-  transform: translate(-50%, -50%) rotate(12deg);
-}
-
-.mock-cross span {
+.tile-photo {
   position: absolute;
   inset: 0;
-  margin: auto;
-  background-color: var(--color-orange-fuerte);
-  border-radius: 16px;
-}
-
-.mock-cross span:first-child {
-  width: 92px;
-  height: 28px;
-}
-
-.mock-cross span:last-child {
-  width: 28px;
-  height: 92px;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .marca {

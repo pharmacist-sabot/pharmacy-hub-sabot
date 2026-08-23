@@ -15,7 +15,9 @@ describe('homeView', () => {
   it('shows placeholder surfaces for future real media replacement', () => {
     const wrapper = mount(HomeView);
 
-    expect(wrapper.text()).toContain('Hero Image');
+    const hero = wrapper.find('img.tile-photo');
+    expect(hero.exists()).toBe(true);
+    expect(hero.attributes('src')).toBe('/images/home-hero.jpg');
     expect(wrapper.text()).toContain('Dashboard Motion');
     expect(wrapper.text()).toContain('คำนวณยา');
     expect(wrapper.text()).toContain('รายงาน');
