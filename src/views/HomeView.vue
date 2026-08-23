@@ -5,12 +5,6 @@ const REDUCED_MOTION = '(prefers-reduced-motion: reduce)';
 
 const HERO_PHOTO_SRC = '/images/home-hero.jpg';
 
-const FEATURE_PHOTOS = [
-  { index: '01', label: 'คำนวณยา', src: '/images/home-feature-calculators.jpg' },
-  { index: '02', label: 'รายงาน', src: '/images/home-feature-reports.jpg' },
-  { index: '03', label: 'เชื่อมต่อ', src: '/images/home-feature-connect.jpg' },
-];
-
 let observer: IntersectionObserver | null = null;
 let hoveredTile: HTMLElement | null = null;
 
@@ -118,24 +112,17 @@ onBeforeUnmount(() => observer?.disconnect());
       </section>
 
       <section class="gifs flex-center hover-shrink" aria-label="ฟีเจอร์เด่น">
-        <div
-          v-for="(feature, i) in FEATURE_PHOTOS"
-          :key="feature.index"
-          class="media-pill"
-          :class="`media-pill--${['mint', 'blue', 'cream'][i]}`"
-        >
-          <img
-            class="pill-photo"
-            :src="feature.src"
-            alt=""
-            loading="lazy"
-            decoding="async"
-            @error="onPhotoError"
-          >
-          <span class="pill-caption">
-            <strong>{{ feature.index }}</strong>
-            {{ feature.label }}
-          </span>
+        <div class="media-pill media-pill--mint">
+          <strong>01</strong>
+          <span>คำนวณยา</span>
+        </div>
+        <div class="media-pill media-pill--blue">
+          <strong>02</strong>
+          <span>รายงาน</span>
+        </div>
+        <div class="media-pill media-pill--cream">
+          <strong>03</strong>
+          <span>เชื่อมต่อ</span>
         </div>
       </section>
 
@@ -547,55 +534,42 @@ onBeforeUnmount(() => observer?.disconnect());
 }
 
 .media-pill {
-  position: relative;
-  overflow: hidden;
   width: calc(33.333% - 14px);
   min-width: 92px;
   min-height: 100px;
+  padding: 14px 10px;
   border-radius: 18px;
-}
-
-.pill-photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.pill-caption {
-  position: absolute;
-  inset-inline: 0;
-  bottom: 0;
-  z-index: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 22px 10px 8px;
-  background: linear-gradient(180deg, transparent, rgb(10 20 35 / 0.72));
-  color: #fff;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-shadow: 0 1px 4px rgb(10 20 35 / 0.5);
+  text-align: center;
 }
 
-.pill-caption strong {
-  font-size: 1rem;
+.media-pill strong {
+  font-size: 1.5rem;
   line-height: 1;
 }
 
+.media-pill span {
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
 .media-pill--mint {
-  background-color: rgb(226 246 213 / 0.25);
+  background-color: rgb(226 246 213 / 0.22);
+  color: var(--color-green-dark);
 }
 
 .media-pill--blue {
-  background-color: rgb(215 245 255 / 0.25);
+  background-color: rgb(215 245 255 / 0.22);
+  color: var(--color-teal-oscuro);
 }
 
 .media-pill--cream {
-  background-color: rgb(255 240 228 / 0.25);
+  background-color: rgb(255 240 228 / 0.22);
+  color: var(--color-orange-fuerte);
 }
 
 .papas-container {
