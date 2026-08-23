@@ -111,21 +111,6 @@ onBeforeUnmount(() => observer?.disconnect());
         <p>RX ROOM</p>
       </section>
 
-      <section class="gifs flex-center hover-shrink" aria-label="ฟีเจอร์เด่น">
-        <div class="media-pill media-pill--mint">
-          <strong>01</strong>
-          <span>คำนวณยา</span>
-        </div>
-        <div class="media-pill media-pill--blue">
-          <strong>02</strong>
-          <span>รายงาน</span>
-        </div>
-        <div class="media-pill media-pill--cream">
-          <strong>03</strong>
-          <span>เชื่อมต่อ</span>
-        </div>
-      </section>
-
       <section class="papas-container hover-shrink">
         <div class="mock-visual mock-visual--vertical" aria-hidden="true">
           <div class="pharmacy-icon pharmacy-icon--tablet">
@@ -260,7 +245,6 @@ onBeforeUnmount(() => observer?.disconnect());
 .mock-visual,
 .mock-video,
 .logo-badge,
-.media-pill,
 .brand-mark {
   transition: transform 0.3s ease;
 }
@@ -310,7 +294,6 @@ onBeforeUnmount(() => observer?.disconnect());
 .title,
 .action-link,
 .marca,
-.gifs,
 .logo {
   position: relative;
   z-index: 1;
@@ -328,7 +311,6 @@ onBeforeUnmount(() => observer?.disconnect());
 .title::before,
 .action-link::before,
 .marca::before,
-.gifs::before,
 .logo::before {
   content: '';
   position: absolute;
@@ -348,7 +330,6 @@ onBeforeUnmount(() => observer?.disconnect());
 .title::after,
 .action-link::after,
 .marca::after,
-.gifs::after,
 .logo::after {
   content: '';
   position: absolute;
@@ -366,7 +347,6 @@ onBeforeUnmount(() => observer?.disconnect());
 .title > *,
 .action-link > *,
 .marca > *,
-.gifs > *,
 .logo > * {
   position: relative;
   z-index: 1;
@@ -375,16 +355,12 @@ onBeforeUnmount(() => observer?.disconnect());
 .chicken-container {
   --tile-bg-size: 700% 300%;
   --tile-bg-position: 0% 0%;
+  grid-column: span 3 / span 3;
 }
 
 .marca {
   --tile-bg-size: 350% 300%;
   --tile-bg-position: 16.7% 0%;
-}
-
-.gifs {
-  --tile-bg-size: 350% 300%;
-  --tile-bg-position: 50% 0%;
 }
 
 .papas-container {
@@ -522,54 +498,6 @@ onBeforeUnmount(() => observer?.disconnect());
   font-weight: 600;
   font-size: clamp(1.55em, 1.8vw, 2.1em);
   white-space: nowrap;
-}
-
-.gifs {
-  grid-column: span 2 / span 2;
-  grid-column-start: 4;
-  flex-wrap: wrap;
-  flex-direction: row;
-  gap: 20px;
-  padding: 12px;
-}
-
-.media-pill {
-  width: calc(33.333% - 14px);
-  min-width: 92px;
-  min-height: 100px;
-  padding: 14px 10px;
-  border-radius: 18px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  text-align: center;
-}
-
-.media-pill strong {
-  font-size: 1.5rem;
-  line-height: 1;
-}
-
-.media-pill span {
-  font-size: 0.88rem;
-  font-weight: 700;
-}
-
-.media-pill--mint {
-  background-color: rgb(226 246 213 / 0.22);
-  color: var(--color-green-dark);
-}
-
-.media-pill--blue {
-  background-color: rgb(215 245 255 / 0.22);
-  color: var(--color-teal-oscuro);
-}
-
-.media-pill--cream {
-  background-color: rgb(255 240 228 / 0.22);
-  color: var(--color-orange-fuerte);
 }
 
 .papas-container {
@@ -1009,7 +937,7 @@ onBeforeUnmount(() => observer?.disconnect());
   .chicken-container {
     --tile-bg-size: 400% 300%;
     --tile-bg-position: 0% 0%;
-    grid-column: 1 / 1;
+    grid-column: 1 / 3;
     grid-row: 1;
     height: auto;
   }
@@ -1017,20 +945,13 @@ onBeforeUnmount(() => observer?.disconnect());
   .marca {
     --tile-bg-size: 400% 300%;
     --tile-bg-position: 33.33% 0%;
-    grid-column: 2 / 3;
+    grid-column: 3 / 5;
     grid-row: 1;
     gap: 10px;
   }
 
   .marca p {
     font-size: 1.3em;
-  }
-
-  .gifs {
-    --tile-bg-size: 200% 300%;
-    --tile-bg-position: 100% 0%;
-    grid-column: 3 / 5;
-    grid-row: 1;
   }
 
   .logo {
@@ -1110,7 +1031,7 @@ onBeforeUnmount(() => observer?.disconnect());
 @media only screen and (max-width: 480px) {
   .inicio-container {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(8, auto);
+    grid-template-rows: repeat(6, auto);
   }
 
   .marca {
@@ -1127,16 +1048,16 @@ onBeforeUnmount(() => observer?.disconnect());
   .chicken-container {
     --tile-bg-size: 200% 800%;
     --tile-bg-position: 0% 14.28%;
-    grid-column: 1;
+    grid-column: 1 / span 2;
     grid-row: 2;
-    height: 116px;
+    height: 200px;
   }
 
   .logo {
     --tile-bg-size: 200% 800%;
     --tile-bg-position: 100% 14.28%;
-    grid-column: 2;
-    grid-row: 2;
+    grid-column: 1;
+    grid-row: 4;
     height: 116px;
   }
 
@@ -1165,32 +1086,18 @@ onBeforeUnmount(() => observer?.disconnect());
     font-size: 0.7em;
   }
 
-  .gifs {
-    --tile-bg-size: 100% 800%;
-    --tile-bg-position: 0% 42.85%;
-    grid-column: 1 / span 2;
-    grid-row: 4;
-    padding: 4px;
-    gap: 4px;
-  }
-
-  .media-pill {
-    min-width: 0;
-    min-height: 88px;
-  }
-
   .gif-brasas {
     --tile-bg-size: 200% 800%;
     --tile-bg-position: 0% 57.14%;
-    grid-column: 1;
-    grid-row: 5;
+    grid-column: 2;
+    grid-row: 4;
     min-height: 116px;
   }
 
   .img-alitas {
     --tile-bg-size: 200% 800%;
     --tile-bg-position: 100% 57.14%;
-    grid-column: 2;
+    grid-column: 1;
     grid-row: 5;
     height: 116px;
   }
@@ -1198,8 +1105,8 @@ onBeforeUnmount(() => observer?.disconnect());
   .action-link {
     --tile-bg-size: 100% 800%;
     --tile-bg-position: 0% 71.42%;
-    grid-column: 1 / span 2;
-    grid-row: 6;
+    grid-column: 2;
+    grid-row: 5;
   }
 
   .animated-link svg {
@@ -1211,7 +1118,7 @@ onBeforeUnmount(() => observer?.disconnect());
     --tile-bg-size: 100% 800%;
     --tile-bg-position: 0% 85.71%;
     grid-column: 1 / span 2;
-    grid-row: 7;
+    grid-row: 6;
     height: 160px;
   }
 

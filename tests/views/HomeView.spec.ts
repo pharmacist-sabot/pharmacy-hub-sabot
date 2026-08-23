@@ -6,7 +6,7 @@ describe('homeView', () => {
   it('renders the ElPatita-inspired landing grid structure', () => {
     const wrapper = mount(HomeView);
 
-    expect(wrapper.findAll('.inicio-container > section')).toHaveLength(9);
+    expect(wrapper.findAll('.inicio-container > section')).toHaveLength(8);
     expect(wrapper.text()).toContain('RX ROOM');
     expect(wrapper.text()).toContain('ศูนย์รวมระบบงาน');
     expect(wrapper.text()).toContain('กลุ่มงานเภสัชกรรม โรงพยาบาลสระโบสถ์');
@@ -19,9 +19,7 @@ describe('homeView', () => {
     expect(hero.exists()).toBe(true);
     expect(hero.attributes('src')).toBe('/images/home-hero.jpg');
     expect(wrapper.text()).toContain('Dashboard Motion');
-    expect(wrapper.text()).toContain('คำนวณยา');
-    expect(wrapper.text()).toContain('รายงาน');
-    expect(wrapper.text()).toContain('เชื่อมต่อ');
+    expect(wrapper.text()).not.toContain('คำนวณยา');
   });
 
   it('links the primary call to action to the tools page', () => {
