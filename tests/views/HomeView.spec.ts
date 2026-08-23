@@ -18,6 +18,10 @@ describe('homeView', () => {
     const hero = wrapper.find('img.tile-photo');
     expect(hero.exists()).toBe(true);
     expect(hero.attributes('src')).toBe('/images/home-hero.jpg');
+
+    const pills = wrapper.findAll('img.pill-photo');
+    expect(pills).toHaveLength(3);
+    expect(pills[0]?.attributes('src')).toBe('/images/home-feature-calculators.jpg');
     expect(wrapper.text()).toContain('Dashboard Motion');
     expect(wrapper.text()).toContain('คำนวณยา');
     expect(wrapper.text()).toContain('รายงาน');
