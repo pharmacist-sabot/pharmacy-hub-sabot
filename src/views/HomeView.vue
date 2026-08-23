@@ -1,19 +1,104 @@
 <script setup lang="ts">
+import { onBeforeUnmount } from 'vue';
+
+const REDUCED_MOTION = '(prefers-reduced-motion: reduce)';
+
+const HERO_PHOTO_SRC = '/images/home-hero.jpg';
+
+let observer: IntersectionObserver | null = null;
+let hoveredTile: HTMLElement | null = null;
+
+function clearTilt(tile: HTMLElement | null) {
+  if (!tile)
+    return;
+  tile.style.setProperty('--tilt-x', '0deg');
+  tile.style.setProperty('--tilt-y', '0deg');
+}
+
+function onGridPointerMove(event: PointerEvent) {
+  if (event.pointerType !== 'mouse')
+    return;
+
+  const tile = (event.target as HTMLElement).closest<HTMLElement>('.hover-shrink');
+  if (tile !== hoveredTile) {
+    clearTilt(hoveredTile);
+    hoveredTile = tile;
+  }
+  if (!tile)
+    return;
+
+  const rect = tile.getBoundingClientRect();
+  const x = (event.clientX - rect.left) / rect.width - 0.5;
+  const y = (event.clientY - rect.top) / rect.height - 0.5;
+  tile.style.setProperty('--tilt-x', `${(-y * 2.6).toFixed(2)}deg`);
+  tile.style.setProperty('--tilt-y', `${(x * 2.6).toFixed(2)}deg`);
+}
+
+function onGridPointerLeave() {
+  clearTilt(hoveredTile);
+  hoveredTile = null;
+}
+
+function onPhotoError(event: Event) {
+  (event.target as HTMLImageElement).style.display = 'none';
+}
+
+const vRevealGroup = {
+  mounted(container: HTMLElement) {
+    const reducedMotion
+      = typeof window.matchMedia === 'function'
+        && window.matchMedia(REDUCED_MOTION).matches;
+
+    if (reducedMotion || typeof IntersectionObserver === 'undefined')
+      return;
+
+    const tiles = Array.from(container.children) as HTMLElement[];
+    if (!tiles.length)
+      return;
+
+    tiles.forEach((tile, index) => {
+      tile.style.setProperty('--tile-order', String(index));
+      tile.classList.add('tile-pending');
+    });
+
+    observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting)
+            continue;
+          entry.target.classList.remove('tile-pending');
+          entry.target.classList.add('tile-shown');
+          observer?.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.12 },
+    );
+
+    tiles.forEach(tile => observer?.observe(tile));
+  },
+};
+
+onBeforeUnmount(() => observer?.disconnect());
 </script>
 
 <template>
   <div class="home-view">
-    <article id="inicio" class="inicio-container">
+    <article
+      id="inicio"
+      v-reveal-group
+      class="inicio-container"
+      @pointermove="onGridPointerMove"
+      @pointerleave="onGridPointerLeave"
+    >
       <section class="chicken-container hover-shrink">
-        <div class="mock-visual mock-visual--hero" aria-label="พื้นที่ภาพตัวอย่างหน้าแรก">
-          <span class="mock-chip">Hero Image</span>
-          <div class="capsule capsule--one" />
-          <div class="capsule capsule--two" />
-          <div class="capsule capsule--three" />
-          <div class="mock-cross">
-            <span />
-            <span />
-          </div>
+        <div class="mock-visual mock-visual--hero" aria-label="ภาพบรรยากาศกลุ่มงานเภสัชกรรม">
+          <img
+            class="tile-photo"
+            :src="HERO_PHOTO_SRC"
+            alt="ภาพบรรยากาศกลุ่มงานเภสัชกรรม โรงพยาบาลสระโบสถ์"
+            decoding="async"
+            @error="onPhotoError"
+          >
         </div>
       </section>
 
@@ -24,21 +109,6 @@
           <span class="brand-line" />
         </div>
         <p>RX ROOM</p>
-      </section>
-
-      <section class="gifs flex-center hover-shrink" aria-label="ฟีเจอร์เด่น">
-        <div class="media-pill media-pill--mint">
-          <strong>01</strong>
-          <span>คำนวณยา</span>
-        </div>
-        <div class="media-pill media-pill--blue">
-          <strong>02</strong>
-          <span>รายงาน</span>
-        </div>
-        <div class="media-pill media-pill--cream">
-          <strong>03</strong>
-          <span>เชื่อมต่อ</span>
-        </div>
       </section>
 
       <section class="papas-container hover-shrink">
@@ -91,6 +161,11 @@
         <div class="title-content">
           <h1>RX ROOM</h1>
           <p>ศูนย์รวมระบบงาน <span>กลุ่มงานเภสัชกรรม โรงพยาบาลสระโบสถ์</span></p>
+          <div class="title-meta" role="list" aria-label="ภาพรวมทรัพยากร">
+            <span role="listitem">เครื่องมือ 9</span>
+            <span role="listitem">รายงาน 5</span>
+            <span role="listitem">เชื่อมต่อภายนอก 1</span>
+          </div>
         </div>
       </section>
 
@@ -130,7 +205,25 @@
 </template>
 
 <style scoped>
+.home-view {
+  position: relative;
+}
+
+/* Subtle film-grain overlay to reduce banding and add texture */
+.home-view::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 .inicio-container {
+  --tile-border: rgba(255, 255, 255, 0.16);
+  --tile-blur: 8px;
   position: relative;
   isolation: isolate;
   display: grid;
@@ -152,13 +245,46 @@
 .mock-visual,
 .mock-video,
 .logo-badge,
-.media-pill,
 .brand-mark {
   transition: transform 0.3s ease;
 }
 
 .hover-shrink:hover {
   transform: scale(0.97);
+}
+
+/* ── Pointer tilt ── */
+.hover-shrink {
+  transform: perspective(1200px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) scale(var(--tile-scale, 1));
+  transition: transform 0.25s ease-out;
+  will-change: transform;
+}
+
+@media (hover: hover) {
+  .hover-shrink:hover {
+    --tile-scale: 0.975;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hover-shrink {
+    transform: none;
+  }
+}
+
+/* ── Staggered entrance reveal ── */
+.inicio-container > section {
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    translate 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(min(var(--tile-order, 0), 4) * 70ms);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .inicio-container > section.tile-pending {
+    opacity: 0;
+    translate: 0 24px;
+  }
 }
 
 .chicken-container,
@@ -168,13 +294,12 @@
 .title,
 .action-link,
 .marca,
-.gifs,
 .logo {
   position: relative;
   z-index: 1;
   border-radius: 20px;
   overflow: hidden;
-  border: 1px solid rgb(255 255 255 / 0.1);
+  border: 1px solid var(--tile-border);
   background: transparent;
   box-shadow: 0 10px 22px rgb(14 8 27 / 0.06);
 }
@@ -186,7 +311,6 @@
 .title::before,
 .action-link::before,
 .marca::before,
-.gifs::before,
 .logo::before {
   content: '';
   position: absolute;
@@ -206,15 +330,14 @@
 .title::after,
 .action-link::after,
 .marca::after,
-.gifs::after,
 .logo::after {
   content: '';
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: linear-gradient(145deg, rgb(255 255 255 / 0.02), rgb(255 255 255 / 0.005));
-  backdrop-filter: blur(1px) saturate(102%);
-  -webkit-backdrop-filter: blur(1px) saturate(102%);
+  background: linear-gradient(145deg, rgb(255 255 255 / 0.03), rgb(255 255 255 / 0.008));
+  backdrop-filter: blur(var(--tile-blur)) saturate(108%);
+  -webkit-backdrop-filter: blur(var(--tile-blur)) saturate(108%);
 }
 
 .chicken-container > *,
@@ -224,7 +347,6 @@
 .title > *,
 .action-link > *,
 .marca > *,
-.gifs > *,
 .logo > * {
   position: relative;
   z-index: 1;
@@ -233,16 +355,12 @@
 .chicken-container {
   --tile-bg-size: 700% 300%;
   --tile-bg-position: 0% 0%;
+  grid-column: span 3 / span 3;
 }
 
 .marca {
   --tile-bg-size: 350% 300%;
   --tile-bg-position: 16.7% 0%;
-}
-
-.gifs {
-  --tile-bg-size: 350% 300%;
-  --tile-bg-position: 50% 0%;
 }
 
 .papas-container {
@@ -316,78 +434,13 @@
   min-height: 100%;
 }
 
-.mock-chip {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  z-index: 1;
-  padding: 8px 12px;
-  border-radius: 999px;
-  background-color: rgb(255 255 255 / 0.22);
-  color: var(--color-negro-puro);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
-
-.capsule {
-  position: absolute;
-  border-radius: 999px;
-  background: linear-gradient(180deg, var(--color-white) 0%, #dff4f6 100%);
-  box-shadow: 0 10px 24px rgb(14 8 27 / 0.12);
-}
-
-.capsule--one {
-  width: 40%;
-  height: 20%;
-  bottom: 18%;
-  left: 14%;
-  transform: rotate(-18deg);
-}
-
-.capsule--two {
-  width: 34%;
-  height: 17%;
-  top: 18%;
-  right: 14%;
-  transform: rotate(22deg);
-  background: linear-gradient(180deg, var(--color-white) 0%, #ffe0cc 100%);
-}
-
-.capsule--three {
-  width: 18%;
-  height: 18%;
-  bottom: 20%;
-  right: 18%;
-  border-radius: 18px;
-  background: linear-gradient(180deg, var(--color-white) 0%, #ffe8db 100%);
-}
-
-.mock-cross {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 92px;
-  height: 92px;
-  transform: translate(-50%, -50%) rotate(12deg);
-}
-
-.mock-cross span {
+.tile-photo {
   position: absolute;
   inset: 0;
-  margin: auto;
-  background-color: var(--color-orange-fuerte);
-  border-radius: 16px;
-}
-
-.mock-cross span:first-child {
-  width: 92px;
-  height: 28px;
-}
-
-.mock-cross span:last-child {
-  width: 28px;
-  height: 92px;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .marca {
@@ -445,54 +498,6 @@
   font-weight: 600;
   font-size: clamp(1.55em, 1.8vw, 2.1em);
   white-space: nowrap;
-}
-
-.gifs {
-  grid-column: span 2 / span 2;
-  grid-column-start: 4;
-  flex-wrap: wrap;
-  flex-direction: row;
-  gap: 20px;
-  padding: 12px;
-}
-
-.media-pill {
-  width: calc(33.333% - 14px);
-  min-width: 92px;
-  min-height: 100px;
-  padding: 14px 10px;
-  border-radius: 18px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  text-align: center;
-}
-
-.media-pill strong {
-  font-size: 1.5rem;
-  line-height: 1;
-}
-
-.media-pill span {
-  font-size: 0.88rem;
-  font-weight: 700;
-}
-
-.media-pill--mint {
-  background-color: rgb(226 246 213 / 0.22);
-  color: var(--color-green-dark);
-}
-
-.media-pill--blue {
-  background-color: rgb(215 245 255 / 0.22);
-  color: var(--color-teal-oscuro);
-}
-
-.media-pill--cream {
-  background-color: rgb(255 240 228 / 0.22);
-  color: var(--color-orange-fuerte);
 }
 
 .papas-container {
@@ -651,31 +656,54 @@
   gap: 10px;
   max-width: min(100%, 720px);
   padding: 22px 28px;
-  border: 1px solid rgb(255 255 255 / 0.18);
-  border-radius: 24px;
+  border: 1px solid var(--tile-border);
+  border-radius: var(--radius-xl);
   background: linear-gradient(180deg, rgb(8 20 38 / 0.3), rgb(8 20 38 / 0.16));
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(var(--tile-blur));
+  -webkit-backdrop-filter: blur(var(--tile-blur));
   box-shadow: 0 18px 40px rgb(8 20 38 / 0.16);
 }
 
 .title h1 {
   margin-bottom: 0;
-  font-size: 2.9em;
-  color: var(--color-white);
+  font-size: clamp(2.6em, 3.6vw, 3.6em);
   line-height: 0.95;
-  letter-spacing: 0.04em;
-  text-shadow: 0 12px 24px rgb(10 24 45 / 0.3);
+  letter-spacing: 0.06em;
+  background: linear-gradient(95deg, #fff 12%, #ffd9bd 48%, #a9ecf4 88%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .title p {
   max-width: 36ch;
-  color: rgb(255 255 255 / 0.98);
+  color: rgb(255 255 255 / 0.86);
   font-size: 1.02rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.65;
+  letter-spacing: 0.01em;
   text-wrap: balance;
-  text-shadow: 0 6px 18px rgb(10 24 45 / 0.24);
+}
+
+.title-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.title-meta span {
+  padding: 5px 14px;
+  border: 1px solid rgb(255 255 255 / 0.28);
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 0.12);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .title span {
@@ -909,7 +937,7 @@
   .chicken-container {
     --tile-bg-size: 400% 300%;
     --tile-bg-position: 0% 0%;
-    grid-column: 1 / 1;
+    grid-column: 1 / 3;
     grid-row: 1;
     height: auto;
   }
@@ -917,20 +945,13 @@
   .marca {
     --tile-bg-size: 400% 300%;
     --tile-bg-position: 33.33% 0%;
-    grid-column: 2 / 3;
+    grid-column: 3 / 5;
     grid-row: 1;
     gap: 10px;
   }
 
   .marca p {
     font-size: 1.3em;
-  }
-
-  .gifs {
-    --tile-bg-size: 200% 300%;
-    --tile-bg-position: 100% 0%;
-    grid-column: 3 / 5;
-    grid-row: 1;
   }
 
   .logo {
@@ -1010,7 +1031,7 @@
 @media only screen and (max-width: 480px) {
   .inicio-container {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(8, auto);
+    grid-template-rows: repeat(6, auto);
   }
 
   .marca {
@@ -1027,16 +1048,16 @@
   .chicken-container {
     --tile-bg-size: 200% 800%;
     --tile-bg-position: 0% 14.28%;
-    grid-column: 1;
+    grid-column: 1 / span 2;
     grid-row: 2;
-    height: 116px;
+    height: 200px;
   }
 
   .logo {
     --tile-bg-size: 200% 800%;
     --tile-bg-position: 100% 14.28%;
-    grid-column: 2;
-    grid-row: 2;
+    grid-column: 1;
+    grid-row: 4;
     height: 116px;
   }
 
@@ -1065,32 +1086,18 @@
     font-size: 0.7em;
   }
 
-  .gifs {
-    --tile-bg-size: 100% 800%;
-    --tile-bg-position: 0% 42.85%;
-    grid-column: 1 / span 2;
-    grid-row: 4;
-    padding: 4px;
-    gap: 4px;
-  }
-
-  .media-pill {
-    min-width: 0;
-    min-height: 88px;
-  }
-
   .gif-brasas {
     --tile-bg-size: 200% 800%;
     --tile-bg-position: 0% 57.14%;
-    grid-column: 1;
-    grid-row: 5;
+    grid-column: 2;
+    grid-row: 4;
     min-height: 116px;
   }
 
   .img-alitas {
     --tile-bg-size: 200% 800%;
     --tile-bg-position: 100% 57.14%;
-    grid-column: 2;
+    grid-column: 1;
     grid-row: 5;
     height: 116px;
   }
@@ -1098,8 +1105,8 @@
   .action-link {
     --tile-bg-size: 100% 800%;
     --tile-bg-position: 0% 71.42%;
-    grid-column: 1 / span 2;
-    grid-row: 6;
+    grid-column: 2;
+    grid-row: 5;
   }
 
   .animated-link svg {
@@ -1111,7 +1118,7 @@
     --tile-bg-size: 100% 800%;
     --tile-bg-position: 0% 85.71%;
     grid-column: 1 / span 2;
-    grid-row: 7;
+    grid-row: 6;
     height: 160px;
   }
 
