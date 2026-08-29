@@ -1,221 +1,145 @@
-<div align="center">
-
 # Rx Room
 
-> A centralized, high-performance web platform engineered for the Pharmacy Department at Sabot Hospital.
-
-[![CI Quality](https://github.com/suradet-ps/rx-room/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/suradet-ps/rx-room/actions/workflows/ci.yml)
-![Vue.js](https://img.shields.io/badge/Vue.js-3.5-4FC08D?logo=vue.js&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1-38B2AC?logo=tailwindcss&logoColor=white)
-![Firebase Hosting](https://img.shields.io/badge/Firebase-Hosting-FFCA28?logo=firebase&logoColor=black)
-
-</div>
-
-## Overview
-
-**Rx Room** is a modern Single Page Application (SPA) designed to unify access to clinical tools, calculators, and reporting dashboards. Built with a focus on type safety and developer experience, it leverages the latest web technologies to streamline daily pharmacy operations and improve workflow efficiency.
-
-### Key Architecture Highlights
-
-- **Type-Safe Core:** Built entirely in **TypeScript** with strict null checks and no implicit any.
-- **Composition API:** Utilizes Vue 3's Composition API with `<script setup>` for highly reusable and organized logic.
-- **Modular State Management:** Implemented via **Pinia** for reactive state across tabs, mobile menus, and search queries.
-- **Performance-First Styling:** Uses **Tailwind CSS v4** for utility-first styling with zero runtime overhead in production.
-- **Strict Quality Gates:** Enforced via **ESLint**, **Commitlint**, and **Husky** pre-commit hooks to maintain code quality and consistency.
-
-## Features
-
-The application provides categorized access to internal tools, reporting dashboards, and external registries.
-
-### 🛠️ Operational Tools
-
-| Tool                          | Description                                                        | Status    |
-| :---------------------------- | :----------------------------------------------------------------- | :-------- |
-| **MedSafety Net**             | Medication error recording and tracking system.                    | ✅ Active |
-| **Med Support Record**        | Registry for support medication values (e.g., TB drugs, vaccines). | ✅ Active |
-| **Warfarin Calculator**       | Clinical decision support tool for Warfarin dosage calculation.    | ✅ Active |
-| **Pediatric Dose Calculator** | Liquid medication dosing calculator for pediatric patients.        | ✅ Active |
-| **Document Download**         | Centralized repository for departmental documents and forms.       | ✅ Active |
-| **Hospital Drug List**        | Real-time formulary lookup for Sabot Hospital.                     | ✅ Active |
-| **High-Alert Drugs List**     | Reference database for High-Alert Medications (HAD).               | ✅ Active |
-| **DrugTracker**               | Inventory system for ordering and tracking drug procurement.       | ✅ Active |
-| **e-Lactancia**               | External integration for breastfeeding drug safety data.           | ✅ Active |
-
-### 📊 Reporting & Analytics
-
-| Report                      | Description                                               | Status         |
-| :-------------------------- | :-------------------------------------------------------- | :------------- |
-| **MedSafety Net Dashboard** | Analytics and management interface for medication errors. | ✅ Active      |
-| **Med Support Dashboard**   | Visualization of support medication value metrics.        | ✅ Active      |
-| **Monthly Summary Report**  | Operational overview and key performance indicators.      | 🚧 Maintenance |
-| **Stock Value Report**      | Drug inventory valuation tracking.                        | 🚧 Maintenance |
-| **OPD Drug Usage Report**   | Outpatient department utilization statistics.             | 🚧 Maintenance |
-
-### 🔗 External Systems
-
-| System                        | Description                                        | Status    |
-| :---------------------------- | :------------------------------------------------- | :-------- |
-| **Warfarin Registry Network** | National registry for Warfarin and NOACs patients. | ✅ Active |
-
-## Tech Stack
-
-This project adheres to modern frontend best practices and a robust toolchain.
-
-### Core Framework
-
-- **Framework:** [Vue.js 3](https://vuejs.org/) (Composition API)
-- **Language:** [TypeScript 5.9](https://www.typescriptlang.org/)
-- **Build Tool:** [Vite 7](https://vitejs.dev/)
-- **State Management:** [Pinia](https://pinia.vuejs.org/)
-- **Routing:** [Vue Router 4](https://router.vuejs.org/)
-
-### UI & Styling
-
-- **Styling:** [Tailwind CSS 4](https://tailwindcss.com/) (Vite Plugin)
-- **Icons:** [Lucide Vue Next](https://lucide.dev/)
-- **Fonts:** [Prompt](https://fonts.google.com/specimen/Prompt) (Google Fonts)
-
-### Development & Quality
-
-- **Linter:** [ESLint](https://eslint.org/) with [@antfu/eslint-config](https://github.com/antfu/eslint-config)
-- **Formatting:** Prettier (integrated via ESLint config)
-- **Git Hooks:** [Husky](https://typicode.github.io/husky/) & [lint-staged](https://github.com/okonet/lint-staged)
-- **Commit Linting:** [Commitlint](https://commitlint.js.org/)
-- **Testing:** [Vitest](https://vitest.dev/)
-- **Utilities:** [@vueuse/core](https://vueuse.org/)
-
-### Deployment
-
-- **Hosting:** [Firebase Hosting](https://firebase.google.com/docs/hosting)
-- **CI/CD:** GitHub Actions
-
-## Project Structure
-
-The project follows a modular architecture, separating concerns into layouts, components, data stores, and views.
-
 ```
-rx-room/
-├── .github/workflows/     # CI/CD pipelines (Lint, Test)
-├── .husky/                # Git hooks
-├── public/                # Static assets
-├── src/
-│   ├── assets/            # Global styles (Tailwind config)
-│   ├── components/
-│   │   ├── common/        # Shared UI components (e.g., ResourceCard)
-│   │   └── layout/        # Layout structures (Header, Sidebar, Footer)
-│   ├── data/              # Static data sources (tools, reports, externals)
-│   ├── layouts/           # Page layout wrappers (Default, Blank)
-│   ├── router/            # Route definitions and guards
-│   ├── stores/            # Pinia stores (UI state)
-│   ├── types/             # TypeScript type definitions
-│   ├── views/             # Page-level components
-│   ├── App.vue            # Root component
-│   └── main.ts            # Application entry point
-├── tests/                 # Unit tests
-└── firebase.json          # Hosting configuration
+██████╗ ██╗  ██╗██████╗  ██████╗  ██████╗ ███╗   ███╗
+██╔══██╗╚██╗██╔╝██╔══██╗██╔═══██╗██╔═══██╗████╗ ████║
+██████╔╝ ╚███╔╝ ██████╔╝██║   ██║██║   ██║██╔████╔██║
+██╔══██╗ ███╔╝  ██╔══██╗██║   ██║██║   ██║██║╚██╔╝██║
+██║  ██║██╔██╗  ██║  ██║╚██████╔╝╚██████╔╝██║ ╚═╝ ██║
+╚═╝  ╚═╝╚═╝ ╚═╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝     ╚═╝
 ```
 
-## Getting Started
+---
 
-### Prerequisites
+## ◆ PULSE
 
-- **Node.js** >= 18 or **Bun** (recommended for performance).
+A pharmacy department's daily work lives in a dozen tools and two dozen
+bookmarks. Rx Room is the one door into all of it - operational tools
+like MedSafety Net, the Warfarin calculator, and the hospital drug
+list; reporting dashboards for medication errors and support values;
+and the external registries the department answers to. One room, one
+entry, every tool in reach - built type-safe for the people who carry
+the department on their screens.
 
-### Installation
+| 9 tools ▣ | 5 reports ▣ | 1 registry ▣ | Type-safe ▣ |
+|---|---|---|---|
 
-1.  **Clone the repository**
+*The room - tools, reports, registries - is sealed.*
 
-    ```bash
-    git clone https://github.com/suradet-ps/rx-room.git
-    cd rx-room
-    ```
+> Built with Vue 3 + TypeScript 5.9, styled by Tailwind 4, hosted on
+> Firebase - strict from type-check to commit message.
+>
+> **suradet-ps**, artifact keeper
 
-2.  **Install dependencies**
+---
 
-    ```bash
-    bun install
-    ```
+## ◆ IGNITION
 
-3.  **Start the development server**
+One runtime, three commands.
 
-    ```bash
-    bun run dev
-    ```
+```
+⟫ git clone https://github.com/suradet-ps/rx-room.git
+⟫ cd rx-room
+⟫ bun install
+⟫ bun run dev
+```
 
-    Open [http://localhost:5173](http://localhost:5173) to view the application.
+Open [http://localhost:5173](http://localhost:5173).
 
-## Available Scripts
+```
+⟫ bun run build       # type-check, then production build
+⟫ bun run lint
+⟫ bun run test:unit
+```
 
-| Command                 | Action                                    |
-| :---------------------- | :---------------------------------------- |
-| `bun run dev`           | Starts Vite development server with HMR.  |
-| `bun run build`         | Type-checks and builds for production.    |
-| `bun run preview`       | Locally previews the production build.    |
-| `bun run type-check`    | Runs TypeScript compiler to verify types. |
-| `bun run lint`          | Runs ESLint to check code quality.        |
-| `bun run lint:fix`      | Automatically fixes linting issues.       |
-| `bun run test:unit`     | Runs Vitest unit tests.                   |
-| `bun run test:coverage` | Runs tests and generates coverage report. |
+<details>
+<summary>Prerequisites</summary>
 
-## Development Workflow
+- Node.js >= 18 or [Bun](https://bun.sh/) (recommended)
 
-### Commit Convention
+Deployment: `⟫ firebase deploy` - the SPA ships to Firebase Hosting;
+CI runs lint, type-check, tests, and the build on every push.
 
-This project uses [Conventional Commits](https://www.conventionalcommits.org/) enforced by Commitlint. Commit messages must follow one of these types:
+</details>
 
-- `feat`: A new feature
-- `fix`: A bug fix
-- `docs`: Documentation only changes
-- `style`: Changes that do not affect the meaning of the code
-- `refactor`: A code change that neither fixes a bug nor adds a feature
-- `perf`: A code change that improves performance
-- `test`: Adding missing tests or correcting existing tests
-- `build`: Changes that affect the build system or external dependencies
-- `ci`: Changes to CI configuration files and scripts
-- `chore`: Other changes that don't modify src or test files
+---
 
-### CI/CD Pipeline
+## ◆ ANATOMY
 
-The **CI Quality Workflow** runs on every pull request and push to `main`:
+One hub, three shelves, a strict corridor of quality.
 
-1.  **Linting:** Ensures code style consistency.
-2.  **Type Checking:** Validates TypeScript strict mode compliance.
-3.  **Testing:** Executes the unit test suite.
-4.  **Build Verification:** Ensures the production bundle builds successfully.
+- **Opens** - operational tools at the front of the room: medication
+  error tracking, support medication records, the Warfarin and
+  pediatric dose calculators, document downloads, the live hospital
+  drug list, the high-alert drug reference, DrugTracker, and the
+  e-Lactancia gateway.
+- **Reports** - the analytics shelf: MedSafety Net and Med Support
+  dashboards, the monthly summary, stock value, and OPD drug usage -
+  each marked honestly as Active or Maintenance, never overstated.
+- **Connects** - the external shelf holds the Warfarin Registry
+  Network - the national record the department answers to, one click
+  away.
+- **Guards** - the corridor is strict: ESLint, Commitlint, and Husky
+  pre-commit hooks, type-checked builds, and Vitest - a change that
+  does not clear the corridor does not enter the room.
+- **Serves** - Pinia holds the shared state across tabs and menus;
+  Tailwind v4 ships zero runtime CSS overhead; every view is a typed
+  route, not a gamble.
 
-## Deployment
+---
 
-The application is configured for continuous deployment to Firebase Hosting.
+## ◆ RITUALS
 
-1.  **Build the application**
+**The core ceremony** - the daily circuit:
 
-    ```bash
-    bun run build
-    ```
+1. Open Rx Room. The room is already arranged: tools, reports,
+   registries.
+2. Run the morning's work - a calculator, a lookup, a record - each
+   tool behind its own door, no bookmark hunt.
+3. Pull the report when the meeting asks; the dashboards answer from
+   the same data the tools record.
+4. Close the room. The corridor guarded the whole way: every commit
+   was conventional, every change was tested.
 
-2.  **Deploy to Firebase**
-    ```bash
-    firebase deploy
-    ```
-    _Note: Ensure you are authenticated and have the Firebase CLI installed._
+**The ceremony of the honest status** - a tool in maintenance is
+labeled maintenance. The room does not pretend a report is alive when
+it is not.
 
-## Contributing
+**The ceremony of the corridor** - lint and tests run before the code
+runs. The room trusts its own door because the door never opens
+without checking.
 
-Contributions are welcome. To contribute:
+---
 
-1.  Fork the repository.
-2.  Create a feature branch (`git checkout -b feature/amazing-feature`).
-3.  Commit your changes using conventional commits.
-4.  Push to the branch (`git push origin feature/amazing-feature`).
-5.  Open a Pull Request.
+## ◆ ECHOES
 
-Ensure all linting and tests pass before submitting a PR.
+**Where this artifact is heading**
 
-## License
+```
+tools    ▸ MedSafety Net, calculators, drug lists, tracker ─────────── ▸ sealed
+reports  ▸ error + support dashboards, monthly and usage reports ────── ▸ sealed
+externals ▸ Warfarin Registry Network gateway ───────────────────────── ▸ sealed
+guards   ▸ ESLint, Commitlint, Husky, Vitest, CI ────────────────────── ▸ sealed
+```
 
-This project is **proprietary software**.
+**Raising the artifact** - the tool and report catalog lives in
+`src/data/`; routes and guards in `src/router/`. Every PR follows
+conventional commits and clears the CI quality workflow. Open an issue
+first to discuss a change.
 
-Copyright (c) 2025 Sabot Hospital Pharmacy Department. All Rights Reserved.
+**Status** - CI runs lint, type-check, tests, and build verification
+on every push and PR. [Watch the gates](.github/workflows).
 
-This software is licensed for internal use by authorized employees of Sabot Hospital only. Redistribution, modification, or commercial use outside of the organization is strictly prohibited. See the [LICENSE](LICENSE) file for full details.
+> Rx Room is proprietary software, licensed for internal use by
+> authorized employees of Sabot Hospital only.
+
+---
+
+```
+  ─────────────────────────────────────────
+   A pharmacy with one door
+   is a pharmacy that loses no time.
+  ─────────────────────────────────────────
+```
+
+See the [LICENSE](LICENSE) for the full terms.
